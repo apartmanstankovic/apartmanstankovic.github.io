@@ -40,6 +40,13 @@ header {
   display: flex;
   align-items: center;
   margin-right: 2em;
+  justify-items: space-around;
+}
+
+.language-section img {
+    width: 36px;
+    height: 27px;
+    margin: 0 0.5em;
 }
 
 .header-navbar {
