@@ -6,6 +6,7 @@
 
 body {
   background: aquamarine;
+  position: relative;
 }
 
 a {
@@ -14,39 +15,31 @@ a {
 
 header {
   align-items: center;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
 }
 
-/* .styled {
-    padding: 0 30px;
-} */
-
 .top-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  color: red;
+  font-size: 24px;
 }
 
 .top-right-header {
   display: flex;
   justify-content: space-between;
-}
-
-.language-section {
-  display: flex;
-  align-items: center;
-  margin-right: 2em;
-  justify-items: space-around;
-}
-
-.language-section img {
-    width: 36px;
-    height: 27px;
-    margin: 0 0.5em;
 }
 
 .header-navbar {
@@ -59,13 +52,106 @@ header {
   justify-content: space-around;
 }
 
-.header-navbar ul a {
-  background-color: rebeccapurple;
-  width: 100%;
-  text-align: center;
-  padding: 5px 0;
-}
-
 .header-navbar ul li {
   list-style: none;
+  width: 100%;
+  text-align: center;
+  padding: 5px 50px;
+}
+
+.header-navbar ul a {
+  position: relative;
+  font-weight: 800;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.header-navbar ul a:hover {
+  color: silver;
+}
+
+.header-navbar ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  background: red;
+  width: 0;
+  height: 3px;
+  bottom: -7px;
+  transition: 0.5s ease;
+}
+
+.header-navbar ul a:hover:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  background: red;
+  width: 100%;
+  height: 3px;
+}
+
+.language-section {
+  display: flex;
+  align-items: center;
+  justify-items: space-around;
+}
+
+.language-section img {
+  width: 28px;
+  height: 21px;
+  margin: 0 0.1em;
+  transition: 0.5s ease;
+}
+
+.language-section img:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+
+/* ---------- Apartment ---------- */
+
+.img-slider {
+  z-index: 000;
+  width: 100%;
+  height: 100%;
+  background: yellowgreen;
+  display: flex;
+}
+
+.img-slider .slide {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.active {
+  z-index: 0;
+}
+
+.img-slider .info {
+  z-index: 1000;
+  position: absolute;
+  top: 100px;
+  padding: 15px 30px;
+}
+
+.img-slider .info h2 {
+  color: white;
+  font-size: 45px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.img-slider .info p {
+  color: white;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  width: 60%;
+  padding: 10px;
+  border-radius: 4px;
 }
