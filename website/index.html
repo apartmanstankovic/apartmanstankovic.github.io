@@ -19,7 +19,7 @@
         <div class="top-right-header">
           <nav class="header-navbar">
             <ul>
-              <li><a href="#">Apartment</a></li>
+              <li><a href="#apartment">Apartment</a></li>
               <li><a href="#">Resort</a></li>
               <li><a href="#">Kopaonik</a></li>
               <li><a href="#">Contact</a></li>
@@ -31,23 +31,91 @@
           </div>
         </div>
       </div>
+      <div class="social-icons">
+        <a href="#"><img src="./images/booking.png" alt=""></a>
+        <a href="#"><img src="./images/instagram.png" alt=""></a>
+      </div>
     </header>
 
-    <div class="img-slider">
-      <img src="./images/1.jpeg" class="slide " alt="" />
-      <img src="./images/2.jpeg" class="slide active" alt="" />
-      <img src="./images/1.jpeg" class="slide" alt="" />
-      <img src="./images/2.jpeg" class="slide" alt="" />
-      <div class="info">
-        <h2>Welcome!</h2>
-        <p>
-          Place where you will enjoy...
-        </p>
-      </div>
-    </div>
-
     <main>
-      <section id="apartment"></section>
+      <section id="apartment">
+        <div class="info">
+          <h1 class="sub-title">About Us</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+            ullam, magni laudantium praesentium nihil voluptatem optio labore,
+            maiores exercitationem dolores quia saepe doloribus! Maiores
+            pariatur assumenda vitae ipsa hic inventore!
+          </p>
+          <ul class="tab-titles">
+            <li class="tab-links active" data-tab="info1">Info 1</li>
+            <li class="tab-links" data-tab="info2">Info 2</li>
+            <li class="tab-links" data-tab="info3">Info 3</li>
+          </ul>
+          <div id="info1" class="tab-contents active">
+            <ul>
+              <li>
+                <span>Information1</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+              <li>
+                <span>Information1</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+              <li>
+                <span>Information1</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+            </ul>
+          </div>
+          <div id="info2" class="tab-contents">
+            <ul>
+              <li>
+                <span>Information2</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+              <li>
+                <span>Information2</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+              <li>
+                <span>Information2</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+            </ul>
+          </div>
+          <div id="info3" class="tab-contents">
+            <ul>
+              <li>
+                <span>Information3</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+              <li>
+                <span>Information3</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+              <li>
+                <span>Information3</span><br />Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Harum, corrupti!
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="img-slider">
+          <img src="./images/1.jpeg" class="slide active" alt="" />
+          <img src="./images/2.jpeg" class="slide" alt="" />
+          <img src="./images/1.jpeg" class="slide" alt="" />
+          <img src="./images/2.jpeg" class="slide" alt="" />
+          <div class="slide-navigation">
+            <div class="slide-navigation-btn active"></div>
+            <div class="slide-navigation-btn"></div>
+            <div class="slide-navigation-btn"></div>
+            <div class="slide-navigation-btn"></div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <script src="script.js"></script>
   </body>
 </html>
