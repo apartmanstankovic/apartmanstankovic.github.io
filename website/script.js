@@ -1,21 +1,33 @@
-//about us tabs
+// about us tabs
 
 const tabLinks = document.querySelectorAll(".tab-links");
 const tabContents = document.querySelectorAll(".tab-contents");
+const imgSliders = document.querySelectorAll(".img-slider");
 
-tabLinks.forEach((tabLink) => {
-  tabLink.addEventListener("click", (e) => {
+tabLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
     for (tabLink of tabLinks) {
       tabLink.classList.remove("active");
     }
     for (tabContent of tabContents) {
       tabContent.classList.remove("active");
     }
+    for (imgSlider of imgSliders) {
+      imgSlider.classList.remove("active");
+    }
 
     e.target.classList.add("active");
     let tab = e.target.getAttribute("data-tab");
-    document.getElementById(tab).classList.add('active')
+    document.getElementById(tab).classList.add("active");
 
+    imgSliders.forEach((slider) => {
+      let attribute = slider.getAttribute("data-slider");
+      if (attribute == tab) {
+        slider.classList.add("active");
+      }
+      slider.querySelector(".slide").classList.add("active");
+      slider.querySelector(".slide-navigation-btn").classList.add("active");
+    });
   });
 });
 

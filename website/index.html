@@ -20,8 +20,8 @@
           <nav class="header-navbar">
             <ul>
               <li><a href="#apartment">Apartment</a></li>
-              <li><a href="#">Resort</a></li>
-              <li><a href="#">Kopaonik</a></li>
+              <li><a href="#resort">Resort</a></li>
+              <li><a href="#kopaonik">Kopaonik</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </nav>
@@ -32,15 +32,16 @@
         </div>
       </div>
       <div class="social-icons">
-        <a href="#"><img src="./images/booking.png" alt=""></a>
-        <a href="#"><img src="./images/instagram.png" alt=""></a>
+        <a href="#"><img src="./images/booking.png" alt="" /></a>
+        <a href="#"><img src="./images/instagram.png" alt="" /></a>
       </div>
     </header>
 
     <main>
-      <section id="apartment">
-        <div class="info">
-          <h1 class="sub-title">About Us</h1>
+      <!-- ---------- apartment ---------- -->
+      <div id="apartment">
+        <div class="info-tabs">
+          <h1>About Us</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
             ullam, magni laudantium praesentium nihil voluptatem optio labore,
@@ -101,11 +102,11 @@
             </ul>
           </div>
         </div>
-        <div class="img-slider">
+        <div class="img-slider active" data-slider="info1">
           <img src="./images/1.jpeg" class="slide active" alt="" />
-          <img src="./images/2.jpeg" class="slide" alt="" />
           <img src="./images/1.jpeg" class="slide" alt="" />
-          <img src="./images/2.jpeg" class="slide" alt="" />
+          <img src="./images/1.jpeg" class="slide" alt="" />
+          <img src="./images/1.jpeg" class="slide" alt="" />
           <div class="slide-navigation">
             <div class="slide-navigation-btn active"></div>
             <div class="slide-navigation-btn"></div>
@@ -113,7 +114,55 @@
             <div class="slide-navigation-btn"></div>
           </div>
         </div>
-      </section>
+        <div class="img-slider" data-slider="info2">
+          <img src="./images/2.jpeg" class="slide active" alt="" />
+          <img src="./images/2.jpeg" class="slide" alt="" />
+          <div class="slide-navigation">
+            <div class="slide-navigation-btn active"></div>
+            <div class="slide-navigation-btn"></div>
+          </div>
+        </div>
+        <div class="img-slider" data-slider="info3">
+          <img src="./images/1.jpeg" class="slide active" alt="" />
+          <img src="./images/1.jpeg" class="slide" alt="" />
+          <img src="./images/1.jpeg" class="slide" alt="" />
+          <div class="slide-navigation">
+            <div class="slide-navigation-btn active"></div>
+            <div class="slide-navigation-btn"></div>
+            <div class="slide-navigation-btn"></div>
+          </div>
+        </div>
+      </div>
+      <!-- ---------- kopaonik ---------- -->
+      <div id="kopaonik">
+        <h1>Kopaonik</h1>
+        <div class="info-cards">
+          <div>
+            <h2>Kopaonik info 1</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
+              voluptatum!
+            </p>
+            <a href="#">Learn more</a>
+          </div>
+          <div>
+            <h2>Kopaonik info 2</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
+              voluptatum!
+            </p>
+            <a href="#">Learn more</a>
+          </div>
+          <div>
+            <h2>Kopaonik info 3</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
+              voluptatum!
+            </p>
+            <a href="#">Learn more</a>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script src="script.js"></script>
