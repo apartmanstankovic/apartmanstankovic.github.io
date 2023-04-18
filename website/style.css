@@ -25,6 +25,7 @@ a {
 header {
   align-items: center;
   background-image: url("./images/2.jpeg");
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -36,7 +37,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 30px;
+  padding: 20px 30px;
 }
 
 .logo {
@@ -51,7 +52,7 @@ header {
 
 .top-right-header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .header-navbar {
@@ -103,10 +104,8 @@ header {
 
 .language-section {
   margin-left: 20px;
-  display: flex;
-  align-items: center;
-  justify-items: space-around;
   padding-bottom: 20px;
+  display: flex;
 }
 
 .language-section img {
@@ -151,7 +150,7 @@ header {
 }
 
 .info-tabs {
-  padding: 60px 20px 60px 0;
+  padding: 20px 20px 60px 0;
   flex-basis: 40%;
 }
 
@@ -239,13 +238,18 @@ header {
   width: 100%;
   height: 80%;
   border-radius: 10px;
-  clip-path: circle(0% at 0 100%);
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.3s ease;
+  /* clip-path: circle(0% at 0 100%); */
 }
 
 .img-slider .slide.active {
-  clip-path: circle(150% at 0 0%);
-  transition: 2.5s ease;
-  transition-property: clip-path;
+  /* clip-path: circle(150% at 0 0%); */
+  transition: 1.2s ease;
+  transform: scale(1);
+  opacity: 1;
+  /* transition-property: clip-path; */
 }
 
 .img-slider .slide-navigation {
@@ -258,9 +262,9 @@ header {
 }
 
 .img-slider .slide-navigation .slide-navigation-btn {
-  background: rgba(255, 255, 255, 0.5);
-  width: 12px;
-  height: 12px;
+  background: rgba(255, 255, 255, 1);
+  width: 15px;
+  height: 15px;
   margin: 15px;
   border-radius: 50%;
   cursor: pointer;
@@ -272,7 +276,7 @@ header {
 }
 
 .img-slider .slide-navigation .slide-navigation-btn.active {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* ---------- resort ---------- */
@@ -286,6 +290,11 @@ header {
 #resort h1 {
   color: white;
   font-size: 60px;
+  text-align: center;
+}
+
+#resort p {
+  color: white;
   text-align: center;
 }
 
@@ -335,7 +344,7 @@ header {
 
 .layer a {
   margin-top: 20px;
-  color: firebrick;
+  color: black;
   text-decoration: none;
   font-size: 18px;
   line-height: 60px;
