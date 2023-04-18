@@ -103,9 +103,8 @@ header {
 }
 
 .language-section {
-  margin-left: 20px;
-  padding-bottom: 20px;
   display: flex;
+  margin-left: 1em;
 }
 
 .language-section img {
