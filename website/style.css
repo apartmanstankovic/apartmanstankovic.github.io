@@ -83,10 +83,28 @@ header {
   color: var(--primaryColor);
 }
 
+.header-navbar ul a::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  background: var(--primaryColor);
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  transition: 0.5s ease;
+}
+
+.header-navbar ul a:hover:before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 3px;
+}
+
 .header-navbar ul a::after {
   content: "";
   position: absolute;
-  left: 0;
+  right: 50%;
   background: var(--primaryColor);
   width: 0;
   height: 3px;
@@ -97,8 +115,7 @@ header {
 .header-navbar ul a:hover:after {
   content: "";
   position: absolute;
-  left: 0;
-  width: 100%;
+  width: 50%;
   height: 3px;
 }
 
@@ -180,10 +197,28 @@ header {
   color: var(--primaryColor);
 }
 
+.info-tabs .tab-titles .tab-links::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  background: var(--primaryColor);
+  width: 0;
+  height: 3px;
+  bottom: -1px;
+  transition: 0.5s ease;
+}
+
+.info-tabs .tab-titles .tab-links.active:before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 3px;
+}
+
 .info-tabs .tab-titles .tab-links::after {
   content: "";
   position: absolute;
-  left: 0;
+  right: 50%;
   background: var(--primaryColor);
   width: 0;
   height: 3px;
@@ -194,8 +229,7 @@ header {
 .info-tabs .tab-titles .tab-links.active:after {
   content: "";
   position: absolute;
-  left: 0;
-  width: 100%;
+  width: 60%;
   height: 3px;
 }
 
