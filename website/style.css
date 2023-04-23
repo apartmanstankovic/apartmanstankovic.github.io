@@ -95,7 +95,6 @@ header {
 }
 
 .header-navbar ul a:hover:before {
-  content: "";
   position: absolute;
   width: 50%;
   height: 3px;
@@ -113,7 +112,6 @@ header {
 }
 
 .header-navbar ul a:hover:after {
-  content: "";
   position: absolute;
   width: 50%;
   height: 3px;
@@ -134,25 +132,6 @@ header {
 .language-section img:hover {
   cursor: pointer;
   transform: scale(1.3);
-}
-
-.social-icons {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 25vh 20px;
-}
-
-.social-icons a img {
-  margin: 10px 0;
-  width: 80px;
-  height: 80px;
-  opacity: 0.6;
-}
-
-.social-icons a img:hover {
-  opacity: 1;
 }
 
 /* ---------- Apartment ---------- */
@@ -189,10 +168,7 @@ header {
   position: relative;
 }
 
-.info-tabs .tab-titles .tab-links:hover {
-  color: var(--primaryColor);
-}
-
+.info-tabs .tab-titles .tab-links:hover,
 .info-tabs .tab-titles .tab-links.active {
   color: var(--primaryColor);
 }
@@ -208,8 +184,8 @@ header {
   transition: 0.5s ease;
 }
 
+.info-tabs .tab-titles .tab-links:hover::before,
 .info-tabs .tab-titles .tab-links.active:before {
-  content: "";
   position: absolute;
   width: 60%;
   height: 3px;
@@ -226,8 +202,8 @@ header {
   transition: 0.5s ease;
 }
 
+.info-tabs .tab-titles .tab-links:hover::after,
 .info-tabs .tab-titles .tab-links.active:after {
-  content: "";
   position: absolute;
   width: 60%;
   height: 3px;
@@ -252,7 +228,7 @@ header {
   display: block;
 }
 
-.img-slider {
+.apartment-img-slider {
   display: none;
   flex-basis: 60%;
   justify-content: center;
@@ -262,11 +238,11 @@ header {
   height: 100%;
 }
 
-.img-slider.active {
+.apartment-img-slider.active {
   display: flex;
 }
 
-.img-slider .slide {
+.apartment-img-slider .apartment-slide {
   position: absolute;
   width: 100%;
   height: 80%;
@@ -277,7 +253,7 @@ header {
   /* clip-path: circle(0% at 0 100%); */
 }
 
-.img-slider .slide.active {
+.apartment-img-slider .apartment-slide.active {
   /* clip-path: circle(150% at 0 0%); */
   transition: 1.2s ease;
   transform: scale(1);
@@ -285,7 +261,7 @@ header {
   /* transition-property: clip-path; */
 }
 
-.img-slider .slide-navigation {
+.apartment-img-slider .slide-navigation {
   z-index: 0;
   position: absolute;
   display: flex;
@@ -294,7 +270,7 @@ header {
   transform: translateX(-50%);
 }
 
-.img-slider .slide-navigation .slide-navigation-btn {
+.apartment-img-slider .slide-navigation .slide-navigation-btn {
   background: rgba(255, 255, 255, 1);
   width: 15px;
   height: 15px;
@@ -304,11 +280,11 @@ header {
   transition: 0.3s ease;
 }
 
-.img-slider .slide-navigation .slide-navigation-btn:hover {
+.apartment-img-slider .slide-navigation .slide-navigation-btn:hover {
   background: rgba(255, 255, 255, 1);
 }
 
-.img-slider .slide-navigation .slide-navigation-btn.active {
+.apartment-img-slider .slide-navigation .slide-navigation-btn.active {
   background: rgba(255, 255, 255, 0.4);
 }
 
@@ -329,6 +305,138 @@ header {
 #resort p {
   color: white;
   text-align: center;
+}
+
+.resort-img-slider {
+  width: 360px;
+  margin: 2.5em auto;
+  position: relative;
+  perspective: 1000px;
+}
+
+.resort-img-slider .resort-galery {
+  width: 100%;
+  position: absolute;
+  animation: rotate 30s infinite linear;
+  transform-style: preserve-3d;
+}
+
+.resort-img-slider .resort-galery:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.resort-img-slider .resort-galery figure {
+  width: 100%;
+  height: 10em;
+  overflow: hidden;
+  position: absolute;
+  box-shadow: 0px 0px 10px 0px white;
+}
+
+[data-index="1"] {
+  transform: rotateY(0deg) translateZ(450px);
+}
+[data-index="2"] {
+  transform: rotateY(45deg) translateZ(450px);
+}
+[data-index="3"] {
+  transform: rotateY(90deg) translateZ(450px);
+}
+[data-index="4"] {
+  transform: rotateY(135deg) translateZ(450px);
+}
+[data-index="5"] {
+  transform: rotateY(180deg) translateZ(450px);
+}
+[data-index="6"] {
+  transform: rotateY(225deg) translateZ(450px);
+}
+[data-index="7"] {
+  transform: rotateY(270deg) translateZ(450px);
+}
+[data-index="8"] {
+  transform: rotateY(315deg) translateZ(450px);
+}
+[data-index="9"] {
+  transform: rotateY(360deg) translateZ(450px);
+}
+
+.resort-img-slider .resort-galery .resort-slide {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+}
+
+.resort-img-slider .resort-galery .resort-slide:hover {
+  transform: scale(1.2);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.full {
+  position: fixed;
+  background: rgba(192, 192, 192, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.full .full-img-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 95%;
+}
+
+.full .full-img-slider .fa-solid {
+  position: absolute;
+cursor: pointer;
+}
+
+.full .full-img-slider .fa-solid.fa-xmark {
+  top: 0.1em;
+  right: 0.1em;
+}
+
+.full .full-img-slider .fa-solid.fa-arrow-left {
+  left: -1.5em;
+}
+
+.full .full-img-slider .fa-solid.fa-arrow-right {
+  right: -1.5em;
+}
+
+.full .full-img-slider img {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+/* ---------- kopaonik ---------- */
+
+#kopaonik {
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  padding: 30px 50px;
+  text-align: center;
+}
+
+#kopaonik h1 {
+  font-size: 60px;
 }
 
 .services-list {
@@ -394,59 +502,4 @@ header {
 
 .service:hover .layer {
   height: 100%;
-}
-
-/* ---------- kopaonik ---------- */
-
-#kopaonik {
-  background-color: brown;
-  width: 100%;
-  height: 100vh;
-  padding: 30px 50px;
-  text-align: center;
-}
-
-#kopaonik h1 {
-  font-size: 60px;
-}
-
-.info-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 40px;
-  margin-top: 50px;
-}
-
-.info-cards div {
-  background: silver;
-  padding: 40px;
-  font-size: 13px;
-  font-weight: 300;
-  border-right: 10px;
-  border-radius: 10px;
-  transition: background 0.5s, transform 0.5s;
-}
-
-.info-cards div:hover {
-  background: rgb(255, 34, 34);
-  transform: translateY(-10px);
-}
-
-.info-cards div i {
-  font-size: 50px;
-  margin-bottom: 30px;
-}
-
-.info-cards div h2 {
-  font-size: 30px;
-  font-weight: 500;
-  margin-bottom: 15px;
-}
-
-.info-cards div a {
-  text-decoration: none;
-  color: white;
-  font-size: 12px;
-  margin-top: 20px;
-  display: inline-block;
 }

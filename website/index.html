@@ -8,13 +8,21 @@
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <meta name="author" content="John Doe" />
     <link rel="stylesheet" href="style.css" />
-    <title>Apartman Stankovic</title>
     <script
-      src="https://kit.fontawesome.com/618be35ded.js"
+      src="https://kit.fontawesome.com/a2cc7e3a32.js"
       crossorigin="anonymous"
     ></script>
+    <title>Apartman Stankovic</title>
   </head>
   <body>
+    <div class="full">
+      <div class="full-img-slider">
+        <i class="fa-solid fa-xmark fa-3x close-full"></i>
+        <i class="fa-solid fa-arrow-left fa-3x" onclick="decrementImg()"></i>
+        <i class="fa-solid fa-arrow-right fa-3x" onclick="incrementImg()"></i>
+        <img src="" class="full-img"/>
+      </div>
+    </div>
     <header>
       <div class="top-header">
         <div class="logo">
@@ -34,10 +42,6 @@
             <img src="./images/uk_icon.png" alt="English language" />
           </div>
         </div>
-      </div>
-      <div class="social-icons">
-        <a href="#"><img src="./images/booking.png" alt="" /></a>
-        <a href="#"><img src="./images/instagram.png" alt="" /></a>
       </div>
     </header>
     <main>
@@ -105,11 +109,11 @@
             </ul>
           </div>
         </div>
-        <div class="img-slider active" data-slider="info1">
-          <img src="./images/1.jpeg" class="slide active" alt="" />
-          <img src="./images/2.jpeg" class="slide" alt="" />
-          <img src="./images/1.jpeg" class="slide" alt="" />
-          <img src="./images/2.jpeg" class="slide" alt="" />
+        <div class="apartment-img-slider active" data-slider="info1">
+          <img src="./images/1.jpeg" class="apartment-slide active" alt="" />
+          <img src="./images/2.jpeg" class="apartment-slide" />
+          <img src="./images/1.jpeg" class="apartment-slide" />
+          <img src="./images/2.jpeg" class="apartment-slide" />
           <div class="slide-navigation">
             <div class="slide-navigation-btn active"></div>
             <div class="slide-navigation-btn"></div>
@@ -117,18 +121,18 @@
             <div class="slide-navigation-btn"></div>
           </div>
         </div>
-        <div class="img-slider" data-slider="info2">
-          <img src="./images/1.jpeg" class="slide active" alt="" />
-          <img src="./images/2.jpeg" class="slide" alt="" />
+        <div class="apartment-img-slider" data-slider="info2">
+          <img src="./images/1.jpeg" class="apartment-slide active" />
+          <img src="./images/2.jpeg" class="apartment-slide" />
           <div class="slide-navigation">
             <div class="slide-navigation-btn active"></div>
             <div class="slide-navigation-btn"></div>
           </div>
         </div>
-        <div class="img-slider" data-slider="info3">
-          <img src="./images/1.jpeg" class="slide active" alt="" />
-          <img src="./images/2.jpeg" class="slide" alt="" />
-          <img src="./images/1.jpeg" class="slide" alt="" />
+        <div class="apartment-img-slider" data-slider="info3">
+          <img src="./images/1.jpeg" class="apartment-slide active" />
+          <img src="./images/2.jpeg" class="apartment-slide" />
+          <img src="./images/1.jpeg" class="apartment-slide" />
           <div class="slide-navigation">
             <div class="slide-navigation-btn active"></div>
             <div class="slide-navigation-btn"></div>
@@ -139,6 +143,52 @@
       <!-- ---------- resort ---------- -->
       <div id="resort">
         <h1>Resort</h1>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur
+          eius placeat magnam nulla velit voluptatem possimus alias, delectus
+          ducimus distinctio asperiores voluptas atque quidem vitae beatae!
+          Reiciendis dicta eos nesciunt eum iure excepturi mollitia adipisci!
+          Nemo modi, id similique natus eum soluta facilis consequatur quo iure
+          tempora sunt voluptate hic ut, delectus corporis laudantium officia?
+          Eum ipsum voluptatum mollitia enim distinctio autem! Praesentium
+          blanditiis necessitatibus assumenda iure est unde accusamus libero
+          voluptatum obcaecati temporibus veritatis facere.
+        </p>
+        <div class="resort-img-slider">
+          <div class="resort-galery">
+            <figure data-index="1">
+              <img src="./images/1.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="2">
+              <img src="./images/2.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="3">
+              <img src="./images/1.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="4">
+              <img src="./images/2.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="5">
+              <img src="./images/1.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="6">
+              <img src="./images/2.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="7">
+              <img src="./images/1.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="8">
+              <img src="./images/2.jpeg" class="resort-slide" />
+            </figure>
+            <figure data-index="9">
+              <img src="./images/www.limes-proizvodi.com-Antibakterijski-tecni-sapun-300x300.jpg" class="resort-slide" />
+            </figure>
+          </div>
+        </div>
+      </div>
+      <!-- ---------- kopaonik ---------- -->
+      <div id="kopaonik">
+        <h1>Kopaonik</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur
           eius placeat magnam nulla velit voluptatem possimus alias, delectus
@@ -195,38 +245,7 @@
           </div>
         </div>
       </div>
-      <!-- ---------- kopaonik ---------- -->
-      <div id="kopaonik">
-        <h1>Kopaonik</h1>
-        <div class="info-cards">
-          <div>
-            <h2>Kopaonik info 1</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
-              voluptatum!
-            </p>
-            <a href="#">Learn more</a>
-          </div>
-          <div>
-            <h2>Kopaonik info 2</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
-              voluptatum!
-            </p>
-            <a href="#">Learn more</a>
-          </div>
-          <div>
-            <h2>Kopaonik info 3</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
-              voluptatum!
-            </p>
-            <a href="#">Learn more</a>
-          </div>
-        </div>
-      </div>
     </main>
-
     <script src="script.js"></script>
   </body>
 </html>
