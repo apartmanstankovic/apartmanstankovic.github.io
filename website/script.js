@@ -1,90 +1,66 @@
+// About Us
+
+// about us slider
+
+const apartmentImg = document.querySelector(".apartment-img");
+const apartmentImages = [
+  ["./images/1.jpeg", "./images/2.jpeg", "./images/3.jpg", "./images/4.jpg"],
+  ["./images/5.jpg", "./images/6.jpg", "./images/7.jpg", "./images/8.jpg"],
+  ["./images/3.jpg", "./images/9.jpg", "./images/2.jpeg", "./images/1.jpeg"]
+];
+
+let imgNum = 0;
+
+const next = () => {
+  let parent = event.target.closest(".apartment-slider");
+  let tabImages = +parent.getAttribute("data-tabIndex");
+  console.log(tabImages)
+  imgNum++;
+  if (imgNum > apartmentImages[tabImages].length - 1) {
+    imgNum = 0;
+  }
+  apartmentImg.src = apartmentImages[tabImages][imgNum];
+};
+
+const prev = () => {
+  let parent = event.target.closest(".apartment-slider");
+  let tabImages = +parent.getAttribute("data-tabIndex");
+  imgNum--;
+  if (imgNum < 0) {
+    imgNum = apartmentImages[tabImages].length - 1;
+  }
+  apartmentImg.src = apartmentImages[tabImages][imgNum];
+};
+
 // about us tabs
 
 const tabLinks = document.querySelectorAll(".tab-links");
 const tabContents = document.querySelectorAll(".tab-contents");
-const imgSliders = document.querySelectorAll(".apartment-img-slider");
+const imgSlider = document.querySelector(".apartment-slider");
 
-tabLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    for (tabLink of tabLinks) {
-      tabLink.classList.remove("active");
+tabLinks.forEach((tabLink) => {
+  tabLink.addEventListener("click", (e) => {
+    let tabIndex = (tabLink.getAttribute("data-tabLink")) - 1
+    imgSlider.setAttribute("data-tabIndex", tabIndex)
+    imgSlider.querySelector('img').setAttribute('src', apartmentImages[tabIndex][0])
+    for (link of tabLinks) {
+      link.classList.remove("active");
     }
-    for (tabContent of tabContents) {
-      tabContent.classList.remove("active");
-    }
-    for (imgSlider of imgSliders) {
-      imgSlider.classList.remove("active");
+    for (content of tabContents) {
+      content.classList.remove("active");
     }
 
     e.target.classList.add("active");
-    let tab = e.target.getAttribute("data-tab");
-    document.getElementById(tab).classList.add("active");
-
-    imgSliders.forEach((slider) => {
-      let attribute = slider.getAttribute("data-slider");
-      if (attribute == tab) {
-        slider.classList.add("active");
-      }
-      slider.querySelector(".apartment-slide").classList.add("active");
-      slider.querySelector(".slide-navigation-btn").classList.add("active");
-    });
+    let tab = e.target.getAttribute("data-tabLink");
+    let tabContent = document.querySelector(`[data-tabContent="${tab}"]`)
+    tabContent.classList.add("active");
   });
 });
-
-// img slider
-
-const slides = document.querySelectorAll(".apartment-slide");
-const slideNavigationButtons = document.querySelectorAll(
-  ".slide-navigation-btn"
-);
-let currentSlide = 1;
-
-const manualNavigation = (manual) => {
-  slides.forEach((slide) => {
-    slide.classList.remove("active");
-  });
-  slideNavigationButtons.forEach((btn) => {
-    btn.classList.remove("active");
-  });
-
-  slides[manual].classList.add("active");
-  slideNavigationButtons[manual].classList.add("active");
-};
-
-slideNavigationButtons.forEach((btn, i) => {
-  btn.addEventListener("click", () => {
-    manualNavigation(i);
-    currentSlide = i;
-  });
-});
-
-// const repeat = () => {
-//   let active = document.getElementsByClassName("active");
-//   let i = 1;
-
-//   const repeater = () => {
-//     setTimeout(function () {
-//       [...active].forEach((activeSlide) => {
-//         activeSlide.classList.remove("active");
-//       });
-//       slides[i].classList.add("active");
-//       slideNavigationButtons[i].classList.add("active");
-//       i++;
-
-//       if (i >= slides.length) {
-//         i = 0;
-//       }
-//       repeater();
-//     }, 2000);
-//   };
-//   repeater();
-// };
-// repeat();
 
 // full img slider
 
 const fullImg = document.querySelector(".full-img");
-const resortImg = document.querySelectorAll(".resort-slide");
+const resortImg = document.querySelectorAll(".rotate-slide");
 const closeFull = document.querySelector(".close-full");
 const resortFigures = document.querySelectorAll("figure");
 
@@ -104,11 +80,11 @@ const incrementImg = () => {
   if (imgIndex > resortFigures.length) {
     imgIndex = 1;
   }
-  console.log(imgIndex)
+  console.log(imgIndex);
 
   let imgSrc = document
     .querySelector(`[data-index="${imgIndex}"]`)
-    .querySelector(".resort-slide")
+    .querySelector(".rotate-slide")
     .getAttribute("src");
   fullImg.setAttribute("src", imgSrc);
 };
@@ -118,10 +94,10 @@ const decrementImg = () => {
   if (imgIndex < 1) {
     imgIndex = resortFigures.length;
   }
-  console.log(imgIndex)
+  console.log(imgIndex);
   let imgSrc = document
     .querySelector(`[data-index="${imgIndex}"]`)
-    .querySelector(".resort-slide")
+    .querySelector(".rotate-slide")
     .getAttribute("src");
   fullImg.setAttribute("src", imgSrc);
 };

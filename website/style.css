@@ -228,64 +228,54 @@ header {
   display: block;
 }
 
-.apartment-img-slider {
-  display: none;
+.apartment-slider-container {
   flex-basis: 60%;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   width: 100%;
   height: 100%;
-}
-
-.apartment-img-slider.active {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
 }
 
-.apartment-img-slider .apartment-slide {
-  position: absolute;
+.apartment-slider {
   width: 100%;
-  height: 80%;
-  border-radius: 10px;
-  transform: scale(0);
-  opacity: 0;
-  transition: 0.3s ease;
-  /* clip-path: circle(0% at 0 100%); */
+  height: 90%;
+  position: relative;
 }
 
-.apartment-img-slider .apartment-slide.active {
-  /* clip-path: circle(150% at 0 0%); */
-  transition: 1.2s ease;
-  transform: scale(1);
-  opacity: 1;
-  /* transition-property: clip-path; */
+.apartment-slider img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
 }
 
-.apartment-img-slider .slide-navigation {
-  z-index: 0;
+.apartment-buttons {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  bottom: 12%;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
 }
 
-.apartment-img-slider .slide-navigation .slide-navigation-btn {
-  background: rgba(255, 255, 255, 1);
-  width: 15px;
-  height: 15px;
-  margin: 15px;
-  border-radius: 50%;
+.apartment-buttons button {
+  background: none;
+  outline: none;
+  border: none;
+  color: silver;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
-.apartment-img-slider .slide-navigation .slide-navigation-btn:hover {
-  background: rgba(255, 255, 255, 1);
+.apartment-buttons button  i {
+  font-size: 3em;
 }
 
-.apartment-img-slider .slide-navigation .slide-navigation-btn.active {
-  background: rgba(255, 255, 255, 0.4);
+.apartment-buttons button:hover  i {
+  color: white;
 }
 
 /* ---------- resort ---------- */
@@ -307,138 +297,6 @@ header {
   text-align: center;
 }
 
-.resort-img-slider {
-  width: 360px;
-  margin: 2.5em auto;
-  position: relative;
-  perspective: 1000px;
-}
-
-.resort-img-slider .resort-galery {
-  width: 100%;
-  position: absolute;
-  animation: rotate 30s infinite linear;
-  transform-style: preserve-3d;
-}
-
-.resort-img-slider .resort-galery:hover {
-  animation-play-state: paused;
-  cursor: pointer;
-}
-
-.resort-img-slider .resort-galery figure {
-  width: 100%;
-  height: 10em;
-  overflow: hidden;
-  position: absolute;
-  box-shadow: 0px 0px 10px 0px white;
-}
-
-[data-index="1"] {
-  transform: rotateY(0deg) translateZ(450px);
-}
-[data-index="2"] {
-  transform: rotateY(45deg) translateZ(450px);
-}
-[data-index="3"] {
-  transform: rotateY(90deg) translateZ(450px);
-}
-[data-index="4"] {
-  transform: rotateY(135deg) translateZ(450px);
-}
-[data-index="5"] {
-  transform: rotateY(180deg) translateZ(450px);
-}
-[data-index="6"] {
-  transform: rotateY(225deg) translateZ(450px);
-}
-[data-index="7"] {
-  transform: rotateY(270deg) translateZ(450px);
-}
-[data-index="8"] {
-  transform: rotateY(315deg) translateZ(450px);
-}
-[data-index="9"] {
-  transform: rotateY(360deg) translateZ(450px);
-}
-
-.resort-img-slider .resort-galery .resort-slide {
-  width: 100%;
-  height: 100%;
-  transition: all 0.3s;
-}
-
-.resort-img-slider .resort-galery .resort-slide:hover {
-  transform: scale(1.2);
-}
-
-@keyframes rotate {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-.full {
-  position: fixed;
-  background: rgba(192, 192, 192, 0.8);
-  width: 100%;
-  height: 100%;
-  z-index: 98;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
-}
-
-.full .full-img-slider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 80%;
-  height: 95%;
-}
-
-.full .full-img-slider .fa-solid {
-  position: absolute;
-cursor: pointer;
-}
-
-.full .full-img-slider .fa-solid.fa-xmark {
-  top: 0.1em;
-  right: 0.1em;
-}
-
-.full .full-img-slider .fa-solid.fa-arrow-left {
-  left: -1.5em;
-}
-
-.full .full-img-slider .fa-solid.fa-arrow-right {
-  right: -1.5em;
-}
-
-.full .full-img-slider img {
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-}
-
-/* ---------- kopaonik ---------- */
-
-#kopaonik {
-  background-color: white;
-  width: 100%;
-  height: 100vh;
-  padding: 30px 50px;
-  text-align: center;
-}
-
-#kopaonik h1 {
-  font-size: 60px;
-}
-
 .services-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -454,6 +312,7 @@ cursor: pointer;
 
 .service img {
   width: 100%;
+  height: 100%;
   border-radius: 10px;
   display: block;
   transition: transform 0.5s;
@@ -462,7 +321,7 @@ cursor: pointer;
 .layer {
   width: 100%;
   height: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), silver);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), silver);
   border-radius: 10px;
   position: absolute;
   left: 0;
@@ -503,3 +362,137 @@ cursor: pointer;
 .service:hover .layer {
   height: 100%;
 }
+
+/* ---------- kopaonik ---------- */
+
+#kopaonik {
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  padding: 30px 50px;
+  text-align: center;
+}
+
+#kopaonik h1 {
+  font-size: 60px;
+}
+
+.rotate-img-slider {
+  width: 20em;
+  margin: 2.5em auto;
+  position: relative;
+  perspective: 1000px;
+}
+
+.rotate-img-slider .rotate-galery {
+  width: 100%;
+  position: absolute;
+  animation: rotate 30s infinite linear;
+  transform-style: preserve-3d;
+}
+
+.rotate-img-slider .rotate-galery:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.rotate-img-slider .rotate-galery figure {
+  width: 100%;
+  height: 10em;
+  overflow: hidden;
+  position: absolute;
+  box-shadow: 0px 0px 10px 0px white;
+}
+
+[data-index="1"] {
+  transform: rotateY(0deg) translateZ(25em);
+}
+[data-index="2"] {
+  transform: rotateY(45deg) translateZ(25em);
+}
+[data-index="3"] {
+  transform: rotateY(90deg) translateZ(25em);
+}
+[data-index="4"] {
+  transform: rotateY(135deg) translateZ(25em);
+}
+[data-index="5"] {
+  transform: rotateY(180deg) translateZ(25em);
+}
+[data-index="6"] {
+  transform: rotateY(225deg) translateZ(25em);
+}
+[data-index="7"] {
+  transform: rotateY(270deg) translateZ(25em);
+}
+[data-index="8"] {
+  transform: rotateY(315deg) translateZ(25em);
+}
+[data-index="9"] {
+  transform: rotateY(360deg) translateZ(25em);
+}
+
+.rotate-img-slider .rotate-galery .rotate-slide {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+}
+
+.rotate-img-slider .rotate-galery .rotate-slide:hover {
+  transform: scale(1.2);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.full {
+  position: fixed;
+  background: rgba(192, 192, 192, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.full .full-img-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 95%;
+}
+
+.full .full-img-slider .fa-solid {
+  position: absolute;
+  cursor: pointer;
+}
+
+.full .full-img-slider .fa-solid.fa-xmark {
+  top: 0.1em;
+  right: 0.1em;
+}
+
+.full .full-img-slider .fa-solid.fa-arrow-left {
+  left: -1.5em;
+}
+
+.full .full-img-slider .fa-solid.fa-arrow-right {
+  right: -1.5em;
+}
+
+.full .full-img-slider img {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+

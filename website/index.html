@@ -20,7 +20,7 @@
         <i class="fa-solid fa-xmark fa-3x close-full"></i>
         <i class="fa-solid fa-arrow-left fa-3x" onclick="decrementImg()"></i>
         <i class="fa-solid fa-arrow-right fa-3x" onclick="incrementImg()"></i>
-        <img src="" class="full-img"/>
+        <img src="" class="full-img" />
       </div>
     </div>
     <header>
@@ -56,11 +56,11 @@
             pariatur assumenda vitae ipsa hic inventore!
           </p>
           <ul class="tab-titles">
-            <li class="tab-links active" data-tab="info1">Info 1</li>
-            <li class="tab-links" data-tab="info2">Info 2</li>
-            <li class="tab-links" data-tab="info3">Info 3</li>
+            <li class="tab-links active" data-tabLink="1">Info 1</li>
+            <li class="tab-links" data-tabLink="2">Info 2</li>
+            <li class="tab-links" data-tabLink="3">Info 3</li>
           </ul>
-          <div id="info1" class="tab-contents active">
+          <div class="tab-contents active" data-tabContent="1">
             <ul>
               <li>
                 <span>Information1</span><br />Lorem ipsum dolor sit amet,
@@ -76,7 +76,7 @@
               </li>
             </ul>
           </div>
-          <div id="info2" class="tab-contents">
+          <div class="tab-contents" data-tabContent="2">
             <ul>
               <li>
                 <span>Information2</span><br />Lorem ipsum dolor sit amet,
@@ -92,7 +92,7 @@
               </li>
             </ul>
           </div>
-          <div id="info3" class="tab-contents">
+          <div class="tab-contents" data-tabContent="3">
             <ul>
               <li>
                 <span>Information3</span><br />Lorem ipsum dolor sit amet,
@@ -109,34 +109,13 @@
             </ul>
           </div>
         </div>
-        <div class="apartment-img-slider active" data-slider="info1">
-          <img src="./images/1.jpeg" class="apartment-slide active" alt="" />
-          <img src="./images/2.jpeg" class="apartment-slide" />
-          <img src="./images/1.jpeg" class="apartment-slide" />
-          <img src="./images/2.jpeg" class="apartment-slide" />
-          <div class="slide-navigation">
-            <div class="slide-navigation-btn active"></div>
-            <div class="slide-navigation-btn"></div>
-            <div class="slide-navigation-btn"></div>
-            <div class="slide-navigation-btn"></div>
-          </div>
-        </div>
-        <div class="apartment-img-slider" data-slider="info2">
-          <img src="./images/1.jpeg" class="apartment-slide active" />
-          <img src="./images/2.jpeg" class="apartment-slide" />
-          <div class="slide-navigation">
-            <div class="slide-navigation-btn active"></div>
-            <div class="slide-navigation-btn"></div>
-          </div>
-        </div>
-        <div class="apartment-img-slider" data-slider="info3">
-          <img src="./images/1.jpeg" class="apartment-slide active" />
-          <img src="./images/2.jpeg" class="apartment-slide" />
-          <img src="./images/1.jpeg" class="apartment-slide" />
-          <div class="slide-navigation">
-            <div class="slide-navigation-btn active"></div>
-            <div class="slide-navigation-btn"></div>
-            <div class="slide-navigation-btn"></div>
+        <div class="apartment-slider-container">
+          <div class="apartment-slider">
+            <img src="./images/1.jpeg" class="apartment-img" />
+            <div class="apartment-buttons">
+              <button onclick="prev()"><i class="fa-sharp fa-solid fa-circle-chevron-left"></i></button>
+              <button onclick="next()"><i class="fa-sharp fa-solid fa-circle-chevron-right"></i></button>
+            </div>
           </div>
         </div>
       </div>
@@ -154,35 +133,45 @@
           blanditiis necessitatibus assumenda iure est unde accusamus libero
           voluptatum obcaecati temporibus veritatis facere.
         </p>
-        <div class="resort-img-slider">
-          <div class="resort-galery">
-            <figure data-index="1">
-              <img src="./images/1.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="2">
-              <img src="./images/2.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="3">
-              <img src="./images/1.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="4">
-              <img src="./images/2.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="5">
-              <img src="./images/1.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="6">
-              <img src="./images/2.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="7">
-              <img src="./images/1.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="8">
-              <img src="./images/2.jpeg" class="resort-slide" />
-            </figure>
-            <figure data-index="9">
-              <img src="./images/www.limes-proizvodi.com-Antibakterijski-tecni-sapun-300x300.jpg" class="resort-slide" />
-            </figure>
+        <div class="services-list">
+          <div class="service">
+            <img src="images/1.jpeg" />
+            <div class="layer">
+              <h3>Service 1</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Perspiciatis a praesentium magni accusantium animi optio!
+              </p>
+              <a href="#"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="service">
+            <img src="images/2.jpeg" />
+            <div class="layer">
+              <h3>Service 1</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Perspiciatis a praesentium magni accusantium animi optio!
+              </p>
+              <a href="#"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="service">
+            <img src="images/9.jpg" />
+            <div class="layer">
+              <h3>Service 1</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Perspiciatis a praesentium magni accusantium animi optio!
+              </p>
+              <a href="#"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
           </div>
         </div>
       </div>
@@ -203,45 +192,38 @@
           recusandae fuga amet temporibus numquam, expedita obcaecati mollitia
           velit esse natus.
         </p>
-        <div class="services-list">
-          <div class="service">
-            <img src="images/1.jpeg" />
-            <div class="layer">
-              <h3>Service 1</h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis a praesentium magni accusantium animi optio!
-              </p>
-              <a href="#"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-            </div>
-          </div>
-          <div class="service">
-            <img src="images/1.jpeg" />
-            <div class="layer">
-              <h3>Service 1</h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis a praesentium magni accusantium animi optio!
-              </p>
-              <a href="#"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-            </div>
-          </div>
-          <div class="service">
-            <img src="images/1.jpeg" />
-            <div class="layer">
-              <h3>Service 1</h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis a praesentium magni accusantium animi optio!
-              </p>
-              <a href="#"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-            </div>
+        <div class="rotate-img-slider">
+          <div class="rotate-galery">
+            <figure data-index="1">
+              <img src="./images/1.jpeg" class="rotate-slide" />
+            </figure>
+            <figure data-index="2">
+              <img src="./images/2.jpeg" class="rotate-slide" />
+            </figure>
+            <figure data-index="3">
+              <img src="./images/3.jpg" class="rotate-slide" />
+            </figure>
+            <figure data-index="4">
+              <img src="./images/4.jpg" class="rotate-slide" />
+            </figure>
+            <figure data-index="5">
+              <img src="./images/5.jpg" class="rotate-slide" />
+            </figure>
+            <figure data-index="6">
+              <img src="./images/6.jpg" class="rotate-slide" />
+            </figure>
+            <figure data-index="7">
+              <img src="./images/7.jpg" class="rotate-slide" />
+            </figure>
+            <figure data-index="8">
+              <img src="./images/8.jpg" class="rotate-slide" />
+            </figure>
+            <figure data-index="9">
+              <img
+                src="./images/9.jpg"
+                class="rotate-slide"
+              />
+            </figure>
           </div>
         </div>
       </div>
