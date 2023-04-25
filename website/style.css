@@ -145,7 +145,7 @@ header {
 }
 
 .info-tabs {
-  padding: 20px 20px 60px 0;
+  padding: 80px 20px ;
   flex-basis: 40%;
 }
 
@@ -270,23 +270,27 @@ header {
   cursor: pointer;
 }
 
-.apartment-buttons button  i {
+.apartment-buttons button i {
   font-size: 3em;
+  transition: all 0.3s ease-in-out;
 }
 
-.apartment-buttons button:hover  i {
+.apartment-buttons button:hover i {
   color: white;
 }
 
 /* ---------- resort ---------- */
 
 #resort {
-  background: black;
-  height: 100vh;
-  padding: 50px 50px;
+  background-color: black;
+  height: 240vh;
+  padding: 1em 5em;
+  position: relative;
+  overflow: hidden;
 }
 
 #resort h1 {
+  margin: 1em auto;
   color: white;
   font-size: 60px;
   text-align: center;
@@ -298,19 +302,35 @@ header {
 }
 
 .services-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 40px;
-  margin-top: 50px;
+  margin: auto;
+}
+.service {
+  height: 70vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.service {
+.service-description {
+  width: 40%;
+  text-align: center;
+  padding: 1em;
+}
+
+.service-description h2 {
+  color: white;
+  padding-bottom: 3em;
+}
+
+.service-images {
+  width: 800px;
+  height: 550px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
 }
 
-.service img {
+.service-images img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -355,11 +375,11 @@ header {
   text-align: center;
 }
 
-.service:hover img {
+.service-images:hover img {
   transform: scale(1.1);
 }
 
-.service:hover .layer {
+.service-images:hover .layer {
   height: 100%;
 }
 
@@ -494,5 +514,3 @@ header {
   height: 100%;
   opacity: 1;
 }
-
-

@@ -60,7 +60,7 @@ tabLinks.forEach((tabLink) => {
 // full img slider
 
 const fullImg = document.querySelector(".full-img");
-const resortImg = document.querySelectorAll(".rotate-slide");
+const img = document.querySelectorAll(".img");
 const closeFull = document.querySelector(".close-full");
 const resortFigures = document.querySelectorAll("figure");
 
