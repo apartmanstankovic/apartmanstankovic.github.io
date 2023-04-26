@@ -11,6 +11,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  user-select: none;
 }
 
 body {
@@ -20,6 +21,15 @@ body {
 
 a {
   text-decoration: none;
+  color: rgb(88, 88, 88);
+}
+
+a:hover {
+  color: var(--primaryColor);
+}
+
+li {
+  list-style: none;
 }
 
 header {
@@ -66,24 +76,18 @@ header {
 }
 
 .header-navbar ul li {
-  list-style: none;
   width: 160px;
   text-align: center;
 }
 
-.header-navbar ul a {
+.underlined {
   position: relative;
   font-weight: 800;
-  color: rgb(88, 88, 88);
   transition: 0.5s ease;
-  padding: 5px 10px;
+  padding: 3px 10px;
 }
 
-.header-navbar ul a:hover {
-  color: var(--primaryColor);
-}
-
-.header-navbar ul a::before {
+.underlined::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -94,13 +98,13 @@ header {
   transition: 0.5s ease;
 }
 
-.header-navbar ul a:hover:before {
+.underlined:hover:before {
   position: absolute;
   width: 50%;
   height: 3px;
 }
 
-.header-navbar ul a::after {
+.underlined::after {
   content: "";
   position: absolute;
   right: 50%;
@@ -111,7 +115,7 @@ header {
   transition: 0.5s ease;
 }
 
-.header-navbar ul a:hover:after {
+.underlined:hover:after {
   position: absolute;
   width: 50%;
   height: 3px;
@@ -141,16 +145,17 @@ header {
   justify-content: center;
   width: 100%;
   height: 100vh;
-  padding: 20px 50px;
+  padding: 0 50px;
 }
 
 .info-tabs {
-  padding: 80px 20px ;
+  padding: 2em 1em;
   flex-basis: 40%;
 }
 
 .info-tabs h1 {
   font-size: 60px;
+  margin-bottom: 0.5em;
 }
 
 .info-tabs .tab-titles {
@@ -240,7 +245,7 @@ header {
 
 .apartment-slider {
   width: 100%;
-  height: 90%;
+  height: 80%;
   position: relative;
 }
 
@@ -283,14 +288,13 @@ header {
 
 #resort {
   background-color: black;
-  height: 240vh;
-  padding: 1em 5em;
+  min-height: 100vh;
+  padding: 2em 6em;
   position: relative;
   overflow: hidden;
 }
 
 #resort h1 {
-  margin: 1em auto;
   color: white;
   font-size: 60px;
   text-align: center;
@@ -298,33 +302,42 @@ header {
 
 #resort p {
   color: white;
-  text-align: center;
 }
 
 .services-list {
-  margin: auto;
+  display: block;
 }
+
 .service {
-  height: 70vh;
+  padding: 3em 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .service-description {
-  width: 40%;
-  text-align: center;
-  padding: 1em;
+  flex-basis: 55%;
+  width: 100%;
+  font-size: 20px;
 }
 
+.service-description:nth-child(1) {
+  text-align: right;
+  padding-right: 6em;
+}
+.service-description:nth-child(2) {
+  text-align: left;
+  padding-left: 6em;
+}
+.service-description:nth-child(3) {
+  text-align: right;
+}
 .service-description h2 {
   color: white;
-  padding-bottom: 3em;
+  padding-bottom: 1em;
 }
 
 .service-images {
-  width: 800px;
-  height: 550px;
+  flex-basis: 45%;
+  width: 100%;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -341,7 +354,7 @@ header {
 .layer {
   width: 100%;
   height: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), silver);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), whitesmoke);
   border-radius: 10px;
   position: absolute;
   left: 0;
@@ -513,4 +526,98 @@ header {
   width: 100%;
   height: 100%;
   opacity: 1;
+}
+
+/* ---------- contact ---------- */
+
+#contact {
+  width: 100%;
+  height: 50vh;
+  background: rgb(120, 211, 214);
+  display: flex;
+  justify-content: space-between;
+  padding: 3em 5em;
+}
+
+#contact h2 {
+  margin-bottom: 0.8em;
+  border-bottom: 2px solid black;
+  padding:0 1em;
+  text-align: center;
+}
+
+.footer-navbar ul li {
+  text-align: center;
+  padding: 0.1em;
+}
+
+.phone,
+.email {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.phone p,
+.email p {
+  font-weight: 600;
+}
+
+.newsletter {
+  margin-bottom: 2em;
+}
+
+.newsletter form {
+  text-align: center;
+  width: 120%;
+  height: 100%;
+  position: relative;
+  display: flex;
+}
+
+.newsletter input[type="email"] {
+  width: 100%;
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 10px;
+  outline: none;
+  padding: 0.5em 0.8em;
+  font-size: 18px;
+}
+
+.newsletter label {
+  display: none;
+  position: absolute;
+  top: -1em;
+  left: 1em;
+  background: rgb(120, 211, 214);
+  text-transform: capitalize;
+  font-size: 18px;
+  padding: 0 0.3em;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+}
+
+.newsletter input[type="email"]:is(:focus) ~ label {
+  display: block;
+  opacity: 1;
+}
+
+.newsletter input[type="email"]:focus::placeholder {
+  color: transparent;
+}
+
+.newsletter button {
+  border: none;
+  background: transparent;
+}
+
+.social-media {
+  text-align: center;
+}
+
+.copyright {
+  background: black;
+  text-align: center;
+  color: white;
 }

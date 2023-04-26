@@ -66,7 +66,7 @@ const resortFigures = document.querySelectorAll("figure");
 
 let imgIndex;
 
-resortImg.forEach((img) =>
+img.forEach((img) =>
   img.addEventListener("click", () => {
     let src = img.getAttribute("src");
     document.querySelector(".full").style.display = "flex";
@@ -104,4 +104,13 @@ const decrementImg = () => {
 
 closeFull.addEventListener("click", () => {
   document.querySelector(".full").style.display = "none";
+});
+
+// footer newsletter input
+
+const newsletterInput = document.querySelector(".newsletter-email")
+const newsletterLabel = document.querySelector(".newsletter-label")
+
+newsletterInput.addEventListener("change", (event) => {
+  console.log("radi!!!")
 });
