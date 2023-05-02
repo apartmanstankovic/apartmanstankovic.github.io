@@ -6,7 +6,7 @@ const apartmentImg = document.querySelector(".apartment-img");
 const apartmentImages = [
   ["./images/1.jpeg", "./images/2.jpeg", "./images/3.jpg", "./images/4.jpg"],
   ["./images/5.jpg", "./images/6.jpg", "./images/7.jpg", "./images/8.jpg"],
-  ["./images/3.jpg", "./images/9.jpg", "./images/2.jpeg", "./images/1.jpeg"]
+  ["./images/3.jpg", "./images/9.jpg", "./images/2.jpeg", "./images/1.jpeg"],
 ];
 
 let imgNum = 0;
@@ -14,7 +14,6 @@ let imgNum = 0;
 const next = () => {
   let parent = event.target.closest(".apartment-slider");
   let tabImages = +parent.getAttribute("data-tabIndex");
-  console.log(tabImages)
   imgNum++;
   if (imgNum > apartmentImages[tabImages].length - 1) {
     imgNum = 0;
@@ -37,12 +36,24 @@ const prev = () => {
 const tabLinks = document.querySelectorAll(".tab-links");
 const tabContents = document.querySelectorAll(".tab-contents");
 const imgSlider = document.querySelector(".apartment-slider");
+const mapSection = document.querySelector(".map")
 
 tabLinks.forEach((tabLink) => {
   tabLink.addEventListener("click", (e) => {
-    let tabIndex = (tabLink.getAttribute("data-tabLink")) - 1
-    imgSlider.setAttribute("data-tabIndex", tabIndex)
-    imgSlider.querySelector('img').setAttribute('src', apartmentImages[tabIndex][0])
+    let tabIndex = tabLink.getAttribute("data-tabLink") - 1;
+    imgSlider.setAttribute("data-tabIndex", tabIndex);
+    if(tabIndex === 3) {
+      imgSlider.style.display = "none"
+      mapSection.style.display = "block"
+    }
+    else {
+      imgSlider.style.display = "block"
+      mapSection.style.display = "none"
+      imgSlider
+      .querySelector("img")
+      .setAttribute("src", apartmentImages[tabIndex][0]);
+    }
+
     for (link of tabLinks) {
       link.classList.remove("active");
     }
@@ -52,7 +63,7 @@ tabLinks.forEach((tabLink) => {
 
     e.target.classList.add("active");
     let tab = e.target.getAttribute("data-tabLink");
-    let tabContent = document.querySelector(`[data-tabContent="${tab}"]`)
+    let tabContent = document.querySelector(`[data-tabContent="${tab}"]`);
     tabContent.classList.add("active");
   });
 });
@@ -80,7 +91,6 @@ const incrementImg = () => {
   if (imgIndex > resortFigures.length) {
     imgIndex = 1;
   }
-  console.log(imgIndex);
 
   let imgSrc = document
     .querySelector(`[data-index="${imgIndex}"]`)
@@ -94,7 +104,6 @@ const decrementImg = () => {
   if (imgIndex < 1) {
     imgIndex = resortFigures.length;
   }
-  console.log(imgIndex);
   let imgSrc = document
     .querySelector(`[data-index="${imgIndex}"]`)
     .querySelector(".rotate-slide")
@@ -108,9 +117,9 @@ closeFull.addEventListener("click", () => {
 
 // footer newsletter input
 
-const newsletterInput = document.querySelector(".newsletter-email")
-const newsletterLabel = document.querySelector(".newsletter-label")
+const newsletterInput = document.querySelector(".newsletter-email");
+const newsletterLabel = document.querySelector(".newsletter-label");
 
 newsletterInput.addEventListener("change", (event) => {
-  console.log("radi!!!")
+  console.log("radi!!!");
 });
