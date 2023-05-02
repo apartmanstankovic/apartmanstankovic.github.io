@@ -3,10 +3,12 @@
 :root {
   --primaryColor: black;
   --secondaryColor: ;
+  --regular: 18px;
 }
 
 * {
   font-family: "Tillana", cursive;
+  font-size: var(--regular);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -145,7 +147,7 @@ header {
   justify-content: center;
   width: 100%;
   height: 100vh;
-  padding: 0 50px;
+  padding: 0 1em;
 }
 
 .info-tabs {
@@ -156,21 +158,30 @@ header {
 .info-tabs h1 {
   font-size: 60px;
   margin-bottom: 0.5em;
+  text-align: center;
 }
 
 .info-tabs .tab-titles {
   display: flex;
-  margin: 20px 0 40px;
+  height: 4em;
+  margin: 1em 1em;
   list-style: none;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info-tabs .tab-titles .tab-links {
   color: rgb(88, 88, 88);
-  margin-right: 100px;
+  min-width: 3.2em;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
   position: relative;
+  transition: 0.5s ease-in-out;
+}
+
+.info-tabs .tab-titles .tab-links.active {
+  font-size: 22px;
 }
 
 .info-tabs .tab-titles .tab-links:hover,
@@ -227,6 +238,7 @@ header {
 
 .info-tabs .tab-contents {
   display: none;
+
 }
 
 .info-tabs .tab-contents.active {
@@ -243,12 +255,18 @@ header {
   padding: 1em;
 }
 
+.map {
+  display: none;
+}
+
+.map,
 .apartment-slider {
   width: 100%;
   height: 80%;
   position: relative;
 }
 
+.map iframe,
 .apartment-slider img {
   width: 100%;
   height: 100%;
@@ -289,7 +307,7 @@ header {
 #resort {
   background-color: black;
   min-height: 100vh;
-  padding: 2em 6em;
+  padding: 2em 4em;
   position: relative;
   overflow: hidden;
 }
@@ -321,14 +339,15 @@ header {
 
 .service-description:nth-child(1) {
   text-align: right;
-  padding-right: 6em;
+  padding-right: 4em;
 }
 .service-description:nth-child(2) {
   text-align: left;
-  padding-left: 6em;
+  padding-left: 4em;
 }
 .service-description:nth-child(3) {
   text-align: right;
+  padding-right: 4em;
 }
 .service-description h2 {
   color: white;
@@ -336,8 +355,9 @@ header {
 }
 
 .service-images {
-  flex-basis: 45%;
+  flex-basis: 50%;
   width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -345,7 +365,7 @@ header {
 
 .service-images img {
   width: 100%;
-  height: 100%;
+  height: 25em;
   border-radius: 10px;
   display: block;
   transition: transform 0.5s;
@@ -588,19 +608,19 @@ header {
 .newsletter label {
   display: none;
   position: absolute;
-  top: -1em;
+  top: -0.8em;
   left: 1em;
-  background: rgb(120, 211, 214);
+  background: transparent;
   text-transform: capitalize;
   font-size: 18px;
   padding: 0 0.3em;
-  transition: all 0.2s ease-in-out;
   opacity: 0;
 }
 
 .newsletter input[type="email"]:is(:focus) ~ label {
   display: block;
   opacity: 1;
+  background: rgb(120, 211, 214);
 }
 
 .newsletter input[type="email"]:focus::placeholder {
