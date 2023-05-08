@@ -41,8 +41,9 @@ const mapSection = document.querySelector(".map");
 tabLinks.forEach((tabLink) => {
   tabLink.addEventListener("click", (e) => {
     let tab = e.target.getAttribute("data-tabLink");
+    let tabIndex = tab - 1;
     imgSlider.setAttribute("data-tabIndex", tabIndex);
-    if (tab === tabLinks.length) {
+    if (tabIndex === tabLinks.length - 1) {
       imgSlider.style.display = "none";
       mapSection.style.display = "block";
     } else {
