@@ -70,50 +70,50 @@ tabLinks.forEach((tabLink) => {
 
 // full img slider
 
-const fullImg = document.querySelector(".full-img");
-const img = document.querySelectorAll(".img");
-const closeFull = document.querySelector(".close-full");
-const resortFigures = document.querySelectorAll("figure");
+// const fullImg = document.querySelector(".full-img");
+// const img = document.querySelectorAll(".img");
+// const closeFull = document.querySelector(".close-full");
+// const resortFigures = document.querySelectorAll("figure");
 
-let imgIndex;
+// let imgIndex;
 
-img.forEach((img) =>
-  img.addEventListener("click", () => {
-    let src = img.getAttribute("src");
-    document.querySelector(".full").style.display = "flex";
-    fullImg.setAttribute("src", src);
-    imgIndex = img.parentElement.getAttribute("data-index");
-  })
-);
+// img.forEach((img) =>
+//   img.addEventListener("click", () => {
+//     let src = img.getAttribute("src");
+//     document.querySelector(".full").style.display = "flex";
+//     fullImg.setAttribute("src", src);
+//     imgIndex = img.parentElement.getAttribute("data-index");
+//   })
+// );
 
-const incrementImg = () => {
-  imgIndex++;
-  if (imgIndex > resortFigures.length) {
-    imgIndex = 1;
-  }
+// const incrementImg = () => {
+//   imgIndex++;
+//   if (imgIndex > resortFigures.length) {
+//     imgIndex = 1;
+//   }
 
-  let imgSrc = document
-    .querySelector(`[data-index="${imgIndex}"]`)
-    .querySelector(".rotate-slide")
-    .getAttribute("src");
-  fullImg.setAttribute("src", imgSrc);
-};
+//   let imgSrc = document
+//     .querySelector(`[data-index="${imgIndex}"]`)
+//     .querySelector(".rotate-slide")
+//     .getAttribute("src");
+//   fullImg.setAttribute("src", imgSrc);
+// };
 
-const decrementImg = () => {
-  imgIndex--;
-  if (imgIndex < 1) {
-    imgIndex = resortFigures.length;
-  }
-  let imgSrc = document
-    .querySelector(`[data-index="${imgIndex}"]`)
-    .querySelector(".rotate-slide")
-    .getAttribute("src");
-  fullImg.setAttribute("src", imgSrc);
-};
+// const decrementImg = () => {
+//   imgIndex--;
+//   if (imgIndex < 1) {
+//     imgIndex = resortFigures.length;
+//   }
+//   let imgSrc = document
+//     .querySelector(`[data-index="${imgIndex}"]`)
+//     .querySelector(".rotate-slide")
+//     .getAttribute("src");
+//   fullImg.setAttribute("src", imgSrc);
+// };
 
-closeFull.addEventListener("click", () => {
-  document.querySelector(".full").style.display = "none";
-});
+// closeFull.addEventListener("click", () => {
+//   document.querySelector(".full").style.display = "none";
+// });
 
 // footer newsletter input
 
