@@ -17,7 +17,6 @@
 }
 
 body {
-  background: white;
   position: relative;
 }
 
@@ -75,6 +74,8 @@ header {
 .header-navbar ul {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+
 }
 
 .header-navbar ul li {
@@ -141,8 +142,76 @@ header {
 }
 
 /* ---------- Apartment ---------- */
-
 #apartment {
+  background: white;
+  min-height: 100vh;
+  padding: 2em 4em;
+  position: relative;
+  overflow: hidden;
+}
+
+#apartment h1 {
+  font-size: 60px;
+  text-align: center;
+}
+
+.services-list {
+  display: block;
+}
+
+.service {
+  padding: 3em 0;
+  display: flex;
+}
+
+.service-description {
+  flex-basis: 55%;
+  width: 100%;
+  font-size: 20px;
+}
+
+.service-description:nth-child(1) {
+  text-align: right;
+  padding-right: 4em;
+}
+.service-description:nth-child(2) {
+  text-align: left;
+  padding-left: 4em;
+}
+.service-description:nth-child(3) {
+  text-align: right;
+  padding-right: 4em;
+}
+.service-description h2 {
+  color: white;
+  padding-bottom: 1em;
+}
+
+.service-images {
+  flex-basis: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-images img {
+  width: 100%;
+  height: 20em;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.service-images:hover img {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* ---------- resort ---------- */
+
+#resort {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,7 +221,7 @@ header {
   flex-wrap: wrap;
 }
 
-#apartment h1 {
+#resort h1 {
   font-size: 60px;
   text-align: center;
 }
@@ -242,7 +311,7 @@ header {
   display: block;
 }
 
-.apartment-slider-container {
+.img-slider-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -257,14 +326,14 @@ header {
 }
 
 .map,
-.apartment-slider {
+.img-slider {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
 .map iframe,
-.apartment-slider img {
+.img-slider img {
   width: 100%;
   height: 60vh;
   border-radius: 1em;
@@ -297,120 +366,6 @@ header {
 
 .apartment-buttons button:hover i {
   color: white;
-}
-
-/* ---------- resort ---------- */
-
-#resort {
-  background-color: black;
-  min-height: 100vh;
-  padding: 2em 4em;
-  position: relative;
-  overflow: hidden;
-}
-
-#resort h1 {
-  color: white;
-  font-size: 60px;
-  text-align: center;
-}
-
-#resort p {
-  color: white;
-}
-
-.services-list {
-  display: block;
-}
-
-.service {
-  padding: 3em 0;
-  display: flex;
-}
-
-.service-description {
-  flex-basis: 55%;
-  width: 100%;
-  font-size: 20px;
-}
-
-.service-description:nth-child(1) {
-  text-align: right;
-  padding-right: 4em;
-}
-.service-description:nth-child(2) {
-  text-align: left;
-  padding-left: 4em;
-}
-.service-description:nth-child(3) {
-  text-align: right;
-  padding-right: 4em;
-}
-.service-description h2 {
-  color: white;
-  padding-bottom: 1em;
-}
-
-.service-images {
-  flex-basis: 50%;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-}
-
-.service-images img {
-  width: 100%;
-  height: 20em;
-  border-radius: 10px;
-  display: block;
-  transition: transform 0.5s;
-}
-
-.layer {
-  width: 100%;
-  height: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), whitesmoke);
-  border-radius: 10px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  text-align: center;
-  font-size: 14px;
-  transition: height 0.5s;
-}
-
-.layer h3 {
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
-.layer a {
-  margin-top: 20px;
-  color: black;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 60px;
-  background: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  text-align: center;
-}
-
-.service-images:hover img {
-  transform: scale(1.1);
-}
-
-.service-images:hover .layer {
-  height: 100%;
 }
 
 /* ---------- kopaonik ---------- */
@@ -477,6 +432,8 @@ header {
   width: 100%;
   height: 50vh;
   display: flex;
+  flex-wrap: wrap;
+
   justify-content: space-between;
   padding: 3em 5em;
 }
