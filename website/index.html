@@ -15,14 +15,14 @@
     <title>Apartman Stankovic</title>
   </head>
   <body>
-    <div class="full">
+    <!-- <div class="full">
       <div class="full-img-slider">
         <i class="fa-solid fa-xmark fa-3x close-full"></i>
         <i class="fa-solid fa-arrow-left fa-3x" onclick="decrementImg()"></i>
         <i class="fa-solid fa-arrow-right fa-3x" onclick="incrementImg()"></i>
         <img src="" class="full-img" />
       </div>
-    </div>
+    </div> -->
     <header>
       <div class="top-header">
         <div class="logo">
@@ -47,94 +47,90 @@
     <main>
       <!-- ---------- apartment ---------- -->
       <div id="apartment">
+        <h1>Apartment</h1>
+        <!-- TODO Exchange apartment and resort sections -->
         <div class="info-tabs">
-          <h1>About Us</h1>
-          <p>
-            Imademo jean apartment na Kopaonik dje ce gi izdajemo al gi necemo
-            izdajemo za mali novci je ce si takoj upropastimo trziste no cemo si
-            gi izdajemo za novci kako valja da si ne bi bilo belaja.
-          </p>
           <ul class="tab-titles">
-            <li class="tab-links active" data-tabLink="1">Apartment</li>
-            <li class="tab-links" data-tabLink="2">Recepcion</li>
+            <li class="tab-links active" data-tabLink="1">About Us</li>
+            <li class="tab-links" data-tabLink="2">Apartment</li>
             <li class="tab-links" data-tabLink="3">Garage</li>
             <li class="tab-links" data-tabLink="4">Locations</li>
           </ul>
-          <div class="tab-contents active" data-tabContent="1">
-            <ul>
-              <li>
-                <span>Apartment</span><br />Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Harum, corrupti!Lorem ipsum dolor
-                sit amet, consectetur adipisicing elit. Harum, corrupti!Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Harum,
-                corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Harum, corrupti!
-              </li>
-            </ul>
-          </div>
-          <div class="tab-contents" data-tabContent="2">
-            <ul>
-              <li>
-                <span>Recepcion</span><br />Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Harum, corrupti!Lorem ipsum dolor
-                sit amet, consectetur adipisicing elit. Harum, corrupti!Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Harum,
-                corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Harum, corrupti!
-              </li>
-            </ul>
-          </div>
-          <div class="tab-contents" data-tabContent="3">
-            <ul>
-              <li>
-                <span>Garage</span><br />Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Harum, corrupti!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Harum, corrupti!Lorem ipsum dolor
-                sit amet, consectetur adipisicing elit. Harum, corrupti!Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Harum,
-                corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Harum, corrupti!
-              </li>
-            </ul>
-          </div>
-          <div class="tab-contents" data-tabContent="4">
-            <ul>
-              <li>
-                <span>Locations</span><br />Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Harum, corrupti!Lorem ipsum dolor
-                sit amet, consectetur adipisicing elit. Harum, corrupti!Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Harum,
-                corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Harum, corrupti!
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="apartment-slider-container">
-          <div class="apartment-slider">
-            <img src="./images/1.jpeg" class="apartment-img" />
-            <div class="apartment-buttons">
-              <button onclick="prev()">
-                <i class="fa-sharp fa-solid fa-circle-chevron-left"></i>
-              </button>
-              <button onclick="next()">
-                <i class="fa-sharp fa-solid fa-circle-chevron-right"></i>
-              </button>
+          <div class="tab">
+            <div class="tab-contents active" data-tabContent="1">
+              <ul>
+                <li>
+                  Imademo jean apartment na Kopaonik dje ce gi izdajemo al gi
+                  necemo izdajemo za mali novci je ce si takoj upropastimo
+                  trziste no cemo si gi izdajemo za novci kako valja da si ne bi
+                  bilo belaja.
+                </li>
+              </ul>
             </div>
-          </div>
-          <div class="map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5602.760969031454!2d20.408104249393038!3d44.85251193978067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a65b4f2b460e5%3A0xddc813c75170a20e!2sKajak%20Kanu%20klub%20%22Zmaj%22%20Zemun!5e0!3m2!1ssr!2srs!4v1683058790681!5m2!1ssr!2srs"
-              width="600"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <div class="tab-contents" data-tabContent="2">
+              <ul>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit. Harum, corrupti!Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Harum, corrupti!Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit. Harum,
+                  corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
+                  elit. Harum, corrupti!
+                </li>
+              </ul>
+            </div>
+            <div class="tab-contents" data-tabContent="3">
+              <ul>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit. Harum, corrupti!Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Harum, corrupti!Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit. Harum,
+                  corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
+                  elit. Harum, corrupti!
+                </li>
+              </ul>
+            </div>
+            <div class="tab-contents" data-tabContent="4">
+              <ul>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit. Harum, corrupti!Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Harum, corrupti!Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit. Harum,
+                  corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
+                  elit. Harum, corrupti!
+                </li>
+              </ul>
+            </div>
+            <div class="apartment-slider-container">
+              <div class="apartment-slider">
+                <img src="./images/1.jpeg" class="apartment-img" />
+                <div class="apartment-buttons">
+                  <!-- TODO Change class name so it can be ued for everyone img on site -->
+                  <button onclick="prev()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button onclick="next()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5602.760969031454!2d20.408104249393038!3d44.85251193978067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a65b4f2b460e5%3A0xddc813c75170a20e!2sKajak%20Kanu%20klub%20%22Zmaj%22%20Zemun!5e0!3m2!1ssr!2srs!4v1683058790681!5m2!1ssr!2srs"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -260,37 +256,6 @@
           recusandae fuga amet temporibus numquam, expedita obcaecati mollitia
           velit esse natus.
         </p>
-        <div class="rotate-img-slider">
-          <div class="rotate-galery">
-            <figure data-index="1">
-              <img src="./images/1.jpeg" class="rotate-slide" />
-            </figure>
-            <figure data-index="2">
-              <img src="./images/2.jpeg" class="rotate-slide" />
-            </figure>
-            <figure data-index="3">
-              <img src="./images/3.jpg" class="rotate-slide" />
-            </figure>
-            <figure data-index="4">
-              <img src="./images/4.jpg" class="rotate-slide" />
-            </figure>
-            <figure data-index="5">
-              <img src="./images/5.jpg" class="rotate-slide" />
-            </figure>
-            <figure data-index="6">
-              <img src="./images/6.jpg" class="rotate-slide" />
-            </figure>
-            <figure data-index="7">
-              <img src="./images/7.jpg" class="rotate-slide" />
-            </figure>
-            <figure data-index="8">
-              <img src="./images/8.jpg" class="rotate-slide" />
-            </figure>
-            <figure data-index="9">
-              <img src="./images/9.jpg" class="rotate-slide" />
-            </figure>
-          </div>
-        </div>
       </div>
     </main>
 
