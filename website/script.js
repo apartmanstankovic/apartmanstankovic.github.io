@@ -2,47 +2,31 @@
 
 // about us slider
 
-const apartmentImg = document.querySelector(".slide-img");
-const apartmentImages = [
-  ["./images/1.jpeg", "./images/2.jpeg", "./images/3.jpg", "./images/4.jpg"],
-  ["./images/5.jpg", "./images/6.jpg", "./images/7.jpg", "./images/8.jpg"],
-  ["./images/3.jpg", "./images/9.jpg", "./images/2.jpeg", "./images/1.jpeg"],
-];
-
-let imgNum = 0;
-
-const next = () => {
-  let parent = event.target.closest(".img-slider");
-  let tabImages = +parent.getAttribute("data-tabIndex");
-  imgNum++;
-  if (imgNum > apartmentImages[tabImages].length - 1) {
-    imgNum = 0;
-  }
-  apartmentImg.src = apartmentImages[tabImages][imgNum];
-};
-
-const prev = () => {
-  let parent = event.target.closest(".img-slider");
-  let tabImages = +parent.getAttribute("data-tabIndex");
-  imgNum--;
-  if (imgNum < 0) {
-    imgNum = apartmentImages[tabImages].length - 1;
-  }
-  apartmentImg.src = apartmentImages[tabImages][imgNum];
+const images = {
+  apartment: [
+    ["./images/5.jpg", "./images/6.jpg", "./images/7.jpg", "./images/8.jpg"],
+    ["./images/1.jpeg", "./images/2.jpeg", "./images/3.jpg", "./images/4.jpg"],
+    ["./images/3.jpg", "./images/9.jpg", "./images/2.jpeg", "./images/1.jpeg"],
+  ],
+  resort: [
+    ["./images/1.jpeg", "./images/2.jpeg", "./images/3.jpg", "./images/4.jpg"],
+    ["./images/5.jpg", "./images/6.jpg", "./images/7.jpg", "./images/8.jpg"],
+    ["./images/3.jpg", "./images/9.jpg", "./images/2.jpeg", "./images/1.jpeg"],
+  ],
 };
 
 // about us tabs
 
-const tabLinks = document.querySelectorAll(".tab-links");
-const tabContents = document.querySelectorAll(".tab-contents");
-const imgSlider = document.querySelector(".img-slider");
+const tabLinks = document.querySelectorAll(".tab-link");
+const tabContents = document.querySelectorAll(".tab-content");
 const mapSection = document.querySelector(".map");
 
-tabLinks.forEach((tabLink) => {
+let tabIndex = 0;
+
+tabLinks.forEach((tabLink, index) => {
   tabLink.addEventListener("click", (e) => {
-    let tab = e.target.getAttribute("data-tabLink");
-    let tabIndex = tab - 1;
-    imgSlider.setAttribute("data-tabIndex", tabIndex);
+    let imgSlider = document.querySelector(".info-tabs .img-slider")
+    tabIndex = index;
     if (tabIndex === tabLinks.length - 1) {
       imgSlider.style.display = "none";
       mapSection.style.display = "block";
@@ -51,7 +35,7 @@ tabLinks.forEach((tabLink) => {
       mapSection.style.display = "none";
       imgSlider
         .querySelector("img")
-        .setAttribute("src", apartmentImages[tabIndex][0]);
+        .setAttribute("src", images.resort[tabIndex][0]);
     }
 
     for (link of tabLinks) {
@@ -62,7 +46,44 @@ tabLinks.forEach((tabLink) => {
     }
 
     e.target.classList.add("active");
-    let tabContent = document.querySelector(`[data-tabContent="${tab}"]`);
-    tabContent.classList.add("active");
+    tabContents[tabIndex].classList.add("active");
   });
 });
+
+let imgNum = 0;
+
+const next = (e) => {
+  let arrIndex;
+  let section = e.closest(".img-slider").getAttribute("data-imagesSection");
+  if (section === "resort") {
+    arrIndex = tabIndex;
+  }
+  if (section === "apartment") {
+    arrIndex = e.closest(".service-images").getAttribute("data-serviceIndex");
+  }
+
+  imgNum++;
+  if (imgNum > images[section][arrIndex].length - 1) {
+    imgNum = 0;
+  }
+  e.closest(".img-slider")
+    .querySelector(".slide-img")
+    .setAttribute("src", images[section][arrIndex][imgNum]);
+};
+
+const prev = (e) => {
+  let section = e.closest(".img-slider").getAttribute("data-imagesSection");
+  if (section === "resort") {
+    arrIndex = tabIndex;
+  }
+  if (section === "apartment") {
+    arrIndex = e.closest(".service-images").getAttribute("data-serviceIndex");
+  }
+  imgNum--;
+  if (imgNum < 0) {
+    imgNum = images[section][arrIndex].length - 1;
+  }
+  e.closest(".img-slider")
+    .querySelector(".slide-img")
+    .setAttribute("src", images[section][arrIndex][imgNum]);
+};
