@@ -45,7 +45,8 @@
       </div>
     </header>
     <main>
-      <!-- ---------- apartment ---------- -->      <div id="apartment">
+      <!-- ---------- apartment ---------- -->
+      <div id="apartment">
         <h1>Apartment</h1>
         <div class="services-list">
           <div class="service">
@@ -67,14 +68,32 @@
                 mollitia adipisci!
               </p>
             </div>
-            <div class="service-images">
-              <img src="images/2.jpeg" />
-            </div>
+            <div class="service-images" data-serviceIndex="0">
+              <div class="img-slider" data-imagesSection="apartment">
+                <img src="./images/4.jpg" class="slide-img" />
+                <div class="slide-navigation-buttons">
+                  <button onclick="prev(this)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button onclick="next(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>            </div>
           </div>
           <div class="service">
-            <div class="service-images">
-              <img src="images/4.jpg" />
-            </div>
+            <div class="service-images" data-serviceIndex="1">
+              <div class="img-slider" data-imagesSection="apartment">
+                <img src="./images/9.jpg" class="slide-img" />
+                <div class="slide-navigation-buttons">
+                  <button onclick="prev(this)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button onclick="next(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>            </div>
             <div class="service-description">
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -109,8 +128,18 @@
                 eos nesciunt eum iure excepturi mollitia adipisci!
               </p>
             </div>
-            <div class="service-images">
-              <img src="images/7.jpg" />
+            <div class="service-images" data-serviceIndex="2">
+              <div class="img-slider" data-imagesSection="apartment">
+                <img src="./images/7.jpg" class="slide-img" />
+                <div class="slide-navigation-buttons">
+                  <button onclick="prev(this)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button onclick="next(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -121,13 +150,13 @@
         <h1>Resort</h1>
         <div class="info-tabs">
           <ul class="tab-titles">
-            <li class="tab-links active" data-tabLink="1">About Us</li>
-            <li class="tab-links" data-tabLink="2">Apartment</li>
-            <li class="tab-links" data-tabLink="3">Garage</li>
-            <li class="tab-links" data-tabLink="4">Locations</li>
+            <li class="tab-link active">Recepcion</li>
+            <li class="tab-link">Restaurant</li>
+            <li class="tab-link">Spa Center</li>
+            <li class="tab-link">Locations</li>
           </ul>
           <div class="tab">
-            <div class="tab-contents active" data-tabContent="1">
+            <div class="tab-content active">
               <ul>
                 <li>
                   Imademo jean apartment na Kopaonik dje ce gi izdajemo al gi
@@ -137,7 +166,19 @@
                 </li>
               </ul>
             </div>
-            <div class="tab-contents" data-tabContent="2">
+            <div class="tab-content">
+              <ul>
+                <li>
+                  Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla
+                  Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla
+                  Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla
+                  Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla
+                  Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla
+                  Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
               <ul>
                 <li>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -150,41 +191,25 @@
                 </li>
               </ul>
             </div>
-            <div class="tab-contents" data-tabContent="3">
+            <div class="tab-content">
               <ul>
                 <li>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
-                  adipisicing elit. Harum, corrupti!Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit. Harum, corrupti!Lorem ipsum
-                  dolor sit amet, consectetur adipisicing elit. Harum,
-                  corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit. Harum, corrupti!
+                  map map map map map map map map map map map map map map map
+                  map map map map map map map map map map map map map map map
+                  map map map map map map map map map map map map map map map
+                  map map map map map map map map map map map map map map map
+                  map map map map map map map map map map map map map map map
                 </li>
               </ul>
             </div>
-            <div class="tab-contents" data-tabContent="4">
-              <ul>
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Harum, corrupti!Lorem ipsum dolor sit amet, consectetur
-                  adipisicing elit. Harum, corrupti!Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit. Harum, corrupti!Lorem ipsum
-                  dolor sit amet, consectetur adipisicing elit. Harum,
-                  corrupti!Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit. Harum, corrupti!
-                </li>
-              </ul>
-            </div>
-            <div class="img-slider-container">
-              <div class="img-slider">
+            <div class="resort-slider-container">
+              <div class="img-slider" data-imagesSection="resort">
                 <img src="./images/1.jpeg" class="slide-img" />
-                <div class="apartment-buttons">
-                  <!-- TODO Change class name so it can be ued for everyone img on site -->
-                  <button onclick="prev()">
+                <div class="slide-navigation-buttons">
+                  <button onclick="prev(this)">
                     <i class="fa-solid fa-chevron-left"></i>
                   </button>
-                  <button onclick="next()">
+                  <button onclick="next(this)">
                     <i class="fa-solid fa-chevron-right"></i>
                   </button>
                 </div>

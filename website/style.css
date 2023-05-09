@@ -75,7 +75,6 @@ header {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-
 }
 
 .header-navbar ul li {
@@ -172,15 +171,15 @@ header {
 
 .service-description:nth-child(1) {
   text-align: right;
-  padding-right: 4em;
+  padding-right: 6em;
 }
 .service-description:nth-child(2) {
   text-align: left;
-  padding-left: 4em;
+  padding-left: 6em;
 }
 .service-description:nth-child(3) {
   text-align: right;
-  padding-right: 4em;
+  padding-right: 6em;
 }
 .service-description h2 {
   color: white;
@@ -188,25 +187,17 @@ header {
 }
 
 .service-images {
-  flex-basis: 50%;
+  flex-basis: 45%;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   position: relative;
-  overflow: hidden;
 }
 
 .service-images img {
   width: 100%;
   height: 20em;
-  border-radius: 10px;
   display: block;
   transition: transform 0.5s;
-}
-
-.service-images:hover img {
-  transform: scale(1.1);
-  cursor: pointer;
 }
 
 /* ---------- resort ---------- */
@@ -242,7 +233,7 @@ header {
   text-align: center;
 }
 
-.info-tabs .tab-titles .tab-links {
+.info-tabs .tab-titles .tab-link {
   color: rgb(88, 88, 88);
   min-width: 3.2em;
   font-size: 18px;
@@ -252,16 +243,16 @@ header {
   transition: 0.5s ease-in-out;
 }
 
-.info-tabs .tab-titles .tab-links.active {
+.info-tabs .tab-titles .tab-link.active {
   font-size: 24px;
 }
 
-.info-tabs .tab-titles .tab-links:hover,
-.info-tabs .tab-titles .tab-links.active {
+.info-tabs .tab-titles .tab-link:hover,
+.info-tabs .tab-titles .tab-link.active {
   color: var(--primaryColor);
 }
 
-.info-tabs .tab-titles .tab-links::before {
+.info-tabs .tab-titles .tab-link::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -272,14 +263,14 @@ header {
   transition: 0.5s ease;
 }
 
-.info-tabs .tab-titles .tab-links:hover::before,
-.info-tabs .tab-titles .tab-links.active:before {
+.info-tabs .tab-titles .tab-link:hover::before,
+.info-tabs .tab-titles .tab-link.active:before {
   position: absolute;
   width: 60%;
   height: 3px;
 }
 
-.info-tabs .tab-titles .tab-links::after {
+.info-tabs .tab-titles .tab-link::after {
   content: "";
   position: absolute;
   right: 50%;
@@ -290,8 +281,8 @@ header {
   transition: 0.5s ease;
 }
 
-.info-tabs .tab-titles .tab-links:hover::after,
-.info-tabs .tab-titles .tab-links.active:after {
+.info-tabs .tab-titles .tab-link:hover::after,
+.info-tabs .tab-titles .tab-link.active:after {
   position: absolute;
   width: 60%;
   height: 3px;
@@ -301,17 +292,17 @@ header {
   display: flex;
 }
 
-.info-tabs .tab-contents {
+.info-tabs .tab-content {
   display: none;
   padding-top: 2em;
   flex-basis: 40%;
 }
 
-.info-tabs .tab-contents.active {
+.info-tabs .tab-content.active {
   display: block;
 }
 
-.img-slider-container {
+.resort-slider-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -336,10 +327,11 @@ header {
 .img-slider img {
   width: 100%;
   height: 60vh;
+  cursor: pointer;
   border-radius: 1em;
 }
 
-.apartment-buttons {
+.slide-navigation-buttons {
   position: absolute;
   top: 0;
   left: 0;
@@ -351,7 +343,7 @@ header {
   padding: 0 1em;
 }
 
-.apartment-buttons button {
+.slide-navigation-buttons button {
   background: none;
   outline: none;
   border: none;
@@ -359,12 +351,12 @@ header {
   cursor: pointer;
 }
 
-.apartment-buttons button i {
+.slide-navigation-buttons button i {
   font-size: 3em;
   transition: all 0.3s ease-in-out;
 }
 
-.apartment-buttons button:hover i {
+.slide-navigation-buttons button:hover i {
   color: white;
 }
 
@@ -441,7 +433,7 @@ header {
 #contact h2 {
   margin-bottom: 0.8em;
   border-bottom: 2px solid black;
-  padding:0 1em;
+  padding: 0 1em;
   text-align: center;
 }
 
