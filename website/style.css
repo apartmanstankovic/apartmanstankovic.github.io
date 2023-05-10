@@ -290,6 +290,8 @@ header {
 
 .tab {
   display: flex;
+  padding: 1em 0;
+  gap: 2em;
 }
 
 .info-tabs .tab-content {
@@ -305,45 +307,50 @@ header {
 .resort-slider-container {
   width: 100%;
   height: 100%;
-  display: flex;
   flex-basis: 60%;
-  justify-content: center;
-  align-items: center;
-  padding: 1em;
 }
 
 .map {
   display: none;
 }
 
-.map,
+.map {
+  width: 100%;
+  height: 100%;
+}
+
 .img-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   position: relative;
-}
-
-.map iframe,
-.img-slider img {
-  width: 100%;
-  height: 60vh;
-  cursor: pointer;
+  overflow: hidden;
   border-radius: 1em;
 }
 
-.slide-navigation-buttons {
-  position: absolute;
-  top: 0;
-  left: 0;
+.map iframe {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1em;
+  height: 60vh;
 }
 
-.slide-navigation-buttons button {
+.img-slider img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.img-slider img:hover {
+  border-radius: 1em;
+  transform: scale(1.1);
+}
+
+.img-slider button {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
   background: none;
   outline: none;
   border: none;
@@ -351,12 +358,20 @@ header {
   cursor: pointer;
 }
 
-.slide-navigation-buttons button i {
+.prev-slide-btn {
+  left: 1em;
+}
+
+.next-slide-btn {
+  right: 1em;
+}
+
+.img-slider button i {
   font-size: 3em;
   transition: all 0.3s ease-in-out;
 }
 
-.slide-navigation-buttons button:hover i {
+.img-slider button:hover i {
   color: white;
 }
 

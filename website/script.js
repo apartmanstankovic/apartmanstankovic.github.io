@@ -31,7 +31,7 @@ tabLinks.forEach((tabLink, index) => {
       imgSlider.style.display = "none";
       mapSection.style.display = "block";
     } else {
-      imgSlider.style.display = "block";
+      imgSlider.style.display = "flex";
       mapSection.style.display = "none";
       imgSlider
         .querySelector("img")
