@@ -53,6 +53,7 @@ tabLinks.forEach((tabLink, index) => {
 let imgNum = 0;
 
 const next = (e) => {
+  imgNum++;
   let arrIndex;
   let section = e.closest(".img-slider").getAttribute("data-imagesSection");
   if (section === "resort") {
@@ -62,16 +63,17 @@ const next = (e) => {
     arrIndex = e.closest(".service-images").getAttribute("data-serviceIndex");
   }
 
-  imgNum++;
   if (imgNum > images[section][arrIndex].length - 1) {
     imgNum = 0;
   }
   e.closest(".img-slider")
     .querySelector(".slide-img")
     .setAttribute("src", images[section][arrIndex][imgNum]);
+    console.log(imgNum)
 };
 
 const prev = (e) => {
+  imgNum--;
   let section = e.closest(".img-slider").getAttribute("data-imagesSection");
   if (section === "resort") {
     arrIndex = tabIndex;
@@ -79,7 +81,6 @@ const prev = (e) => {
   if (section === "apartment") {
     arrIndex = e.closest(".service-images").getAttribute("data-serviceIndex");
   }
-  imgNum--;
   if (imgNum < 0) {
     imgNum = images[section][arrIndex].length - 1;
   }
