@@ -1,6 +1,4 @@
-// About Us
-
-// about us slider
+// images
 
 const images = {
   apartment: [
@@ -50,6 +48,8 @@ tabLinks.forEach((tabLink, index) => {
   });
 });
 
+// slider
+
 let imgNum = 0;
 
 const next = (e) => {
@@ -69,7 +69,6 @@ const next = (e) => {
   e.closest(".img-slider")
     .querySelector(".slide-img")
     .setAttribute("src", images[section][arrIndex][imgNum]);
-    console.log(imgNum)
 };
 
 const prev = (e) => {
@@ -88,3 +87,5 @@ const prev = (e) => {
     .querySelector(".slide-img")
     .setAttribute("src", images[section][arrIndex][imgNum]);
 };
+
+datepicker
