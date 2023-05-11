@@ -472,9 +472,16 @@ header {
 
 .calendar-month i {
 position: absolute;
+cursor: pointer;
+transition: .3s;
+}
+
+.calendar-month i:hover {
+  transform: scale(1.3);
 }
 
 .current-month i {
+  display: none;
   left: 1em;
 }
 

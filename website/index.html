@@ -72,10 +72,10 @@
             <div class="service-images" data-serviceIndex="0">
               <div class="img-slider" data-imagesSection="apartment">
                 <img src="./images/4.jpg" class="slide-img" />
-                <button onclick="prev(this)" class="prev-slide-btn">
+                <button onclick="prevSlide(this)" class="prev-slide-btn">
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button onclick="next(this)" class="next-slide-btn">
+                <button onclick="nextSlide(this)" class="next-slide-btn">
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
               </div>
@@ -85,10 +85,10 @@
             <div class="service-images" data-serviceIndex="1">
               <div class="img-slider" data-imagesSection="apartment">
                 <img src="./images/9.jpg" class="slide-img" />
-                <button onclick="prev(this)" class="prev-slide-btn">
+                <button onclick="prevSlide(this)" class="prev-slide-btn">
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button onclick="next(this)" class="next-slide-btn">
+                <button onclick="nextSlide(this)" class="next-slide-btn">
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
               </div>
@@ -130,10 +130,10 @@
             <div class="service-images" data-serviceIndex="2">
               <div class="img-slider" data-imagesSection="apartment">
                 <img src="./images/7.jpg" class="slide-img" />
-                <button onclick="prev(this)" class="prev-slide-btn">
+                <button onclick="prevSlide(this)" class="prev-slide-btn">
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button onclick="next(this)" class="next-slide-btn">
+                <button onclick="nextSlide(this)" class="next-slide-btn">
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
               </div>
@@ -202,10 +202,10 @@
             <div class="resort-slider-container">
               <div class="img-slider" data-imagesSection="resort">
                 <img src="./images/1.jpeg" class="slide-img" />
-                <button onclick="prev(this)" class="prev-slide-btn">
+                <button onclick="prevSlide(this)" class="prev-slide-btn">
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button onclick="next(this)" class="next-slide-btn">
+                <button onclick="nextSlide(this)" class="next-slide-btn">
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
               </div>
@@ -270,8 +270,8 @@
         <div class="datepicker">
           <div class="current-month">
             <div class="calendar-month">
-              <i class="fa-solid fa-chevron-left"></i>
-              <h4>May 2023</h4>
+              <i class="fa-solid fa-chevron-left" onclick="prevMonth()"></i>
+              <h4><span class="current-month-name"></span> <span class="current-month-year"></span></h4>
             </div>
             <table>
               <thead>
@@ -336,8 +336,8 @@
           </div>
           <div class="next-month">
             <div class="calendar-month">
-              <h4>May 2023</h4>
-              <i class="fa-solid fa-chevron-right"></i>
+              <h4><span class="next-month-name"></span> <span class="next-month-year"></span></h4>
+              <i class="fa-solid fa-chevron-right" onclick="nextMonth()"></i>
             </div>
             <table>
               <thead>

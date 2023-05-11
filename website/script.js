@@ -23,7 +23,7 @@ let tabIndex = 0;
 
 tabLinks.forEach((tabLink, index) => {
   tabLink.addEventListener("click", (e) => {
-    let imgSlider = document.querySelector(".info-tabs .img-slider")
+    let imgSlider = document.querySelector(".info-tabs .img-slider");
     tabIndex = index;
     if (tabIndex === tabLinks.length - 1) {
       imgSlider.style.display = "none";
@@ -52,7 +52,7 @@ tabLinks.forEach((tabLink, index) => {
 
 let imgNum = 0;
 
-const next = (e) => {
+const nextSlide = (e) => {
   imgNum++;
   let arrIndex;
   let section = e.closest(".img-slider").getAttribute("data-imagesSection");
@@ -71,7 +71,7 @@ const next = (e) => {
     .setAttribute("src", images[section][arrIndex][imgNum]);
 };
 
-const prev = (e) => {
+const prevSlide = (e) => {
   imgNum--;
   let section = e.closest(".img-slider").getAttribute("data-imagesSection");
   if (section === "resort") {
@@ -88,4 +88,103 @@ const prev = (e) => {
     .setAttribute("src", images[section][arrIndex][imgNum]);
 };
 
-datepicker
+// datepicker
+
+const date = new Date();
+let currentYear = date.getFullYear();
+let currentMonth = date.getMonth() + 1;
+let nextYear = currentYear;
+let comingMonth = currentMonth + 1;
+
+const getMonthName = (month) => {
+  let monthName;
+  switch (month) {
+    case 1:
+      monthName = "Jan";
+      break;
+    case 2:
+      monthName = "Feb";
+      break;
+    case 3:
+      monthName = "Mar";
+      break;
+    case 4:
+      monthName = "Apr";
+      break;
+    case 5:
+      monthName = "May";
+      break;
+    case 6:
+      monthName = "Jun";
+      break;
+    case 7:
+      monthName = "Jul";
+      break;
+    case 8:
+      monthName = "Aug";
+      break;
+    case 9:
+      monthName = "Sep";
+      break;
+    case 10:
+      monthName = "Oct";
+      break;
+    case 11:
+      monthName = "Nov";
+      break;
+    case 12:
+      monthName = "Dec";
+      break;
+  }
+  return monthName;
+};
+
+const currentMonthNameSpan = document.querySelector(".current-month-name");
+const currentMonthYearSpan = document.querySelector(".current-month-year");
+const nextMonthNameSpan = document.querySelector(".next-month-name");
+const nextMonthYearSpan = document.querySelector(".next-month-year");
+
+currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
+currentMonthYearSpan.innerHTML = currentYear;
+nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
+nextMonthYearSpan.innerHTML = nextYear;
+
+const prevMonth = () => {
+  if (
+    currentMonth === date.getMonth() + 2 &&
+    currentYear === date.getFullYear()
+  ) {
+    document.querySelector(".current-month i").style.display = "none";
+  }
+  comingMonth = currentMonth;
+  currentMonth = currentMonth - 1;
+  if (comingMonth === 1) {
+    currentMonth = 12;
+    nextYear -= 1;
+  }
+  if (comingMonth === 12) {
+    currentYear -= 1;
+  }
+  currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
+  currentMonthYearSpan.innerHTML = currentYear;
+  nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
+  nextMonthYearSpan.innerHTML = nextYear;
+};
+
+const nextMonth = () => {
+  document.querySelector(".current-month i").style.display = "block";
+  currentMonth = comingMonth;
+  comingMonth += 1;
+  if (currentMonth === 12) {
+    comingMonth = 1;
+    nextYear += 1;
+  }
+  if (currentMonth === 1) {
+    currentYear += 1;
+  }
+
+  currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
+  currentMonthYearSpan.innerHTML = currentYear;
+  nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
+  nextMonthYearSpan.innerHTML = nextYear;
+};
