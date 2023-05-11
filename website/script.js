@@ -23,7 +23,7 @@ let tabIndex = 0;
 
 tabLinks.forEach((tabLink, index) => {
   tabLink.addEventListener("click", (e) => {
-    let imgSlider = document.querySelector(".info-tabs .img-slider");
+    const imgSlider = document.querySelector(".info-tabs .img-slider");
     tabIndex = index;
     if (tabIndex === tabLinks.length - 1) {
       imgSlider.style.display = "none";
@@ -160,10 +160,10 @@ const prevMonth = () => {
   currentMonth = currentMonth - 1;
   if (comingMonth === 1) {
     currentMonth = 12;
-    nextYear -= 1;
+    currentYear -= 1;
   }
   if (comingMonth === 12) {
-    currentYear -= 1;
+    nextYear -= 1;
   }
   currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
   currentMonthYearSpan.innerHTML = currentYear;
