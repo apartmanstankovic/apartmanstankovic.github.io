@@ -219,13 +219,14 @@ const renderDatesInCurrentMonth = (currentMonth, currentYear) => {
     i < daysInCurrentMonth + orderedFirstDayInCurrentMonth;
     i++
   ) {
-    currentMonthDates[i].classList.add("calendar-date");
+    currentMonthDates[i].classList.add("calendar-date", "enabled-date");
     if (
       currentMonthDate < today &&
       currentMonth === date.getMonth() &&
       currentYear === date.getFullYear()
     ) {
       currentMonthDates[i].classList.add("disabled-date");
+      currentMonthDates[i].classList.remove("enabled-date");
     } else {
       currentMonthDates[i].classList.remove("disabled-date");
     }
@@ -245,7 +246,7 @@ const renderDatesInNextMonth = (currentMonth, currentYear) => {
     i < daysInNextMonth + orderedFirstDayInNextMonth;
     i++
   ) {
-    nextMonthDates[i].classList.add("calendar-date");
+    nextMonthDates[i].classList.add("calendar-date", "enabled-date");
     nextMonthDates[i].innerHTML = nextMonthDate;
     nextMonthDate += 1;
   }
@@ -308,3 +309,49 @@ renderCurrentMonthAndYear();
 renderNextMonthAndYear();
 renderDatesInCurrentMonth(currentMonth, currentYear);
 renderDatesInNextMonth(currentMonth, currentYear);
+
+const calendarDates = document.querySelectorAll(".calendar-date.enabled-date");
+
+let checkInDate = null;
+let checkOutDate = null;
+let checkInIndex;
+let checkOutIndex;
+
+calendarDates.forEach((el, index) => {
+  el.addEventListener("click", () => {
+    if (checkInDate && checkOutDate) {
+      checkInDate.classList.remove("selected-date");
+      checkOutDate.classList.remove("selected-date");
+      for (let i = checkInIndex; i <= checkOutIndex; i++) {
+        calendarDates[i].classList.remove("range");
+      }
+      checkInIndex = index;
+      checkInDate = el;
+      checkOutDate = null;
+      el.classList.add("selected-date");
+    } else if (checkInDate) {
+      if (index < checkInIndex) {
+        checkInDate.classList.remove("selected-date");
+        checkInIndex = index;
+        checkInDate = el;
+        el.classList.add("selected-date");
+      } else {
+        checkOutDate = el;
+        checkOutIndex = index;
+        el.classList.add("selected-date");
+        for (let i = checkInIndex; i <= checkOutIndex; i++) {
+          calendarDates[i].classList.add("range");
+        }
+      }
+    } else {
+      if (el.classList.contains("selected-date")) {
+        checkInDate = null;
+        el.classList.remove("selected-date");
+      } else {
+        checkInIndex = index;
+        checkInDate = el;
+        el.classList.add("selected-date");
+      }
+    }
+  });
+});
