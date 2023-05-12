@@ -145,10 +145,15 @@ const currentMonthYearSpan = document.querySelector(".current-month-year");
 const nextMonthNameSpan = document.querySelector(".next-month-name");
 const nextMonthYearSpan = document.querySelector(".next-month-year");
 
-currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
-currentMonthYearSpan.innerHTML = currentYear;
-nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
-nextMonthYearSpan.innerHTML = nextYear;
+const renderCurrentMonthAndYear = () => {
+  currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
+  currentMonthYearSpan.innerHTML = currentYear;
+};
+
+const renderNextMonthAndYear = () => {
+  nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
+  nextMonthYearSpan.innerHTML = nextYear;
+};
 
 const getLastDateInMonth = (month, year) => {
   return new Date(year, month, 0).getDate();
@@ -157,11 +162,6 @@ const getLastDateInMonth = (month, year) => {
 const getFirstDayInMonth = (month, year) => {
   return new Date(year, month, 0).getDay() + 1;
 };
-
-let daysInCurrentMonth = getLastDateInMonth(currentMonth - 1, currentYear);
-let firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
-let daysInNextMonth = getLastDateInMonth(currentMonth, currentYear);
-let firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
 
 const currentMonthDays = document.querySelectorAll(
   '[data-day="current-month-day"]'
@@ -208,8 +208,10 @@ const clearElementsValue = (elements) => {
   });
 };
 
-const renderDatesInCurrentMonth = () => {
+const renderDatesInCurrentMonth = (currentMonth, currentYear) => {
   let currentMonthDate = 1;
+  let daysInCurrentMonth = getLastDateInMonth(currentMonth + 1, currentYear);
+  let firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
   const orderedFirstDayInCurrentMonth = orderDaysOfWeek(firstDayInCurrentMonth);
 
   for (
@@ -232,8 +234,10 @@ const renderDatesInCurrentMonth = () => {
   }
 };
 
-const renderDatesInNextMonth = () => {
+const renderDatesInNextMonth = (currentMonth, currentYear) => {
   let nextMonthDate = 1;
+  let daysInNextMonth = getLastDateInMonth(currentMonth + 2, currentYear);
+  let firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
   const orderedFirstDayInNextMonth = orderDaysOfWeek(firstDayInNextMonth);
 
   for (
@@ -266,21 +270,14 @@ const prevMonth = () => {
     nextYear -= 1;
   }
 
-  currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
-  currentMonthYearSpan.innerHTML = currentYear;
-  nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
-  nextMonthYearSpan.innerHTML = nextYear;
-
-  daysInCurrentMonth = getLastDateInMonth(currentMonth + 1, currentYear);
-  firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
-  daysInNextMonth = getLastDateInMonth(comingMonth + 1, currentYear);
-  firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
+  renderCurrentMonthAndYear();
+  renderNextMonthAndYear();
 
   clearElementsValue(currentMonthDates);
   clearElementsValue(nextMonthDates);
 
-  renderDatesInCurrentMonth();
-  renderDatesInNextMonth();
+  renderDatesInCurrentMonth(currentMonth, currentYear);
+  renderDatesInNextMonth(currentMonth, currentYear);
 };
 
 const nextMonth = () => {
@@ -297,22 +294,17 @@ const nextMonth = () => {
     currentYear += 1;
   }
 
-  currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
-  currentMonthYearSpan.innerHTML = currentYear;
-  nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
-  nextMonthYearSpan.innerHTML = nextYear;
-
-  daysInCurrentMonth = getLastDateInMonth(currentMonth + 1, currentYear);
-  firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
-  daysInNextMonth = getLastDateInMonth(comingMonth + 1, currentYear);
-  firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
+  renderCurrentMonthAndYear();
+  renderNextMonthAndYear();
 
   clearElementsValue(currentMonthDates);
   clearElementsValue(nextMonthDates);
 
-  renderDatesInCurrentMonth();
-  renderDatesInNextMonth();
+  renderDatesInCurrentMonth(currentMonth, currentYear);
+  renderDatesInNextMonth(currentMonth, currentYear);
 };
 
-renderDatesInCurrentMonth();
-renderDatesInNextMonth();
+renderCurrentMonthAndYear();
+renderNextMonthAndYear();
+renderDatesInCurrentMonth(currentMonth, currentYear);
+renderDatesInNextMonth(currentMonth, currentYear);
