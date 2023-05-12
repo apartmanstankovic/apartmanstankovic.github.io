@@ -471,9 +471,9 @@ header {
 }
 
 .calendar-month i {
-position: absolute;
-cursor: pointer;
-transition: .3s;
+  position: absolute;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .calendar-month i:hover {
@@ -499,9 +499,14 @@ thead {
 
 .calendar-date {
   cursor: pointer;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   padding: 0.8em;
-  border-radius: .2em;
+  border-radius: 0.2em;
+}
+
+.calendar-date.disabled-date {
+  color: rgb(141, 141, 141);
+  cursor: no-drop;
 }
 
 .calendar-date:hover {
@@ -569,19 +574,31 @@ thead {
 .newsletter label {
   display: none;
   position: absolute;
-  top: -0.8em;
+  top: -.8em;
   left: 1em;
   background: transparent;
   text-transform: capitalize;
   font-size: 18px;
-  padding: 0 0.3em;
-  opacity: 0;
+  padding: 0 .3em;
 }
 
 .newsletter input[type="email"]:is(:focus) ~ label {
   display: block;
-  opacity: 1;
   background: white;
+  animation-name: upAndDown;
+  animation-duration: .5s;
+}
+
+@keyframes upAndDown {
+  0% {
+    left: 1em;
+  }
+  50% {
+    left: 3.5em;
+  }
+  100% {
+    left: 1em;
+  }
 }
 
 .newsletter input[type="email"]:focus::placeholder {

@@ -93,6 +93,7 @@ const prevSlide = (e) => {
 const date = new Date();
 let currentYear = date.getFullYear();
 let currentMonth = date.getMonth();
+const today = date.getDate();
 let nextYear = currentYear;
 let comingMonth = currentMonth + 1;
 
@@ -217,6 +218,15 @@ const renderDatesInCurrentMonth = () => {
     i++
   ) {
     currentMonthDates[i].classList.add("calendar-date");
+    if (
+      currentMonthDate < today &&
+      currentMonth === date.getMonth() &&
+      currentYear === date.getFullYear()
+    ) {
+      currentMonthDates[i].classList.add("disabled-date");
+    } else {
+      currentMonthDates[i].classList.remove("disabled-date");
+    }
     currentMonthDates[i].innerHTML = currentMonthDate;
     currentMonthDate += 1;
   }
