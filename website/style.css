@@ -435,7 +435,6 @@ header {
 /* ---------- reservation ---------- */
 
 #reservation {
-  background-color: aqua;
   width: 100%;
   min-height: 100vh;
   padding: 30px 50px;
@@ -447,19 +446,28 @@ header {
 }
 
 .reserve-form {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+display: grid;
+justify-content: center;
+align-items: center;
 }
 
-.stay-time::placeholder {
-  text-align: center;
+.stay-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em auto;
+  width: 40em;
+  height: 3em;
+  border: 1px solid black;
+  border-radius: 0.5em;
 }
 
 .datepicker {
   width: 100%;
+  min-height: 40vh;
   display: flex;
   gap: 3em;
+  transition: 0.3s ease-in-out;
 }
 
 .calendar-month {
@@ -490,7 +498,8 @@ header {
 }
 
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 0.2em;
 }
 
 thead {
@@ -501,7 +510,6 @@ thead {
   cursor: pointer;
   letter-spacing: 0.1em;
   padding: 0.8em;
-  border-radius: 0.2em;
 }
 
 .calendar-date.disabled-date {
@@ -509,8 +517,13 @@ thead {
   cursor: no-drop;
 }
 
-.calendar-date:hover {
-  background: rgb(190, 190, 190);
+.calendar-date:hover,
+.calendar-date.range {
+  background: #1a1a1a1f;
+}
+
+.calendar-date.selected-date {
+  background: #006ce4;
 }
 
 /* ---------- contact ---------- */
@@ -574,19 +587,19 @@ thead {
 .newsletter label {
   display: none;
   position: absolute;
-  top: -.8em;
+  top: -0.8em;
   left: 1em;
   background: transparent;
   text-transform: capitalize;
   font-size: 18px;
-  padding: 0 .3em;
+  padding: 0 0.3em;
 }
 
 .newsletter input[type="email"]:is(:focus) ~ label {
   display: block;
   background: white;
   animation-name: upAndDown;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
 }
 
 @keyframes upAndDown {
