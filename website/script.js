@@ -140,19 +140,14 @@ const getMonthName = (month) => {
   return monthName;
 };
 
-const currentMonthNameSpan = document.querySelector(".current-month-name");
-const currentMonthYearSpan = document.querySelector(".current-month-year");
-const nextMonthNameSpan = document.querySelector(".next-month-name");
-const nextMonthYearSpan = document.querySelector(".next-month-year");
-
 const renderCurrentMonthAndYear = () => {
-  currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
-  currentMonthYearSpan.innerHTML = currentYear;
+  document.querySelector(".current-month-name").innerHTML = getMonthName(currentMonth);
+  document.querySelector(".current-month-year").innerHTML = currentYear;
 };
 
 const renderNextMonthAndYear = () => {
-  nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
-  nextMonthYearSpan.innerHTML = nextYear;
+  document.querySelector(".next-month-name").innerHTML = getMonthName(comingMonth);
+  document.querySelector(".next-month-year").innerHTML = nextYear;
 };
 
 const getLastDateInMonth = (month, year) => {
@@ -162,17 +157,6 @@ const getLastDateInMonth = (month, year) => {
 const getFirstDayInMonth = (month, year) => {
   return new Date(year, month, 0).getDay() + 1;
 };
-
-const currentMonthDays = document.querySelectorAll(
-  '[data-day="current-month-day"]'
-);
-const nextMonthDays = document.querySelectorAll('[data-day="next-month-day"]');
-const currentMonthDates = document.querySelectorAll(
-  '[data-date="current-month-date"]'
-);
-const nextMonthDates = document.querySelectorAll(
-  '[data-date="next-month-date"]'
-);
 
 const orderDaysOfWeek = (day) => {
   switch (day) {
@@ -207,6 +191,13 @@ const clearElementsValue = (elements) => {
     el.classList.remove("calendar-date");
   });
 };
+
+const currentMonthDates = document.querySelectorAll(
+  '[data-date="current-month-date"]'
+);
+const nextMonthDates = document.querySelectorAll(
+  '[data-date="next-month-date"]'
+);
 
 const renderDatesInCurrentMonth = (currentMonth, currentYear) => {
   let currentMonthDate = 1;
