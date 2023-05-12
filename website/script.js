@@ -92,47 +92,47 @@ const prevSlide = (e) => {
 
 const date = new Date();
 let currentYear = date.getFullYear();
-let currentMonth = date.getMonth() + 1;
+let currentMonth = date.getMonth();
 let nextYear = currentYear;
 let comingMonth = currentMonth + 1;
 
 const getMonthName = (month) => {
   let monthName;
   switch (month) {
-    case 1:
+    case 0:
       monthName = "Jan";
       break;
-    case 2:
+    case 1:
       monthName = "Feb";
       break;
-    case 3:
+    case 2:
       monthName = "Mar";
       break;
-    case 4:
+    case 3:
       monthName = "Apr";
       break;
-    case 5:
+    case 4:
       monthName = "May";
       break;
-    case 6:
+    case 5:
       monthName = "Jun";
       break;
-    case 7:
+    case 6:
       monthName = "Jul";
       break;
-    case 8:
+    case 7:
       monthName = "Aug";
       break;
-    case 9:
+    case 8:
       monthName = "Sep";
       break;
-    case 10:
+    case 9:
       monthName = "Oct";
       break;
-    case 11:
+    case 10:
       monthName = "Nov";
       break;
-    case 12:
+    case 11:
       monthName = "Dec";
       break;
   }
@@ -149,37 +149,141 @@ currentMonthYearSpan.innerHTML = currentYear;
 nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
 nextMonthYearSpan.innerHTML = nextYear;
 
+const getLastDateInMonth = (month, year) => {
+  return new Date(year, month, 0).getDate();
+};
+
+const getFirstDayInMonth = (month, year) => {
+  return new Date(year, month, 0).getDay() + 1;
+};
+
+let daysInCurrentMonth = getLastDateInMonth(currentMonth - 1, currentYear);
+let firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
+let daysInNextMonth = getLastDateInMonth(currentMonth, currentYear);
+let firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
+
+const currentMonthDays = document.querySelectorAll(
+  '[data-day="current-month-day"]'
+);
+const nextMonthDays = document.querySelectorAll('[data-day="next-month-day"]');
+const currentMonthDates = document.querySelectorAll(
+  '[data-date="current-month-date"]'
+);
+const nextMonthDates = document.querySelectorAll(
+  '[data-date="next-month-date"]'
+);
+
+const orderDaysOfWeek = (day) => {
+  switch (day) {
+    case 1:
+      day = 0;
+      break;
+    case 2:
+      day = 1;
+      break;
+    case 3:
+      day = 2;
+      break;
+    case 4:
+      day = 3;
+      break;
+    case 5:
+      day = 4;
+      break;
+    case 6:
+      day = 5;
+      break;
+    case 7:
+      day = 6;
+      break;
+  }
+  return day;
+};
+
+const clearElementsValue = (elements) => {
+  elements.forEach((el) => {
+    el.innerHTML = "";
+    el.classList.remove("calendar-date");
+  });
+};
+
+const renderDatesInCurrentMonth = () => {
+  let currentMonthDate = 1;
+  const orderedFirstDayInCurrentMonth = orderDaysOfWeek(firstDayInCurrentMonth);
+
+  for (
+    let i = orderedFirstDayInCurrentMonth;
+    i < daysInCurrentMonth + orderedFirstDayInCurrentMonth;
+    i++
+  ) {
+    currentMonthDates[i].classList.add("calendar-date");
+    currentMonthDates[i].innerHTML = currentMonthDate;
+    currentMonthDate += 1;
+  }
+};
+
+const renderDatesInNextMonth = () => {
+  let nextMonthDate = 1;
+  const orderedFirstDayInNextMonth = orderDaysOfWeek(firstDayInNextMonth);
+
+  for (
+    let i = orderedFirstDayInNextMonth;
+    i < daysInNextMonth + orderedFirstDayInNextMonth;
+    i++
+  ) {
+    nextMonthDates[i].classList.add("calendar-date");
+    nextMonthDates[i].innerHTML = nextMonthDate;
+    nextMonthDate += 1;
+  }
+};
+
 const prevMonth = () => {
   if (
-    currentMonth === date.getMonth() + 2 &&
+    currentMonth === date.getMonth() + 1 &&
     currentYear === date.getFullYear()
   ) {
     document.querySelector(".current-month i").style.display = "none";
   }
   comingMonth = currentMonth;
   currentMonth = currentMonth - 1;
-  if (comingMonth === 1) {
-    currentMonth = 12;
+
+  if (comingMonth === 0) {
+    currentMonth = 11;
     currentYear -= 1;
   }
-  if (comingMonth === 12) {
+
+  if (comingMonth === 11) {
     nextYear -= 1;
   }
+
   currentMonthNameSpan.innerHTML = getMonthName(currentMonth);
   currentMonthYearSpan.innerHTML = currentYear;
   nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
   nextMonthYearSpan.innerHTML = nextYear;
+
+  daysInCurrentMonth = getLastDateInMonth(currentMonth + 1, currentYear);
+  firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
+  daysInNextMonth = getLastDateInMonth(comingMonth + 1, currentYear);
+  firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
+
+  clearElementsValue(currentMonthDates);
+  clearElementsValue(nextMonthDates);
+
+  renderDatesInCurrentMonth();
+  renderDatesInNextMonth();
 };
 
 const nextMonth = () => {
   document.querySelector(".current-month i").style.display = "block";
   currentMonth = comingMonth;
   comingMonth += 1;
-  if (currentMonth === 12) {
-    comingMonth = 1;
+
+  if (currentMonth === 11) {
+    comingMonth = 0;
     nextYear += 1;
   }
-  if (currentMonth === 1) {
+
+  if (currentMonth === 0) {
     currentYear += 1;
   }
 
@@ -187,4 +291,18 @@ const nextMonth = () => {
   currentMonthYearSpan.innerHTML = currentYear;
   nextMonthNameSpan.innerHTML = getMonthName(comingMonth);
   nextMonthYearSpan.innerHTML = nextYear;
+
+  daysInCurrentMonth = getLastDateInMonth(currentMonth + 1, currentYear);
+  firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
+  daysInNextMonth = getLastDateInMonth(comingMonth + 1, currentYear);
+  firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
+
+  clearElementsValue(currentMonthDates);
+  clearElementsValue(nextMonthDates);
+
+  renderDatesInCurrentMonth();
+  renderDatesInNextMonth();
 };
+
+renderDatesInCurrentMonth();
+renderDatesInNextMonth();
