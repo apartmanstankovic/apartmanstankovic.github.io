@@ -271,131 +271,155 @@
           <div class="current-month">
             <div class="calendar-month">
               <i class="fa-solid fa-chevron-left" onclick="prevMonth()"></i>
-              <h4><span class="current-month-name"></span> <span class="current-month-year"></span></h4>
+              <h4>
+                <span class="current-month-name"></span>
+                <span class="current-month-year"></span>
+              </h4>
             </div>
             <table>
               <thead>
                 <tr>
-                  <td class="calendar-day">Mon</td>
-                  <td class="calendar-day">Tue</td>
-                  <td class="calendar-day">Wed</td>
-                  <td class="calendar-day">Thu</td>
-                  <td class="calendar-day">Fri</td>
-                  <td class="calendar-day">Sat</td>
-                  <td class="calendar-day">Sun</td>
+                  <td data-day="current-month-day" class="calendar-day">Mon</td>
+                  <td data-day="current-month-day" class="calendar-day">Tue</td>
+                  <td data-day="current-month-day" class="calendar-day">Wed</td>
+                  <td data-day="current-month-day" class="calendar-day">Thu</td>
+                  <td data-day="current-month-day" class="calendar-day">Fri</td>
+                  <td data-day="current-month-day" class="calendar-day">Sat</td>
+                  <td data-day="current-month-day" class="calendar-day">Sun</td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="calendar-date">1</td>
-                  <td class="calendar-date">2</td>
-                  <td class="calendar-date">3</td>
-                  <td class="calendar-date">4</td>
-                  <td class="calendar-date">5</td>
-                  <td class="calendar-date">6</td>
-                  <td class="calendar-date">7</td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">8</td>
-                  <td class="calendar-date">9</td>
-                  <td class="calendar-date">10</td>
-                  <td class="calendar-date">11</td>
-                  <td class="calendar-date">12</td>
-                  <td class="calendar-date">13</td>
-                  <td class="calendar-date">14</td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">15</td>
-                  <td class="calendar-date">16</td>
-                  <td class="calendar-date">17</td>
-                  <td class="calendar-date">18</td>
-                  <td class="calendar-date">19</td>
-                  <td class="calendar-date">20</td>
-                  <td class="calendar-date">21</td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">22</td>
-                  <td class="calendar-date">23</td>
-                  <td class="calendar-date">24</td>
-                  <td class="calendar-date">25</td>
-                  <td class="calendar-date">26</td>
-                  <td class="calendar-date">27</td>
-                  <td class="calendar-date">28</td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">29</td>
-                  <td class="calendar-date">30</td>
-                  <td class="calendar-date">31</td>
-                  <td class="calendar-date"></td>
-                  <td class="calendar-date"></td>
-                  <td class="calendar-date"></td>
-                  <td class="calendar-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                </tr>
+                <tr>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
+                  <td data-date="current-month-date"></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="next-month">
             <div class="calendar-month">
-              <h4><span class="next-month-name"></span> <span class="next-month-year"></span></h4>
+              <h4>
+                <span class="next-month-name"></span>
+                <span class="next-month-year"></span>
+              </h4>
               <i class="fa-solid fa-chevron-right" onclick="nextMonth()"></i>
             </div>
             <table>
               <thead>
                 <tr>
-                  <td class="calendar-day">Mon</td>
-                  <td class="calendar-day">Tue</td>
-                  <td class="calendar-day">Wed</td>
-                  <td class="calendar-day">Thu</td>
-                  <td class="calendar-day">Fri</td>
-                  <td class="calendar-day">Sat</td>
-                  <td class="calendar-day">Sun</td>
+                  <td data-day="next-month-day" class="calendar-day">Mon</td>
+                  <td data-day="next-month-day" class="calendar-day">Tue</td>
+                  <td data-day="next-month-day" class="calendar-day">Wed</td>
+                  <td data-day="next-month-day" class="calendar-day">Thu</td>
+                  <td data-day="next-month-day" class="calendar-day">Fri</td>
+                  <td data-day="next-month-day" class="calendar-day">Sat</td>
+                  <td data-day="next-month-day" class="calendar-day">Sun</td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="calendar-date">1</td>
-                  <td class="calendar-date">2</td>
-                  <td class="calendar-date">3</td>
-                  <td class="calendar-date">4</td>
-                  <td class="calendar-date">5</td>
-                  <td class="calendar-date">6</td>
-                  <td class="calendar-date">7</td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">8</td>
-                  <td class="calendar-date">9</td>
-                  <td class="calendar-date">10</td>
-                  <td class="calendar-date">11</td>
-                  <td class="calendar-date">12</td>
-                  <td class="calendar-date">13</td>
-                  <td class="calendar-date">14</td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">15</td>
-                  <td class="calendar-date">16</td>
-                  <td class="calendar-date">17</td>
-                  <td class="calendar-date">18</td>
-                  <td class="calendar-date">19</td>
-                  <td class="calendar-date">20</td>
-                  <td class="calendar-date">21</td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">22</td>
-                  <td class="calendar-date">23</td>
-                  <td class="calendar-date">24</td>
-                  <td class="calendar-date">25</td>
-                  <td class="calendar-date">26</td>
-                  <td class="calendar-date">27</td>
-                  <td class="calendar-date">28</td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
                 </tr>
                 <tr>
-                  <td class="calendar-date">29</td>
-                  <td class="calendar-date">30</td>
-                  <td class="calendar-date">31</td>
-                  <td class="calendar-date"></td>
-                  <td class="calendar-date"></td>
-                  <td class="calendar-date"></td>
-                  <td class="calendar-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                </tr>
+                <tr>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
+                  <td data-date="next-month-date"></td>
                 </tr>
               </tbody>
             </table>
