@@ -141,12 +141,14 @@ const getMonthName = (month) => {
 };
 
 const renderCurrentMonthAndYear = () => {
-  document.querySelector(".current-month-name").innerHTML = getMonthName(currentMonth);
+  document.querySelector(".current-month-name").innerHTML =
+    getMonthName(currentMonth);
   document.querySelector(".current-month-year").innerHTML = currentYear;
 };
 
 const renderNextMonthAndYear = () => {
-  document.querySelector(".next-month-name").innerHTML = getMonthName(comingMonth);
+  document.querySelector(".next-month-name").innerHTML =
+    getMonthName(comingMonth);
   document.querySelector(".next-month-year").innerHTML = nextYear;
 };
 
@@ -199,47 +201,30 @@ const nextMonthDates = document.querySelectorAll(
   '[data-date="next-month-date"]'
 );
 
-const renderDatesInCurrentMonth = (currentMonth, currentYear) => {
-  let currentMonthDate = 1;
-  let daysInCurrentMonth = getLastDateInMonth(currentMonth + 1, currentYear);
-  let firstDayInCurrentMonth = getFirstDayInMonth(currentMonth, currentYear);
-  const orderedFirstDayInCurrentMonth = orderDaysOfWeek(firstDayInCurrentMonth);
+const renderDatesInMonth = (elements, currentMonth, currentYear) => {
+  let dateInMonth = 1;
+  let daysInMonth = getLastDateInMonth(currentMonth, currentYear);
+  let firstDayInMonth = getFirstDayInMonth(currentMonth, currentYear);
+  const orderedFirstDayInMonth = orderDaysOfWeek(firstDayInMonth);
 
   for (
-    let i = orderedFirstDayInCurrentMonth;
-    i < daysInCurrentMonth + orderedFirstDayInCurrentMonth;
+    let i = orderedFirstDayInMonth;
+    i < daysInMonth + orderedFirstDayInMonth;
     i++
   ) {
-    currentMonthDates[i].classList.add("calendar-date", "enabled-date");
+    elements[i].classList.add("calendar-date");
+    elements[i].setAttribute("checked", false);
     if (
-      currentMonthDate < today &&
+      dateInMonth < today &&
       currentMonth === date.getMonth() &&
       currentYear === date.getFullYear()
     ) {
-      currentMonthDates[i].classList.add("disabled-date");
-      currentMonthDates[i].classList.remove("enabled-date");
+      elements[i].classList.add("disabled-date");
     } else {
-      currentMonthDates[i].classList.remove("disabled-date");
+      elements[i].classList.remove("disabled-date");
     }
-    currentMonthDates[i].innerHTML = currentMonthDate;
-    currentMonthDate += 1;
-  }
-};
-
-const renderDatesInNextMonth = (currentMonth, currentYear) => {
-  let nextMonthDate = 1;
-  let daysInNextMonth = getLastDateInMonth(currentMonth + 2, currentYear);
-  let firstDayInNextMonth = getFirstDayInMonth(currentMonth + 1, currentYear);
-  const orderedFirstDayInNextMonth = orderDaysOfWeek(firstDayInNextMonth);
-
-  for (
-    let i = orderedFirstDayInNextMonth;
-    i < daysInNextMonth + orderedFirstDayInNextMonth;
-    i++
-  ) {
-    nextMonthDates[i].classList.add("calendar-date", "enabled-date");
-    nextMonthDates[i].innerHTML = nextMonthDate;
-    nextMonthDate += 1;
+    elements[i].innerHTML = dateInMonth;
+    dateInMonth += 1;
   }
 };
 
@@ -268,8 +253,8 @@ const prevMonth = () => {
   clearElementsValue(currentMonthDates);
   clearElementsValue(nextMonthDates);
 
-  renderDatesInCurrentMonth(currentMonth, currentYear);
-  renderDatesInNextMonth(currentMonth, currentYear);
+  renderDatesInMonth(currentMonthDates, currentYear + 1, currentMonth);
+  renderDatesInMonth(nextMonthDates, currentYear + 2, currentMonth + 1);
 };
 
 const nextMonth = () => {
@@ -298,10 +283,11 @@ const nextMonth = () => {
 
 renderCurrentMonthAndYear();
 renderNextMonthAndYear();
-renderDatesInCurrentMonth(currentMonth, currentYear);
-renderDatesInNextMonth(currentMonth, currentYear);
 
-const calendarDates = document.querySelectorAll(".calendar-date.enabled-date");
+renderDatesInMonth(currentMonthDates, currentYear + 1, currentMonth);
+renderDatesInMonth(nextMonthDates, currentYear + 2, currentMonth + 1);
+
+const calendarDates = document.querySelectorAll(".calendar-date");
 
 let checkInDate = null;
 let checkOutDate = null;
