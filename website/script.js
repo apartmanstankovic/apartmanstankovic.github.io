@@ -194,6 +194,7 @@ const clearElementsValue = (elements) => {
   });
 };
 
+const allDates = document.querySelectorAll("tbody > tr > td");
 const currentMonthDates = document.querySelectorAll(
   '[data-date="current-month-date"]'
 );
@@ -237,46 +238,46 @@ renderDatesInMonth(nextMonthDates, currentMonth + 1, currentYear);
 let checkIn = null;
 let checkInDate = null;
 let checkOut = null;
-let checkedOutDate = null;
-
-let calendarDates = document.querySelectorAll(".calendar-date");
+let checkOutDate = null;
 
 const rangeSelector = () => {
-  calendarDates.forEach((el) => {
+  allDates.forEach((el) => {
     el.addEventListener("click", () => {
-      if (checkIn && checkOut) {
-        checkIn.classList.remove("selected-date");
-        checkOut.classList.remove("selected-date");
-        checkOut = null;
-        checkIn = el;
-        checkInDate = +checkIn.innerHTML;
-        checkIn.classList.add("selected-date");
-        console.log("1");
-      } else if (checkIn) {
-        console.log(+el.innerHTML)
-        console.log(checkInDate)
-        if (
-          +el.innerHTML <= checkInDate &&
-          el.getAttribute("data-date") === checkIn.getAttribute("data-date")
-        ) {
+      if (el.classList.contains("calendar-date")) {
+        if (checkIn && checkOut) {
           checkIn.classList.remove("selected-date");
+          checkOut.classList.remove("selected-date");
+          checkOut = null;
           checkIn = el;
           checkInDate = +checkIn.innerHTML;
           checkIn.classList.add("selected-date");
-          console.log("2 1");
-        } else {
-          checkOut = el;
-          checkedOutDate = +checkOut.innerHTML;
-          checkOut.classList.add("selected-date");
-          console.log("2 2");
+        } else if (checkIn) {
+          if (
+            +el.innerHTML < checkInDate &&
+            el.getAttribute("data-date") === checkIn.getAttribute("data-date")
+          ) {
+            checkIn.classList.remove("selected-date");
+            checkIn = el;
+            checkInDate = +checkIn.innerHTML;
+            checkIn.classList.add("selected-date");
+          } else if (
+            checkIn.getAttribute("data-date") === "next-month-date" &&
+            el.getAttribute("data-date") === "current-month-date"
+          ) {
+            checkIn.classList.remove("selected-date");
+            checkIn = el;
+            checkInDate = +checkIn.innerHTML;
+            checkIn.classList.add("selected-date");
+          } else {
+            checkOut = el;
+            checkOutDate = +checkOut.innerHTML;
+            checkOut.classList.add("selected-date");
+          }
+        } else if (!checkIn && !el.classList.contains("disabled-date")) {
+          checkIn = el;
+          checkInDate = +checkIn.innerHTML;
+          checkIn.classList.add("selected-date");
         }
-      }
-
-      if (!checkIn && !el.classList.contains("disabled-date")) {
-        checkIn = el;
-        checkInDate = +checkIn.innerHTML;
-        checkIn.classList.add("selected-date");
-        console.log("3");
       }
     });
   });
