@@ -243,7 +243,7 @@ let checkOutDate = null;
 let checkOutMonth = null;
 
 const rangeSelector = () => {
-  allDates.forEach((el, index) => {
+  allDates.forEach((el) => {
     el.addEventListener("click", () => {
       if (el.classList.contains("calendar-date")) {
         if (checkIn && checkOut) {
@@ -284,8 +284,6 @@ const rangeSelector = () => {
         }
       }
     });
-
-    console.log()
   });
 };
 
@@ -329,18 +327,15 @@ const prevMonth = () => {
       monthsFarFromCheckedIn = 0;
       nextMonthDates.forEach((el) => {
         if (+el.innerHTML === checkInDate) {
-          el.classList.add("selected-date");
           checkIn = el;
+          checkIn.classList.add("selected-date");
           checkInMonth = el.getAttribute("data-date");
-          monthsFarFromCheckedIn++;
         }
       });
     } else if (checkInMonth === "next-month-date") {
       checkInMonth = null;
-      monthsFarFromCheckedIn++;
-    } else if (checkInMonth === null) {
-      monthsFarFromCheckedIn++;
     }
+    monthsFarFromCheckedIn++;
 
     if (monthsFarFromCheckedIn === 0) {
       currentMonthDates.forEach((el) => {
@@ -361,25 +356,22 @@ const prevMonth = () => {
     }
   }
 
-  if (checkOut) {
+  if (checkIn && checkOut) {
     checkOut.classList.remove("selected-date");
 
     if (checkOutMonth === "current-month-date") {
       monthsFarFromCheckedOut = 0;
       nextMonthDates.forEach((el) => {
         if (+el.innerHTML === checkOutDate) {
-          el.classList.add("selected-date");
           checkOut = el;
+          checkOut.classList.add("selected-date");
           checkOutMonth = el.getAttribute("data-date");
-          monthsFarFromCheckedOut++;
         }
       });
     } else if (checkOutMonth === "next-month-date") {
       checkOutMonth = null;
-      monthsFarFromCheckedOut++;
-    } else if (checkOutMonth === null) {
-      monthsFarFromCheckedOut++;
     }
+    monthsFarFromCheckedOut++;
 
     if (monthsFarFromCheckedOut === 0) {
       currentMonthDates.forEach((el) => {
@@ -431,18 +423,15 @@ const nextMonth = () => {
 
       currentMonthDates.forEach((el) => {
         if (+el.innerHTML === checkInDate) {
-          el.classList.add("selected-date");
           checkIn = el;
+          checkIn.classList.add("selected-date");
           checkInMonth = el.getAttribute("data-date");
-          monthsFarFromCheckedIn--;
         }
       });
     } else if (checkInMonth === "current-month-date") {
       checkInMonth = null;
-      monthsFarFromCheckedIn--;
-    } else if (checkInMonth === null) {
-      monthsFarFromCheckedIn--;
     }
+    monthsFarFromCheckedIn--;
 
     if (monthsFarFromCheckedIn === 1) {
       nextMonthDates.forEach((el) => {
@@ -463,7 +452,7 @@ const nextMonth = () => {
     }
   }
 
-  if (checkOut) {
+  if (checkIn && checkOut) {
     checkOut.classList.remove("selected-date");
     if (checkOutMonth === "next-month-date") {
       monthsFarFromCheckedOut = 1;
@@ -473,15 +462,12 @@ const nextMonth = () => {
           el.classList.add("selected-date");
           checkOut = el;
           checkOutMonth = el.getAttribute("data-date");
-          monthsFarFromCheckedOut--;
         }
       });
     } else if (checkOutMonth === "current-month-date") {
       checkOutMonth = null;
-      monthsFarFromCheckedOut--;
-    } else if (checkOutMonth === null) {
-      monthsFarFromCheckedOut--;
     }
+    monthsFarFromCheckedOut--;
 
     if (monthsFarFromCheckedOut === 1) {
       nextMonthDates.forEach((el) => {
