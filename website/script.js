@@ -97,47 +97,23 @@ const today = date.getDate();
 let nextYear = currentYear;
 let comingMonth = currentMonth + 1;
 
+const monthNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 const getMonthName = (month) => {
-  let monthName;
-  switch (month) {
-    case 0:
-      monthName = "Jan";
-      break;
-    case 1:
-      monthName = "Feb";
-      break;
-    case 2:
-      monthName = "Mar";
-      break;
-    case 3:
-      monthName = "Apr";
-      break;
-    case 4:
-      monthName = "May";
-      break;
-    case 5:
-      monthName = "Jun";
-      break;
-    case 6:
-      monthName = "Jul";
-      break;
-    case 7:
-      monthName = "Aug";
-      break;
-    case 8:
-      monthName = "Sep";
-      break;
-    case 9:
-      monthName = "Oct";
-      break;
-    case 10:
-      monthName = "Nov";
-      break;
-    case 11:
-      monthName = "Dec";
-      break;
-  }
-  return monthName;
+  return monthNames[month];
 };
 
 const renderCurrentMonthAndYear = () => {
@@ -161,30 +137,7 @@ const getFirstDayInMonth = (month, year) => {
 };
 
 const orderDaysOfWeek = (day) => {
-  switch (day) {
-    case 1:
-      day = 0;
-      break;
-    case 2:
-      day = 1;
-      break;
-    case 3:
-      day = 2;
-      break;
-    case 4:
-      day = 3;
-      break;
-    case 5:
-      day = 4;
-      break;
-    case 6:
-      day = 5;
-      break;
-    case 7:
-      day = 6;
-      break;
-  }
-  return day;
+  return (day - 1) % 7;
 };
 
 const clearElementsValue = (elements) => {
