@@ -167,7 +167,6 @@ const renderDatesInMonth = (elements, currentMonth, currentYear) => {
     i++
   ) {
     elements[i].classList.add("calendar-date");
-    elements[i].setAttribute("checked", false);
     if (
       dateInMonth < today &&
       currentMonth === date.getMonth() &&
@@ -202,38 +201,43 @@ const rangeSelector = () => {
         if (checkIn && checkOut) {
           checkIn.classList.remove("selected-date");
           checkOut.classList.remove("selected-date");
-          checkOut = null;
           checkIn = el;
           checkInDate = +checkIn.innerHTML;
+          checkInMonth = checkIn.getAttribute("data-date");
           checkIn.classList.add("selected-date");
+          checkIn.setAttribute("check-in", true);
+          checkOut = null;
+          monthsFarFromCheckedIn = null;
         } else if (checkIn) {
           if (
-            +el.innerHTML < checkInDate &&
-            el.getAttribute("data-date") === checkIn.getAttribute("data-date")
+            (+el.innerHTML < checkInDate &&
+              el.getAttribute("data-date") ===
+                checkIn.getAttribute("data-date")) ||
+            (checkIn.getAttribute("data-date") === "next-month-date" &&
+              el.getAttribute("data-date") === "current-month-date")
           ) {
             checkIn.classList.remove("selected-date");
             checkIn = el;
             checkInDate = +checkIn.innerHTML;
+            checkInMonth = checkIn.getAttribute("data-date");
             checkIn.classList.add("selected-date");
-          } else if (
-            checkIn.getAttribute("data-date") === "next-month-date" &&
-            el.getAttribute("data-date") === "current-month-date"
-          ) {
-            checkIn.classList.remove("selected-date");
-            checkIn = el;
-            checkInDate = +checkIn.innerHTML;
-            checkIn.classList.add("selected-date");
+            checkIn.setAttribute("check-in", true);
+            monthsFarFromCheckedIn = null;
           } else {
             checkOut = el;
             checkOutDate = +checkOut.innerHTML;
-            checkOutMonth = el.getAttribute("data-date");
+            checkOutMonth = checkOut.getAttribute("data-date");
             checkOut.classList.add("selected-date");
+            checkOut.setAttribute("check-out", true);
+            monthsFarFromCheckedOut = null;
           }
         } else if (!checkIn && !el.classList.contains("disabled-date")) {
           checkIn = el;
           checkInDate = +checkIn.innerHTML;
-          checkInMonth = el.getAttribute("data-date");
+          checkInMonth = checkIn.getAttribute("data-date");
           checkIn.classList.add("selected-date");
+          checkIn.setAttribute("check-in", true);
+          monthsFarFromCheckedIn = null;
         }
       }
     });
@@ -242,8 +246,8 @@ const rangeSelector = () => {
 
 rangeSelector();
 
-let monthsFarFromCheckedIn = 0;
-let monthsFarFromCheckedOut = 0;
+let monthsFarFromCheckedIn = null;
+let monthsFarFromCheckedOut = null;
 
 const prevMonth = () => {
   if (
@@ -275,14 +279,13 @@ const prevMonth = () => {
 
   if (checkIn) {
     checkIn.classList.remove("selected-date");
-
     if (checkInMonth === "current-month-date") {
       monthsFarFromCheckedIn = 0;
       nextMonthDates.forEach((el) => {
         if (+el.innerHTML === checkInDate) {
           checkIn = el;
           checkIn.classList.add("selected-date");
-          checkInMonth = el.getAttribute("data-date");
+          checkInMonth = checkIn.getAttribute("data-date");
         }
       });
     } else if (checkInMonth === "next-month-date") {
@@ -290,38 +293,26 @@ const prevMonth = () => {
       checkInMonth = null;
     }
     monthsFarFromCheckedIn++;
-
-    if (checkInMonth === null) {
-      if (monthsFarFromCheckedIn === 0) {
-        currentMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkInDate) {
-            checkIn = el;
-            checkIn.classList.add("selected-date");
-            checkInMonth = el.getAttribute("data-date");
-          }
-        });
-      } else if (monthsFarFromCheckedIn === 1) {
-        nextMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkInDate) {
-            checkIn = el;
-            checkIn.classList.add("selected-date");
-            checkInMonth = el.getAttribute("data-date");
-          }
-        });
-      }
+    if (monthsFarFromCheckedIn === 0) {
+      currentMonthDates.forEach((el) => {
+        if (+el.innerHTML === checkInDate) {
+          checkIn = el;
+          checkIn.classList.add("selected-date");
+          checkInMonth = checkIn.getAttribute("data-date");
+        }
+      });
     }
   }
 
-  if (checkIn && checkOut) {
+  if (checkOut) {
     checkOut.classList.remove("selected-date");
-
     if (checkOutMonth === "current-month-date") {
       monthsFarFromCheckedOut = 0;
       nextMonthDates.forEach((el) => {
         if (+el.innerHTML === checkOutDate) {
           checkOut = el;
           checkOut.classList.add("selected-date");
-          checkOutMonth = el.getAttribute("data-date");
+          checkOutMonth = checkOut.getAttribute("data-date");
         }
       });
     } else if (checkOutMonth === "next-month-date") {
@@ -329,25 +320,14 @@ const prevMonth = () => {
       checkOutMonth = null;
     }
     monthsFarFromCheckedOut++;
-
-    if (checkOutMonth === null) {
-      if (monthsFarFromCheckedOut === 0) {
-        currentMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkOutDate) {
-            checkOut = el;
-            checkOut.classList.add("selected-date");
-            checkOutMonth = el.getAttribute("data-date");
-          }
-        });
-      } else if (monthsFarFromCheckedOut === 1) {
-        nextMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkOutDate) {
-            checkOut = el;
-            checkOut.classList.add("selected-date");
-            checkOutMonth = el.getAttribute("data-date");
-          }
-        });
-      }
+    if (monthsFarFromCheckedOut === 0) {
+      currentMonthDates.forEach((el) => {
+        if (+el.innerHTML === checkOutDate) {
+          checkOut = el;
+          checkOut.classList.add("selected-date");
+          checkOutMonth = checkOut.getAttribute("data-date");
+        }
+      });
     }
   }
 };
@@ -377,15 +357,13 @@ const nextMonth = () => {
 
   if (checkIn) {
     checkIn.classList.remove("selected-date");
-
     if (checkInMonth === "next-month-date") {
       monthsFarFromCheckedIn = 1;
-
       currentMonthDates.forEach((el) => {
         if (+el.innerHTML === checkInDate) {
           checkIn = el;
           checkIn.classList.add("selected-date");
-          checkInMonth = el.getAttribute("data-date");
+          checkInMonth = checkIn.getAttribute("data-date");
         }
       });
     } else if (checkInMonth === "current-month-date") {
@@ -393,38 +371,26 @@ const nextMonth = () => {
       checkInMonth = null;
     }
     monthsFarFromCheckedIn--;
-
-    if (checkInMonth === null) {
-      if (monthsFarFromCheckedIn === 1) {
-        nextMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkInDate) {
-            checkIn = el;
-            checkIn.classList.add("selected-date");
-            checkInMonth = el.getAttribute("data-date");
-          }
-        });
-      } else if (monthsFarFromCheckedIn === 0) {
-        currentMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkInDate) {
-            checkIn = el;
-            checkIn.classList.add("selected-date");
-            checkInMonth = el.getAttribute("data-date");
-          }
-        });
-      }
+    if (monthsFarFromCheckedIn === 1) {
+      nextMonthDates.forEach((el) => {
+        if (+el.innerHTML === checkInDate) {
+          checkIn = el;
+          checkIn.classList.add("selected-date");
+          checkInMonth = checkIn.getAttribute("data-date");
+        }
+      });
     }
   }
 
-  if (checkIn && checkOut) {
+  if (checkOut) {
     checkOut.classList.remove("selected-date");
     if (checkOutMonth === "next-month-date") {
       monthsFarFromCheckedOut = 1;
-
       currentMonthDates.forEach((el) => {
         if (+el.innerHTML === checkOutDate) {
-          el.classList.add("selected-date");
           checkOut = el;
-          checkOutMonth = el.getAttribute("data-date");
+          checkOut.classList.add("selected-date");
+          checkOutMonth = checkOut.getAttribute("data-date");
         }
       });
     } else if (checkOutMonth === "current-month-date") {
@@ -432,25 +398,14 @@ const nextMonth = () => {
       checkOutMonth = null;
     }
     monthsFarFromCheckedOut--;
-
-    if (checkOutMonth === null) {
-      if (monthsFarFromCheckedOut === 1) {
-        nextMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkOutDate) {
-            checkOut = el;
-            checkOut.classList.add("selected-date");
-            checkOutMonth = el.getAttribute("data-date");
-          }
-        });
-      } else if (monthsFarFromCheckedOut === 0) {
-        currentMonthDates.forEach((el) => {
-          if (+el.innerHTML === checkOutDate) {
-            checkOut = el;
-            checkOut.classList.add("selected-date");
-            checkOutMonth = el.getAttribute("data-date");
-          }
-        });
-      }
+    if (monthsFarFromCheckedOut === 1) {
+      nextMonthDates.forEach((el) => {
+        if (+el.innerHTML === checkOutDate) {
+          checkOut = el;
+          checkOut.classList.add("selected-date");
+          checkOutMonth = checkOut.getAttribute("data-date");
+        }
+      });
     }
   }
 };
