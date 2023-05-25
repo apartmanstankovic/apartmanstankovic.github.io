@@ -210,53 +210,58 @@ const removeSelectedRange = () => {
 
 const rangeSelector = () => {
   let checkedInIndex;
-  calendarDates.forEach((el, index) => {
-    el.addEventListener("click", () => {
-      if (checkIn && checkOut && !el.classList.contains("disabled-date")) {
-        removeSelectedRange();
-        checkIn.classList.remove(SELECTED_DATE_CLASS);
-        checkOut.classList.remove(SELECTED_DATE_CLASS);
-        checkIn = el;
-        checkInDate = +checkIn.innerHTML;
-        checkInMonth = getDateDateAttribute(checkIn);
-        checkIn.classList.add(SELECTED_DATE_CLASS);
-        checkIn.setAttribute("check-in", true);
-        checkOut = null;
-        monthsFarFromCheckedIn = null;
-        monthsFarFromCheckedOut = null;
-      } else if (checkIn && !el.classList.contains("disabled-date")) {
-        if (
-          (+el.innerHTML < checkInDate &&
-            getDateDateAttribute(el) === getDateDateAttribute(checkIn)) ||
-          (getDateDateAttribute(checkIn) === "next-month-date" &&
-            getDateDateAttribute(el) === "current-month-date")
-        ) {
+  allDates.forEach((el, index) => {
+    el.addEventListener("click", (e) => {
+      if(el.classList.contains("disabled-date")) {
+        e.preventDefault()
+      } else {
+        if (checkIn && checkOut) {
           removeSelectedRange();
           checkIn.classList.remove(SELECTED_DATE_CLASS);
+          checkOut.classList.remove(SELECTED_DATE_CLASS);
+          checkIn = el;
+          checkInDate = +checkIn.innerHTML;
+          checkInMonth = getDateDateAttribute(checkIn);
+          checkIn.classList.add(SELECTED_DATE_CLASS);
+          checkIn.setAttribute("check-in", true);
+          checkOut = null;
+          monthsFarFromCheckedIn = null;
+          monthsFarFromCheckedOut = null;
+        } else if (checkIn) {
+          if (
+            (+el.innerHTML < checkInDate &&
+              getDateDateAttribute(el) === getDateDateAttribute(checkIn)) ||
+            (getDateDateAttribute(checkIn) === "next-month-date" &&
+              getDateDateAttribute(el) === "current-month-date")
+          ) {
+            removeSelectedRange();
+            checkIn.classList.remove(SELECTED_DATE_CLASS);
+            checkIn = el;
+            checkInDate = +checkIn.innerHTML;
+            checkInMonth = getDateDateAttribute(checkIn);
+            checkIn.classList.add(SELECTED_DATE_CLASS);
+            checkIn.setAttribute("check-in", true);
+            monthsFarFromCheckedIn = null;
+          } else {
+            checkOut = el;
+            checkOutDate = +checkOut.innerHTML;
+            checkOutMonth = getDateDateAttribute(checkOut);
+            checkOut.classList.add(SELECTED_DATE_CLASS);
+            checkOut.setAttribute("check-out", true);
+            monthsFarFromCheckedOut = null;
+          }
+        } else if (!checkIn) {
+          removeSelectedRange();
           checkIn = el;
           checkInDate = +checkIn.innerHTML;
           checkInMonth = getDateDateAttribute(checkIn);
           checkIn.classList.add(SELECTED_DATE_CLASS);
           checkIn.setAttribute("check-in", true);
           monthsFarFromCheckedIn = null;
-        } else {
-          checkOut = el;
-          checkOutDate = +checkOut.innerHTML;
-          checkOutMonth = getDateDateAttribute(checkOut);
-          checkOut.classList.add(SELECTED_DATE_CLASS);
-          checkOut.setAttribute("check-out", true);
-          monthsFarFromCheckedOut = null;
         }
-      } else if (!checkIn && !el.classList.contains("disabled-date")) {
-        removeSelectedRange();
-        checkIn = el;
-        checkInDate = +checkIn.innerHTML;
-        checkInMonth = getDateDateAttribute(checkIn);
-        checkIn.classList.add(SELECTED_DATE_CLASS);
-        checkIn.setAttribute("check-in", true);
-        monthsFarFromCheckedIn = null;
+        checkedInIndex = index;
       }
-      checkedInIndex = index;
+
     });
 
     let outedIndex;
@@ -264,14 +269,14 @@ const rangeSelector = () => {
       for (let i = checkedInIndex + 1; i < index + 1; i++) {
         outedIndex = index;
         if (!checkOut) {
-          calendarDates[i].classList.add("range");
+          allDates[i].classList.add("range");
         }
       }
     });
     el.addEventListener("mouseout", () => {
       for (let i = checkedInIndex + 1; i < outedIndex + 1; i++) {
         if (!checkOut) {
-          calendarDates[i].classList.remove("range");
+          allDates[i].classList.remove("range");
         }
       }
     });
