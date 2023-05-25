@@ -187,6 +187,10 @@ renderNextMonthAndYear();
 renderDatesInMonth(currentMonthDates, currentMonth, currentYear);
 renderDatesInMonth(nextMonthDates, currentMonth + 1, currentYear);
 
+const calendarDates = document.querySelectorAll(".calendar-date");
+const SELECTED_DATE_CLASS = "selected-date";
+const DATA_DATE_ATTRIBUTE = "data-date";
+
 let checkIn = null;
 let checkInDate = null;
 let checkInMonth = null;
@@ -194,50 +198,80 @@ let checkOut = null;
 let checkOutDate = null;
 let checkOutMonth = null;
 
+const getDateDateAttribute = (element) => {
+  return element.getAttribute(DATA_DATE_ATTRIBUTE);
+};
+
+const removeSelectedRange = () => {
+  calendarDates.forEach((el) => {
+    el.classList.remove("range");
+  });
+};
+
 const rangeSelector = () => {
-  allDates.forEach((el) => {
+  let checkedInIndex;
+  calendarDates.forEach((el, index) => {
     el.addEventListener("click", () => {
-      if (el.classList.contains("calendar-date")) {
-        if (checkIn && checkOut) {
-          checkIn.classList.remove("selected-date");
-          checkOut.classList.remove("selected-date");
+      if (checkIn && checkOut && !el.classList.contains("disabled-date")) {
+        removeSelectedRange();
+        checkIn.classList.remove(SELECTED_DATE_CLASS);
+        checkOut.classList.remove(SELECTED_DATE_CLASS);
+        checkIn = el;
+        checkInDate = +checkIn.innerHTML;
+        checkInMonth = getDateDateAttribute(checkIn);
+        checkIn.classList.add(SELECTED_DATE_CLASS);
+        checkIn.setAttribute("check-in", true);
+        checkOut = null;
+        monthsFarFromCheckedIn = null;
+        monthsFarFromCheckedOut = null;
+      } else if (checkIn && !el.classList.contains("disabled-date")) {
+        if (
+          (+el.innerHTML < checkInDate &&
+            getDateDateAttribute(el) === getDateDateAttribute(checkIn)) ||
+          (getDateDateAttribute(checkIn) === "next-month-date" &&
+            getDateDateAttribute(el) === "current-month-date")
+        ) {
+          removeSelectedRange();
+          checkIn.classList.remove(SELECTED_DATE_CLASS);
           checkIn = el;
           checkInDate = +checkIn.innerHTML;
-          checkInMonth = checkIn.getAttribute("data-date");
-          checkIn.classList.add("selected-date");
-          checkIn.setAttribute("check-in", true);
-          checkOut = null;
-          monthsFarFromCheckedIn = null;
-        } else if (checkIn) {
-          if (
-            (+el.innerHTML < checkInDate &&
-              el.getAttribute("data-date") ===
-                checkIn.getAttribute("data-date")) ||
-            (checkIn.getAttribute("data-date") === "next-month-date" &&
-              el.getAttribute("data-date") === "current-month-date")
-          ) {
-            checkIn.classList.remove("selected-date");
-            checkIn = el;
-            checkInDate = +checkIn.innerHTML;
-            checkInMonth = checkIn.getAttribute("data-date");
-            checkIn.classList.add("selected-date");
-            checkIn.setAttribute("check-in", true);
-            monthsFarFromCheckedIn = null;
-          } else {
-            checkOut = el;
-            checkOutDate = +checkOut.innerHTML;
-            checkOutMonth = checkOut.getAttribute("data-date");
-            checkOut.classList.add("selected-date");
-            checkOut.setAttribute("check-out", true);
-            monthsFarFromCheckedOut = null;
-          }
-        } else if (!checkIn && !el.classList.contains("disabled-date")) {
-          checkIn = el;
-          checkInDate = +checkIn.innerHTML;
-          checkInMonth = checkIn.getAttribute("data-date");
-          checkIn.classList.add("selected-date");
+          checkInMonth = getDateDateAttribute(checkIn);
+          checkIn.classList.add(SELECTED_DATE_CLASS);
           checkIn.setAttribute("check-in", true);
           monthsFarFromCheckedIn = null;
+        } else {
+          checkOut = el;
+          checkOutDate = +checkOut.innerHTML;
+          checkOutMonth = getDateDateAttribute(checkOut);
+          checkOut.classList.add(SELECTED_DATE_CLASS);
+          checkOut.setAttribute("check-out", true);
+          monthsFarFromCheckedOut = null;
+        }
+      } else if (!checkIn && !el.classList.contains("disabled-date")) {
+        removeSelectedRange();
+        checkIn = el;
+        checkInDate = +checkIn.innerHTML;
+        checkInMonth = getDateDateAttribute(checkIn);
+        checkIn.classList.add(SELECTED_DATE_CLASS);
+        checkIn.setAttribute("check-in", true);
+        monthsFarFromCheckedIn = null;
+      }
+      checkedInIndex = index;
+    });
+
+    let outedIndex;
+    el.addEventListener("mouseenter", () => {
+      for (let i = checkedInIndex + 1; i < index + 1; i++) {
+        outedIndex = index;
+        if (!checkOut) {
+          calendarDates[i].classList.add("range");
+        }
+      }
+    });
+    el.addEventListener("mouseout", () => {
+      for (let i = checkedInIndex + 1; i < outedIndex + 1; i++) {
+        if (!checkOut) {
+          calendarDates[i].classList.remove("range");
         }
       }
     });
