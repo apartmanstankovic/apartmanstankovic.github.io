@@ -1,22 +1,21 @@
 <script setup>
-import AppHeader from './components/AppHeader.vue'
-import ApartmentSection from './components/ApartmentSection.vue'
-import ResortSection from './components/ResortSection.vue'
-import KopaonikSection from './components/KopaonikSection.vue'
-import ReservationSection from './components/ReservationSection.vue'
-import AppFooter from './components/AppFooter.vue'
+import Navbar from './components/Navbar.vue'
+import HeroSection from './components/HeroSection.vue'
+import FeaturesSection from './components/FeaturesSection.vue'
+import GallerySection from './components/GallerySection.vue'
+import LocationSection from './components/LocationSection.vue'
+import BookingSection from './components/BookingSection.vue'
+import FooterSection from './components/FooterSection.vue'
 </script>
 
 <template>
-  <AppHeader />
-  <main>
-    <ApartmentSection />
-    <ResortSection />
-    <KopaonikSection />
-  </main>
-  <ReservationSection />
-  <AppFooter />
+  <div class="min-h-screen bg-[var(--color-light)]">
+    <Navbar />
+    <HeroSection />
+    <FeaturesSection />
+    <GallerySection />
+    <LocationSection />
+    <BookingSection />
+    <FooterSection />
+  </div>
 </template>
-
-<style scoped>
-</style>
