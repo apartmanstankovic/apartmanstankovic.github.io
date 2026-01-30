@@ -69,11 +69,13 @@
   }
 
   .section-subtitle {
+    display: block;
     color: var(--color-accent);
-    font-weight: 600;
-    font-size: 0.875rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
   }
 
   /* ===== BUTTONS ===== */

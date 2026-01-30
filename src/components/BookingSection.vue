@@ -200,10 +200,10 @@ ${t.value.booking.phone}: ${phone.value}`
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-        <span class="text-[var(--color-gold)] font-semibold text-sm uppercase tracking-wider">
+        <h3 class="section-subtitle !text-[var(--color-gold)]">
           {{ t.booking.subtitle }}
-        </span>
-        <h2 class="section-title text-white mt-3 mb-6">
+        </h3>
+        <h2 class="section-title text-white mb-6">
           {{ t.booking.title }}
         </h2>
         <p class="text-white/70 text-lg">

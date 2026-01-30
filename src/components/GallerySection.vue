@@ -57,10 +57,10 @@ if (typeof window !== 'undefined') {
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-        <span class="text-[var(--color-accent)] font-semibold text-sm uppercase tracking-wider">
+        <h3 class="section-subtitle">
           {{ t.gallery.subtitle }}
-        </span>
-        <h2 class="section-title text-[var(--color-primary)] mt-3 mb-6">
+        </h3>
+        <h2 class="section-title text-[var(--color-primary)] mb-6">
           {{ t.gallery.title }}
         </h2>
         <p class="text-gray-600 text-lg">
