@@ -122,7 +122,7 @@ export const translations = {
       quickLinks: 'Brzi linkovi',
       aboutApartment: 'O apartmanu',
       contactTitle: 'Kontakt',
-      copyright: 'Sva prava zadržana.',
+      copyright: 'Sva prava zadržana',
       designedWith: 'Dizajnirano sa'
     }
   },
@@ -250,7 +250,7 @@ export const translations = {
       quickLinks: 'Quick Links',
       aboutApartment: 'About apartment',
       contactTitle: 'Contact',
-      copyright: 'All rights reserved.',
+      copyright: 'All rights reserved',
       designedWith: 'Designed with'
     }
   }

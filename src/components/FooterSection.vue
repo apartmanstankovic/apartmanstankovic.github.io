@@ -107,8 +107,7 @@ const socialLinks = [
     <div class="border-t border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
         <p class="text-white/40 text-xs sm:text-sm text-center">
-          &copy; {{ currentYear }} Apartman Stanković. {{ t.footer.copyright }} 
-          <span class="hidden sm:inline mx-2">|</span>
+          &copy; {{ currentYear }} Apartman Stanković | {{ t.footer.copyright }} |
           <br class="sm:hidden">
           {{ t.footer.designedWith }} <i class="fa-solid fa-heart text-[var(--color-accent)] text-[10px] sm:text-xs"></i> BaneVredniMrav
         </p>
