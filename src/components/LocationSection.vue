@@ -1,10 +1,22 @@
 <script setup>
-const nearbyPlaces = [
-  { icon: 'fa-solid fa-person-skiing', name: 'Ski centar', distance: '500m' },
-  { icon: 'fa-solid fa-utensils', name: 'Restorani', distance: '200m' },
-  { icon: 'fa-solid fa-shop', name: 'Prodavnice', distance: '300m' },
-  { icon: 'fa-solid fa-spa', name: 'Spa centar', distance: 'U kompleksu' },
+import { computed } from 'vue'
+import { useI18n } from '../i18n/useI18n'
+
+const { t } = useI18n()
+
+const placeIcons = [
+  'fa-solid fa-person-skiing',
+  'fa-solid fa-utensils',
+  'fa-solid fa-shop',
+  'fa-solid fa-spa'
 ]
+
+const nearbyPlaces = computed(() => 
+  t.value.location.nearbyPlaces.map((place, index) => ({
+    ...place,
+    icon: placeIcons[index]
+  }))
+)
 </script>
 
 <template>
@@ -14,19 +26,16 @@ const nearbyPlaces = [
         <!-- Content -->
         <div>
           <span class="text-[var(--color-accent)] font-semibold text-sm uppercase tracking-wider">
-            Lokacija
+            {{ t.location.subtitle }}
           </span>
           <h2 class="section-title text-[var(--color-primary)] mt-3 mb-6">
-            U srcu Kopaonika
+            {{ t.location.title }}
           </h2>
           <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-            Naš apartman se nalazi u ekskluzivnom kompleksu na Kopaoniku, 
-            na idealnoj lokaciji koja vam omogućava lak pristup svim sadržajima 
-            ovog popularnog ski centra.
+            {{ t.location.description1 }}
           </p>
           <p class="text-gray-600 text-lg mb-10 leading-relaxed">
-            Bilo da dolazite za zimski ski odmor ili letnje planinarenje, 
-            naša lokacija je savršena polazna tačka za sve vaše avanture.
+            {{ t.location.description2 }}
           </p>
 
           <!-- Nearby Places -->
@@ -52,7 +61,7 @@ const nearbyPlaces = [
               <i class="fa-solid fa-location-dot text-white"></i>
             </div>
             <div>
-              <div class="font-semibold text-[var(--color-primary)] mb-1">Adresa</div>
+              <div class="font-semibold text-[var(--color-primary)] mb-1">{{ t.location.addressLabel }}</div>
               <div class="text-gray-600">
                 Kopaonik Resort<br>
                 36354 Kopaonik, Srbija

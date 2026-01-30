@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from '../i18n/useI18n'
+
+const { t } = useI18n()
 
 const images = [
   { src: '/images/1.jpeg', alt: 'Apartman pogled 1', span: 'md:col-span-2 md:row-span-2' },
@@ -55,13 +58,13 @@ if (typeof window !== 'undefined') {
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
         <span class="text-[var(--color-accent)] font-semibold text-sm uppercase tracking-wider">
-          Galerija
+          {{ t.gallery.subtitle }}
         </span>
         <h2 class="section-title text-[var(--color-primary)] mt-3 mb-6">
-          Pogledajte naš apartman
+          {{ t.gallery.title }}
         </h2>
         <p class="text-gray-600 text-lg">
-          Zavirite u prostor koji će postati vaš drugi dom tokom boravka na Kopaoniku.
+          {{ t.gallery.description }}
         </p>
       </div>
 
