@@ -1,8 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { useI18n } from '../i18n/useI18n'
 
-const monthNames = ['Januar', 'Februar', 'Mart', 'April', 'Maj', 'Jun', 'Jul', 'Avgust', 'Septembar', 'Oktobar', 'Novembar', 'Decembar']
-const weekDays = ['Pon', 'Uto', 'Sre', 'Čet', 'Pet', 'Sub', 'Ned']
+const { t } = useI18n()
+
+const monthNames = computed(() => t.value.booking.monthNames)
+const weekDays = computed(() => t.value.booking.weekDays)
 
 const today = new Date()
 const todayDate = today.getDate()
@@ -140,7 +143,7 @@ const selectDate = (dateObj) => {
 
 const formatDate = (dateObj) => {
   if (!dateObj) return ''
-  return `${dateObj.date}. ${monthNames[dateObj.month].slice(0, 3)}`
+  return `${dateObj.date}. ${monthNames.value[dateObj.month].slice(0, 3)}`
 }
 
 const numberOfNights = computed(() => {
@@ -167,21 +170,25 @@ const chunkArray = (arr, size) => {
 const currentMonthRows = computed(() => chunkArray([...currentMonthDates.value], 7))
 const nextMonthRows = computed(() => chunkArray([...nextMonthDates.value], 7))
 
+const guestsLabel = computed(() => {
+  return guests.value === 1 ? t.value.booking.guest : t.value.booking.guestsPlural
+})
+
 const submitForm = () => {
   if (!checkIn.value || !checkOut.value) {
-    alert('Molimo izaberite datume dolaska i odlaska.')
+    alert(t.value.booking.alertSelectDates)
     return
   }
   
-  const message = `Zdravo! Želim da rezervišem apartman.
+  const message = `${t.value.booking.whatsappMessage}
   
-Dolazak: ${formatDate(checkIn.value)} ${checkIn.value.year}
-Odlazak: ${formatDate(checkOut.value)} ${checkOut.value.year}
-Broj noćenja: ${numberOfNights.value}
-Broj gostiju: ${guests.value}
-Ime: ${name.value}
-Email: ${email.value}
-Telefon: ${phone.value}`
+${t.value.booking.checkIn}: ${formatDate(checkIn.value)} ${checkIn.value.year}
+${t.value.booking.checkOut}: ${formatDate(checkOut.value)} ${checkOut.value.year}
+${t.value.booking.nights}: ${numberOfNights.value}
+${t.value.booking.guests}: ${guests.value}
+${t.value.booking.name}: ${name.value}
+${t.value.booking.email}: ${email.value}
+${t.value.booking.phone}: ${phone.value}`
   
   const whatsappUrl = `https://wa.me/381642848080?text=${encodeURIComponent(message)}`
   window.open(whatsappUrl, '_blank')
@@ -194,13 +201,13 @@ Telefon: ${phone.value}`
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
         <span class="text-[var(--color-gold)] font-semibold text-sm uppercase tracking-wider">
-          Rezervacija
+          {{ t.booking.subtitle }}
         </span>
         <h2 class="section-title text-white mt-3 mb-6">
-          Rezervišite svoj termin
+          {{ t.booking.title }}
         </h2>
         <p class="text-white/70 text-lg">
-          Izaberite datume i pošaljite upit. Odgovorićemo vam u najkraćem roku.
+          {{ t.booking.description }}
         </p>
       </div>
 
@@ -210,25 +217,25 @@ Telefon: ${phone.value}`
           <!-- Selected Dates Display -->
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-gray-100">
             <div>
-              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">Dolazak</label>
+              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">{{ t.booking.checkIn }}</label>
               <div class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]">
                 <i class="fa-regular fa-calendar text-[var(--color-accent)] text-sm sm:text-base"></i>
                 <span class="font-semibold text-[var(--color-primary)] text-sm sm:text-base truncate">
-                  {{ checkIn ? formatDate(checkIn) : 'Izaberite' }}
+                  {{ checkIn ? formatDate(checkIn) : t.booking.select }}
                 </span>
               </div>
             </div>
             <div>
-              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">Odlazak</label>
+              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">{{ t.booking.checkOut }}</label>
               <div class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]">
                 <i class="fa-regular fa-calendar text-[var(--color-accent)] text-sm sm:text-base"></i>
                 <span class="font-semibold text-[var(--color-primary)] text-sm sm:text-base truncate">
-                  {{ checkOut ? formatDate(checkOut) : 'Izaberite' }}
+                  {{ checkOut ? formatDate(checkOut) : t.booking.select }}
                 </span>
               </div>
             </div>
             <div class="col-span-2 sm:col-span-1">
-              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">Noćenja</label>
+              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">{{ t.booking.nights }}</label>
               <div class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-xl bg-[var(--color-accent)]/10">
                 <span class="font-semibold text-[var(--color-accent)] text-sm sm:text-base">
                   {{ numberOfNights > 0 ? numberOfNights : '-' }}
@@ -350,12 +357,12 @@ Telefon: ${phone.value}`
         <!-- Booking Form Card -->
         <div class="w-full lg:w-[340px] xl:w-[380px] flex-shrink-0 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl h-fit">
           <h3 class="text-lg sm:text-xl font-semibold text-[var(--color-primary)] mb-5 sm:mb-6">
-            Podaci za rezervaciju
+            {{ t.booking.formTitle }}
           </h3>
           
           <form @submit.prevent="submitForm" class="space-y-4">
             <div>
-              <label class="text-sm text-gray-500 mb-2 block">Broj gostiju</label>
+              <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.guests }}</label>
               <div class="flex items-center gap-3 p-3 rounded-xl border border-gray-200">
                 <button 
                   type="button"
@@ -365,7 +372,7 @@ Telefon: ${phone.value}`
                   <i class="fa-solid fa-minus text-gray-600 text-sm"></i>
                 </button>
                 <span class="flex-1 text-center font-semibold text-[var(--color-primary)]">
-                  {{ guests }} {{ guests === 1 ? 'gost' : 'gostiju' }}
+                  {{ guests }} {{ guestsLabel }}
                 </span>
                 <button 
                   type="button"
@@ -378,18 +385,18 @@ Telefon: ${phone.value}`
             </div>
 
             <div>
-              <label class="text-sm text-gray-500 mb-2 block">Ime i prezime</label>
+              <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.name }}</label>
               <input 
                 v-model="name"
                 type="text" 
-                placeholder="Vaše ime"
+                :placeholder="t.booking.namePlaceholder"
                 class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
                 required
               />
             </div>
 
             <div>
-              <label class="text-sm text-gray-500 mb-2 block">Email</label>
+              <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.email }}</label>
               <input 
                 v-model="email"
                 type="email" 
@@ -400,7 +407,7 @@ Telefon: ${phone.value}`
             </div>
 
             <div>
-              <label class="text-sm text-gray-500 mb-2 block">Telefon</label>
+              <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.phone }}</label>
               <input 
                 v-model="phone"
                 type="tel" 
@@ -415,11 +422,11 @@ Telefon: ${phone.value}`
               class="w-full btn-primary flex items-center justify-center gap-2 mt-6"
             >
               <i class="fa-brands fa-whatsapp text-xl"></i>
-              Pošalji upit
+              {{ t.booking.submit }}
             </button>
             
             <p class="text-xs text-gray-400 text-center pt-1">
-              Klikom na dugme šaljete upit putem WhatsApp-a
+              {{ t.booking.whatsappNote }}
             </p>
           </form>
         </div>

@@ -1,16 +1,19 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useI18n } from '../i18n/useI18n'
+
+const { t, currentLanguage, toggleLanguage } = useI18n()
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
-const navItems = [
-  { href: '#features', label: 'Apartman' },
-  { href: '#gallery', label: 'Galerija' },
-  { href: '#location', label: 'Lokacija' },
-  { href: '#booking', label: 'Rezervacija' },
-  { href: '#contact', label: 'Kontakt' }
-]
+const navItems = computed(() => [
+  { href: '#features', label: t.value.nav.apartment },
+  { href: '#gallery', label: t.value.nav.gallery },
+  { href: '#location', label: t.value.nav.location },
+  { href: '#booking', label: t.value.nav.booking },
+  { href: '#contact', label: t.value.nav.contact }
+])
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
@@ -56,7 +59,7 @@ const closeMobileMenu = () => {
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-6">
         <a 
           v-for="item in navItems" 
           :key="item.href"
@@ -66,22 +69,45 @@ const closeMobileMenu = () => {
         >
           {{ item.label }}
         </a>
+        
+        <!-- Language Switcher -->
+        <button 
+          @click="toggleLanguage"
+          class="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+          :class="isScrolled ? 'bg-gray-100 hover:bg-gray-200 text-[var(--color-primary)]' : 'bg-white/10 hover:bg-white/20 text-white'"
+        >
+          <i class="fa-solid fa-globe text-sm"></i>
+          <span class="text-sm font-medium uppercase">{{ currentLanguage }}</span>
+        </button>
+        
         <a 
           href="#booking" 
           class="btn-primary text-sm"
         >
-          Rezerviši
+          {{ t.nav.bookNow }}
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button 
-        @click="toggleMobileMenu"
-        class="lg:hidden p-2 rounded-lg transition-all duration-300"
-        :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white drop-shadow-md'"
-      >
-        <i :class="isMobileMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-2xl"></i>
-      </button>
+      <!-- Mobile: Language Switcher + Menu Button -->
+      <div class="flex lg:hidden items-center gap-2">
+        <!-- Language Switcher Mobile -->
+        <button 
+          @click="toggleLanguage"
+          class="p-2 rounded-lg transition-all duration-300"
+          :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white drop-shadow-md'"
+        >
+          <span class="text-sm font-bold uppercase">{{ currentLanguage }}</span>
+        </button>
+        
+        <!-- Mobile Menu Button -->
+        <button 
+          @click="toggleMobileMenu"
+          class="p-2 rounded-lg transition-all duration-300"
+          :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white drop-shadow-md'"
+        >
+          <i :class="isMobileMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-2xl"></i>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Menu -->
@@ -113,7 +139,7 @@ const closeMobileMenu = () => {
               @click="closeMobileMenu"
               class="btn-primary text-center block w-full"
             >
-              Rezerviši
+              {{ t.nav.bookNow }}
             </a>
           </div>
         </div>

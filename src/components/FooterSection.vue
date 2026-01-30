@@ -1,12 +1,17 @@
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from '../i18n/useI18n'
+
+const { t } = useI18n()
+
 const currentYear = new Date().getFullYear()
 
-const quickLinks = [
-  { href: '#features', label: 'O apartmanu' },
-  { href: '#gallery', label: 'Galerija' },
-  { href: '#location', label: 'Lokacija' },
-  { href: '#booking', label: 'Rezervacija' },
-]
+const quickLinks = computed(() => [
+  { href: '#features', label: t.value.footer.aboutApartment },
+  { href: '#gallery', label: t.value.nav.gallery },
+  { href: '#location', label: t.value.nav.location },
+  { href: '#booking', label: t.value.nav.booking },
+])
 
 const socialLinks = [
   { icon: 'fa-brands fa-instagram', href: '#', label: 'Instagram' },
@@ -31,8 +36,7 @@ const socialLinks = [
             </span>
           </div>
           <p class="text-white/60 leading-relaxed mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
-            Luksuzni apartman na Kopaoniku koji pruža savršen spoj udobnosti 
-            i prirodne lepote. Vaše idealno utočište za odmor tokom cele godine.
+            {{ t.footer.description }}
           </p>
           
           <!-- Social Links -->
@@ -51,7 +55,7 @@ const socialLinks = [
 
         <!-- Quick Links -->
         <div>
-          <h4 class="font-semibold text-base sm:text-lg mb-4 sm:mb-6">Brzi linkovi</h4>
+          <h4 class="font-semibold text-base sm:text-lg mb-4 sm:mb-6">{{ t.footer.quickLinks }}</h4>
           <ul class="space-y-3 sm:space-y-4">
             <li v-for="link in quickLinks" :key="link.href">
               <a 
@@ -67,7 +71,7 @@ const socialLinks = [
 
         <!-- Contact Info -->
         <div>
-          <h4 class="font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt</h4>
+          <h4 class="font-semibold text-base sm:text-lg mb-4 sm:mb-6">{{ t.footer.contactTitle }}</h4>
           <ul class="space-y-3 sm:space-y-4">
             <li>
               <a 
@@ -103,10 +107,10 @@ const socialLinks = [
     <div class="border-t border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
         <p class="text-white/40 text-xs sm:text-sm text-center">
-          &copy; {{ currentYear }} Apartman Stanković. Sva prava zadržana. 
+          &copy; {{ currentYear }} Apartman Stanković. {{ t.footer.copyright }} 
           <span class="hidden sm:inline mx-2">|</span>
           <br class="sm:hidden">
-          Dizajnirano sa <i class="fa-solid fa-heart text-[var(--color-accent)] text-[10px] sm:text-xs"></i> | BaneVredniMrav
+          {{ t.footer.designedWith }} <i class="fa-solid fa-heart text-[var(--color-accent)] text-[10px] sm:text-xs"></i> BaneVredniMrav
         </p>
       </div>
     </div>

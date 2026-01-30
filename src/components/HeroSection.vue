@@ -1,5 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from '../i18n/useI18n'
+
+const { t } = useI18n()
 
 const isLoaded = ref(false)
 
@@ -36,7 +39,7 @@ onMounted(() => {
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span class="text-white/90 text-sm font-medium">Dostupno za rezervaciju</span>
+            <span class="text-white/90 text-sm font-medium">{{ t.hero.badge }}</span>
           </div>
 
           <!-- Main Title -->
@@ -44,8 +47,8 @@ onMounted(() => {
             class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-[var(--font-display)] font-bold text-white leading-tight mb-4 sm:mb-6 transition-all duration-700 delay-100"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
-            Vaše savršeno
-            <span class="text-gradient block">utočište na Kopaoniku</span>
+            {{ t.hero.title }}
+            <span class="text-gradient block">{{ t.hero.titleHighlight }}</span>
           </h1>
 
           <!-- Subtitle -->
@@ -53,8 +56,7 @@ onMounted(() => {
             class="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-8 sm:mb-10 max-w-xl transition-all duration-700 delay-200"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
-            Luksuzni apartman sa spektakularnim pogledom na planinske vrhove. 
-            Idealno mesto za nezaboravan odmor tokom cele godine.
+            {{ t.hero.subtitle }}
           </p>
 
           <!-- CTA Buttons -->
@@ -64,11 +66,11 @@ onMounted(() => {
           >
             <a href="#booking" class="btn-primary">
               <i class="fa-regular fa-calendar-check mr-2"></i>
-              Rezerviši termin
+              {{ t.hero.ctaBook }}
             </a>
             <a href="#gallery" class="btn-outline">
               <i class="fa-regular fa-images mr-2"></i>
-              Pogledaj galeriju
+              {{ t.hero.ctaGallery }}
             </a>
           </div>
 
@@ -79,17 +81,17 @@ onMounted(() => {
           >
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-white">4+</div>
-              <div class="text-white/60 text-xs sm:text-sm">Gostiju kapacitet</div>
+              <div class="text-white/60 text-xs sm:text-sm">{{ t.hero.statsCapacity }}</div>
             </div>
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-white">500m</div>
-              <div class="text-white/60 text-xs sm:text-sm">Do ski staze</div>
+              <div class="text-white/60 text-xs sm:text-sm">{{ t.hero.statsDistance }}</div>
             </div>
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-white">5.0</div>
               <div class="text-white/60 text-xs sm:text-sm flex items-center gap-1">
                 <i class="fa-solid fa-star text-[var(--color-gold)] text-xs"></i>
-                Ocena gostiju
+                {{ t.hero.statsRating }}
               </div>
             </div>
           </div>

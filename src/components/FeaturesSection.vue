@@ -1,47 +1,26 @@
 <script setup>
-const features = [
-  {
-    icon: 'fa-solid fa-bed',
-    title: 'Udoban smeštaj',
-    description: 'Prostrani apartman sa modernim nameštajem i svim potrebnim sadržajima za ugodan boravak.'
-  },
-  {
-    icon: 'fa-solid fa-mountain-sun',
-    title: 'Spektakularan pogled',
-    description: 'Uživajte u breathtaking pogledu na planinske vrhove direktno sa vaše terase.'
-  },
-  {
-    icon: 'fa-solid fa-person-skiing',
-    title: 'Blizina ski staza',
-    description: 'Samo 500 metara od glavnih skijaških staza i žičara Kopaonika.'
-  },
-  {
-    icon: 'fa-solid fa-wifi',
-    title: 'Brzi WiFi',
-    description: 'Besplatan brzi internet za sve vaše potrebe - rad ili zabava.'
-  },
-  {
-    icon: 'fa-solid fa-car',
-    title: 'Privatni parking',
-    description: 'Obezbeđeno parking mesto u sklopu kompleksa, potpuno besplatno.'
-  },
-  {
-    icon: 'fa-solid fa-spa',
-    title: 'Wellness & Spa',
-    description: 'Pristup spa centru sa saunom, đakuzijem i relax zonom u sklopu rizorta.'
-  }
+import { computed } from 'vue'
+import { useI18n } from '../i18n/useI18n'
+
+const { t } = useI18n()
+
+const featureIcons = [
+  'fa-solid fa-bed',
+  'fa-solid fa-mountain-sun',
+  'fa-solid fa-person-skiing',
+  'fa-solid fa-wifi',
+  'fa-solid fa-car',
+  'fa-solid fa-spa'
 ]
 
-const amenities = [
-  'Klima uređaj',
-  'Centralno grejanje',
-  'Potpuno opremljena kuhinja',
-  'Smart TV',
-  'Mašina za veš',
-  'Sef za vrednosti',
-  'Posteljina i peškiri',
-  '24/7 recepcija'
-]
+const features = computed(() => 
+  t.value.features.items.map((item, index) => ({
+    ...item,
+    icon: featureIcons[index]
+  }))
+)
+
+const amenities = computed(() => t.value.features.amenities)
 </script>
 
 <template>
@@ -50,14 +29,13 @@ const amenities = [
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
         <span class="text-[var(--color-accent)] font-semibold text-sm uppercase tracking-wider">
-          Zašto mi
+          {{ t.features.subtitle }}
         </span>
         <h2 class="section-title text-[var(--color-primary)] mt-3 mb-6">
-          Sve što vam treba za savršen odmor
+          {{ t.features.title }}
         </h2>
         <p class="text-gray-600 text-lg">
-          Naš apartman je pažljivo dizajniran da vam pruži maksimalan komfor 
-          i nezaboravno iskustvo boravka na Kopaoniku.
+          {{ t.features.description }}
         </p>
       </div>
 
@@ -95,14 +73,13 @@ const amenities = [
           <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div class="text-center md:text-left">
               <h3 class="text-2xl sm:text-3xl font-[var(--font-display)] font-semibold text-white mb-4">
-                Potpuno opremljen apartman
+                {{ t.features.bannerTitle }}
               </h3>
               <p class="text-white/70 text-base sm:text-lg mb-6 sm:mb-8">
-                Sve što vam treba za udoban boravak već vas čeka. 
-                Samo dođite i uživajte.
+                {{ t.features.bannerDescription }}
               </p>
               <a href="#booking" class="btn-primary">
-                Rezerviši sada
+                {{ t.features.bannerButton }}
               </a>
             </div>
             
