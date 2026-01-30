@@ -8,9 +8,9 @@ const nearbyPlaces = [
 </script>
 
 <template>
-  <section id="location" class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
+  <section id="location" class="py-16 sm:py-20 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <!-- Content -->
         <div>
           <span class="text-[var(--color-accent)] font-semibold text-sm uppercase tracking-wider">
@@ -30,18 +30,18 @@ const nearbyPlaces = [
           </p>
 
           <!-- Nearby Places -->
-          <div class="grid grid-cols-2 gap-6 mb-10">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-10">
             <div 
               v-for="(place, index) in nearbyPlaces" 
               :key="index"
-              class="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-light)]"
+              class="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]"
             >
-              <div class="w-12 h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
-                <i :class="place.icon" class="text-white"></i>
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
+                <i :class="place.icon" class="text-white text-sm sm:text-base"></i>
               </div>
               <div>
-                <div class="font-semibold text-[var(--color-primary)]">{{ place.name }}</div>
-                <div class="text-sm text-gray-500">{{ place.distance }}</div>
+                <div class="font-semibold text-[var(--color-primary)] text-sm sm:text-base">{{ place.name }}</div>
+                <div class="text-xs sm:text-sm text-gray-500">{{ place.distance }}</div>
               </div>
             </div>
           </div>
@@ -62,20 +62,20 @@ const nearbyPlaces = [
         </div>
 
         <!-- Map -->
-        <div class="relative">
-          <div class="absolute -top-6 -left-6 w-24 h-24 bg-[var(--color-gold)]/20 rounded-full blur-2xl"></div>
-          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full blur-2xl"></div>
+        <div class="relative mt-8 lg:mt-0">
+          <div class="hidden sm:block absolute -top-6 -left-6 w-24 h-24 bg-[var(--color-gold)]/20 rounded-full blur-2xl"></div>
+          <div class="hidden sm:block absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full blur-2xl"></div>
           
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23466.67680087491!2d20.798614849999998!3d43.2863889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4756f01c9dbfb9b5%3A0xb3c0b3e3b3b3b3b3!2sKopaonik!5e0!3m2!1sen!2srs!4v1700000000000!5m2!1sen!2srs"
               width="100%"
-              height="500"
+              height="350"
               style="border:0;"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              class="rounded-3xl"
+              class="rounded-2xl sm:rounded-3xl sm:h-[500px]"
             ></iframe>
           </div>
         </div>

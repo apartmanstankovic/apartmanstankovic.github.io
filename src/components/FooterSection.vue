@@ -18,19 +18,19 @@ const socialLinks = [
 <template>
   <footer id="contact" class="bg-[var(--color-dark)] text-white">
     <!-- Main Footer -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
         <!-- Brand -->
-        <div class="lg:col-span-2">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">AS</span>
+        <div class="sm:col-span-2 lg:col-span-2">
+          <div class="flex items-center gap-3 mb-4 sm:mb-6">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center">
+              <span class="text-white font-bold text-lg sm:text-xl">AS</span>
             </div>
-            <span class="font-[var(--font-display)] text-2xl font-semibold">
+            <span class="font-[var(--font-display)] text-xl sm:text-2xl font-semibold">
               Apartman Stanković
             </span>
           </div>
-          <p class="text-white/60 leading-relaxed mb-6 max-w-md">
+          <p class="text-white/60 leading-relaxed mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
             Luksuzni apartman na Kopaoniku koji pruža savršen spoj udobnosti 
             i prirodne lepote. Vaše idealno utočište za odmor tokom cele godine.
           </p>
@@ -51,8 +51,8 @@ const socialLinks = [
 
         <!-- Quick Links -->
         <div>
-          <h4 class="font-semibold text-lg mb-6">Brzi linkovi</h4>
-          <ul class="space-y-4">
+          <h4 class="font-semibold text-base sm:text-lg mb-4 sm:mb-6">Brzi linkovi</h4>
+          <ul class="space-y-3 sm:space-y-4">
             <li v-for="link in quickLinks" :key="link.href">
               <a 
                 :href="link.href" 
@@ -67,8 +67,8 @@ const socialLinks = [
 
         <!-- Contact Info -->
         <div>
-          <h4 class="font-semibold text-lg mb-6">Kontakt</h4>
-          <ul class="space-y-4">
+          <h4 class="font-semibold text-base sm:text-lg mb-4 sm:mb-6">Kontakt</h4>
+          <ul class="space-y-3 sm:space-y-4">
             <li>
               <a 
                 href="tel:+381642848080" 
@@ -101,12 +101,12 @@ const socialLinks = [
 
     <!-- Bottom Bar -->
     <div class="border-t border-white/10">
-      <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-white/40 text-sm">
-          &copy; {{ currentYear }} Apartman Stanković. Sva prava zadržana.
-        </p>
-        <p class="text-white/40 text-sm">
-          Dizajnirano sa <i class="fa-solid fa-heart text-[var(--color-accent)]"></i> u Srbiji
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
+        <p class="text-white/40 text-xs sm:text-sm text-center">
+          &copy; {{ currentYear }} Apartman Stanković. Sva prava zadržana. 
+          <span class="hidden sm:inline mx-2">|</span>
+          <br class="sm:hidden">
+          Dizajnirano sa <i class="fa-solid fa-heart text-[var(--color-accent)] text-[10px] sm:text-xs"></i> | BaneVredniMrav
         </p>
       </div>
     </div>
