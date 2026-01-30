@@ -35,16 +35,16 @@ onMounted(() => {
         <div class="max-w-3xl">
           <!-- Badge -->
           <div 
-            class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 mb-4 sm:mb-6 md:mb-8 transition-all duration-700 shadow-lg"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 mb-5 sm:mb-6 md:mb-8 transition-all duration-700 shadow-lg"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
-            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span class="text-white text-xs sm:text-sm font-medium drop-shadow-md">{{ t.hero.badge }}</span>
+            <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-white text-sm sm:text-base font-medium drop-shadow-md">{{ t.hero.badge }}</span>
           </div>
 
           <!-- Main Title -->
           <h1 
-            class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-[var(--font-display)] font-bold text-white leading-tight mb-3 sm:mb-4 md:mb-6 transition-all duration-700 delay-100"
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-[var(--font-display)] font-bold text-white leading-tight mb-4 sm:mb-5 md:mb-6 transition-all duration-700 delay-100"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
             style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);"
           >
@@ -54,9 +54,9 @@ onMounted(() => {
 
           <!-- Subtitle -->
           <p 
-            class="text-sm sm:text-base md:text-lg lg:text-xl text-white leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-xl transition-all duration-700 delay-200 drop-shadow-md"
+            class="text-lg sm:text-xl md:text-2xl lg:text-2xl text-white font-medium leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-2xl transition-all duration-700 delay-200"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
-            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);"
+            style="text-shadow: 2px 2px 6px rgba(0,0,0,0.6);"
           >
             {{ t.hero.subtitle }}
           </p>
@@ -78,21 +78,21 @@ onMounted(() => {
 
           <!-- Stats -->
           <div 
-            class="flex flex-wrap gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12 md:mt-16 pt-4 sm:pt-6 md:pt-8 border-t border-white/30 transition-all duration-700 delay-400"
+            class="flex flex-wrap gap-6 sm:gap-8 md:gap-10 mt-8 sm:mt-12 md:mt-16 pt-5 sm:pt-6 md:pt-8 border-t border-white/30 transition-all duration-700 delay-400"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
             <div class="drop-shadow-md">
-              <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">4+</div>
-              <div class="text-white/80 text-[10px] sm:text-xs md:text-sm">{{ t.hero.statsCapacity }}</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">4+</div>
+              <div class="text-white/80 text-xs sm:text-sm md:text-base">{{ t.hero.statsCapacity }}</div>
             </div>
             <div class="drop-shadow-md">
-              <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">500m</div>
-              <div class="text-white/80 text-[10px] sm:text-xs md:text-sm">{{ t.hero.statsDistance }}</div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">500m</div>
+              <div class="text-white/80 text-xs sm:text-sm md:text-base">{{ t.hero.statsDistance }}</div>
             </div>
             <div class="drop-shadow-md">
-              <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">5.0</div>
-              <div class="text-white/80 text-[10px] sm:text-xs md:text-sm flex items-center gap-1">
-                <i class="fa-solid fa-star text-[var(--color-gold)] text-[8px] sm:text-xs"></i>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">5.0</div>
+              <div class="text-white/80 text-xs sm:text-sm md:text-base flex items-center gap-1">
+                <i class="fa-solid fa-star text-[var(--color-gold)] text-xs sm:text-sm"></i>
                 {{ t.hero.statsRating }}
               </div>
             </div>
