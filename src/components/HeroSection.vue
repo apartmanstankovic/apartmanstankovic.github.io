@@ -22,7 +22,7 @@ onMounted(() => {
         alt="Kopaonik panorama" 
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
     </div>
 
     <!-- Decorative Elements (hidden on mobile to prevent overflow) -->
@@ -30,22 +30,23 @@ onMounted(() => {
     <div class="hidden sm:block absolute bottom-20 right-10 w-96 h-96 bg-[var(--color-accent)]/10 rounded-full blur-3xl"></div>
 
     <!-- Content -->
-    <div class="relative h-full flex items-center pt-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <div class="relative h-full flex items-center pt-16 sm:pt-20">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 md:px-12 lg:px-16 w-full">
         <div class="max-w-3xl">
           <!-- Badge -->
           <div 
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 transition-all duration-700"
+            class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 mb-4 sm:mb-6 md:mb-8 transition-all duration-700 shadow-lg"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span class="text-white/90 text-sm font-medium">{{ t.hero.badge }}</span>
+            <span class="text-white text-xs sm:text-sm font-medium drop-shadow-md">{{ t.hero.badge }}</span>
           </div>
 
           <!-- Main Title -->
           <h1 
-            class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-[var(--font-display)] font-bold text-white leading-tight mb-4 sm:mb-6 transition-all duration-700 delay-100"
+            class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-[var(--font-display)] font-bold text-white leading-tight mb-3 sm:mb-4 md:mb-6 transition-all duration-700 delay-100"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+            style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);"
           >
             {{ t.hero.title }}
             <span class="text-gradient block">{{ t.hero.titleHighlight }}</span>
@@ -53,22 +54,23 @@ onMounted(() => {
 
           <!-- Subtitle -->
           <p 
-            class="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-8 sm:mb-10 max-w-xl transition-all duration-700 delay-200"
+            class="text-sm sm:text-base md:text-lg lg:text-xl text-white leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-xl transition-all duration-700 delay-200 drop-shadow-md"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);"
           >
             {{ t.hero.subtitle }}
           </p>
 
           <!-- CTA Buttons -->
           <div 
-            class="flex flex-wrap gap-4 transition-all duration-700 delay-300"
+            class="flex flex-wrap gap-3 sm:gap-4 transition-all duration-700 delay-300"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
-            <a href="#booking" class="btn-primary">
+            <a href="#booking" class="btn-primary text-sm sm:text-base">
               <i class="fa-regular fa-calendar-check mr-2"></i>
               {{ t.hero.ctaBook }}
             </a>
-            <a href="#gallery" class="btn-outline">
+            <a href="#gallery" class="btn-outline text-sm sm:text-base">
               <i class="fa-regular fa-images mr-2"></i>
               {{ t.hero.ctaGallery }}
             </a>
@@ -76,21 +78,21 @@ onMounted(() => {
 
           <!-- Stats -->
           <div 
-            class="flex flex-wrap gap-6 sm:gap-8 mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-white/20 transition-all duration-700 delay-400"
+            class="flex flex-wrap gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12 md:mt-16 pt-4 sm:pt-6 md:pt-8 border-t border-white/30 transition-all duration-700 delay-400"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
-            <div>
-              <div class="text-2xl sm:text-3xl font-bold text-white">4+</div>
-              <div class="text-white/60 text-xs sm:text-sm">{{ t.hero.statsCapacity }}</div>
+            <div class="drop-shadow-md">
+              <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">4+</div>
+              <div class="text-white/80 text-[10px] sm:text-xs md:text-sm">{{ t.hero.statsCapacity }}</div>
             </div>
-            <div>
-              <div class="text-2xl sm:text-3xl font-bold text-white">500m</div>
-              <div class="text-white/60 text-xs sm:text-sm">{{ t.hero.statsDistance }}</div>
+            <div class="drop-shadow-md">
+              <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">500m</div>
+              <div class="text-white/80 text-[10px] sm:text-xs md:text-sm">{{ t.hero.statsDistance }}</div>
             </div>
-            <div>
-              <div class="text-2xl sm:text-3xl font-bold text-white">5.0</div>
-              <div class="text-white/60 text-xs sm:text-sm flex items-center gap-1">
-                <i class="fa-solid fa-star text-[var(--color-gold)] text-xs"></i>
+            <div class="drop-shadow-md">
+              <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">5.0</div>
+              <div class="text-white/80 text-[10px] sm:text-xs md:text-sm flex items-center gap-1">
+                <i class="fa-solid fa-star text-[var(--color-gold)] text-[8px] sm:text-xs"></i>
                 {{ t.hero.statsRating }}
               </div>
             </div>
