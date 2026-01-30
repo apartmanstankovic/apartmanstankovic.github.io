@@ -27,7 +27,7 @@ onMounted(() => {
     <div class="absolute bottom-20 right-10 w-96 h-96 bg-[var(--color-accent)]/10 rounded-full blur-3xl"></div>
 
     <!-- Content -->
-    <div class="relative h-full flex items-center">
+    <div class="relative h-full flex items-center pt-20">
       <div class="max-w-7xl mx-auto px-6 w-full">
         <div class="max-w-3xl">
           <!-- Badge -->

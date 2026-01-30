@@ -35,21 +35,21 @@ const closeMobileMenu = () => {
 
 <template>
   <nav 
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-    :class="isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+    :class="isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-black/30 backdrop-blur-sm py-4 border-b border-white/10'"
   >
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3">
         <div 
-          class="w-10 h-10 rounded-full flex items-center justify-center"
-          :class="isScrolled ? 'bg-[var(--color-primary)]' : 'bg-white/20 backdrop-blur'"
+          class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+          :class="isScrolled ? 'bg-[var(--color-primary)]' : 'bg-white/20'"
         >
           <span class="text-white font-bold text-lg">AS</span>
         </div>
         <span 
-          class="font-[var(--font-display)] text-xl font-semibold hidden sm:block"
-          :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white'"
+          class="font-[var(--font-display)] text-xl font-semibold hidden sm:block transition-colors duration-300"
+          :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white drop-shadow-md'"
         >
           Apartman Stanković
         </span>
@@ -61,8 +61,8 @@ const closeMobileMenu = () => {
           v-for="item in navItems" 
           :key="item.href"
           :href="item.href"
-          class="nav-link font-medium transition-colors"
-          :class="isScrolled ? 'text-[var(--color-primary)] hover:text-[var(--color-accent)]' : 'text-white/90 hover:text-white'"
+          class="nav-link font-medium transition-all duration-300"
+          :class="isScrolled ? 'text-[var(--color-primary)] hover:text-[var(--color-accent)]' : 'text-white hover:text-[var(--color-gold)] drop-shadow-md'"
         >
           {{ item.label }}
         </a>
@@ -77,8 +77,8 @@ const closeMobileMenu = () => {
       <!-- Mobile Menu Button -->
       <button 
         @click="toggleMobileMenu"
-        class="md:hidden p-2 rounded-lg transition-colors"
-        :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white'"
+        class="md:hidden p-2 rounded-lg transition-all duration-300"
+        :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white drop-shadow-md'"
       >
         <i :class="isMobileMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-2xl"></i>
       </button>
