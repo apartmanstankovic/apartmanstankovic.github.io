@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Tillana:wght@400;500;600;800&display=swap");
+
+:root {
+  --primaryColor: black;
+  --secondaryColor: ;
+  --regular: 18px;
+}
+
+* {
+  font-family: "Tillana", cursive;
+  font-size: var(--regular);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  user-select: none;
+}
+
+body {
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(88, 88, 88);
+}
+
+a:hover {
+  color: var(--primaryColor);
+}
+
+li {
+  list-style: none;
+}
+
+.underlined {
+  position: relative;
+  font-weight: 800;
+  transition: 0.5s ease;
+  padding: 3px 10px;
+}
+
+.underlined::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  background: var(--primaryColor);
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  transition: 0.5s ease;
+}
+
+.underlined:hover:before {
+  position: absolute;
+  width: 50%;
+  height: 2px;
+}
+
+.underlined::after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  background: var(--primaryColor);
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  transition: 0.5s ease;
+}
+
+.underlined:hover:after {
+  position: absolute;
+  width: 50%;
+  height: 2px;
+}
