@@ -40,6 +40,16 @@
   /* Links */
   a {
     transition: color 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* Buttons */
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
   }
 
   /* Lists */
@@ -126,6 +136,7 @@
     position: relative;
     font-weight: 500;
     transition: all 0.3s ease;
+    cursor: pointer;
   }
 
   .nav-link::after {

@@ -38,7 +38,7 @@ const closeMobileMenu = () => {
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
     :class="isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-black/30 backdrop-blur-sm py-4 border-b border-white/10'"
   >
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3">
         <div 
@@ -56,7 +56,7 @@ const closeMobileMenu = () => {
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-8">
         <a 
           v-for="item in navItems" 
           :key="item.href"
@@ -77,7 +77,7 @@ const closeMobileMenu = () => {
       <!-- Mobile Menu Button -->
       <button 
         @click="toggleMobileMenu"
-        class="md:hidden p-2 rounded-lg transition-all duration-300"
+        class="lg:hidden p-2 rounded-lg transition-all duration-300"
         :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white drop-shadow-md'"
       >
         <i :class="isMobileMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-2xl"></i>
@@ -95,25 +95,27 @@ const closeMobileMenu = () => {
     >
       <div 
         v-if="isMobileMenuOpen"
-        class="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t"
+        class="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t"
       >
-        <div class="px-6 py-4 space-y-4">
+        <div class="px-4 py-4 space-y-1">
           <a 
             v-for="item in navItems" 
             :key="item.href"
             :href="item.href"
             @click="closeMobileMenu"
-            class="block py-2 text-[var(--color-primary)] font-medium hover:text-[var(--color-accent)] transition-colors"
+            class="block py-3 px-4 text-center text-[var(--color-primary)] font-medium rounded-xl transition-all duration-200 hover:bg-[var(--color-light)] hover:text-[var(--color-accent)] active:bg-[var(--color-accent)]/10 active:scale-[0.98]"
           >
             {{ item.label }}
           </a>
-          <a 
-            href="#booking" 
-            @click="closeMobileMenu"
-            class="btn-primary text-center block"
-          >
-            Rezerviši
-          </a>
+          <div class="pt-3">
+            <a 
+              href="#booking" 
+              @click="closeMobileMenu"
+              class="btn-primary text-center block w-full"
+            >
+              Rezerviši
+            </a>
+          </div>
         </div>
       </div>
     </Transition>

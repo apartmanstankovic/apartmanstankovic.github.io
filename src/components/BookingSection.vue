@@ -189,10 +189,10 @@ Telefon: ${phone.value}`
 </script>
 
 <template>
-  <section id="booking" class="py-24 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)]">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="booking" class="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
         <span class="text-[var(--color-gold)] font-semibold text-sm uppercase tracking-wider">
           Rezervacija
         </span>
@@ -204,59 +204,66 @@ Telefon: ${phone.value}`
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-8">
-        <!-- Calendar -->
-        <div class="lg:col-span-2 bg-white rounded-3xl p-8 shadow-2xl">
+      <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <!-- Calendar Card -->
+        <div class="flex-1 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl">
           <!-- Selected Dates Display -->
-          <div class="flex flex-wrap gap-4 mb-8 pb-8 border-b border-gray-100">
-            <div class="flex-1 min-w-[200px]">
-              <label class="text-sm text-gray-500 mb-2 block">Dolazak</label>
-              <div class="flex items-center gap-3 p-4 rounded-xl bg-[var(--color-light)]">
-                <i class="fa-regular fa-calendar text-[var(--color-accent)]"></i>
-                <span class="font-semibold text-[var(--color-primary)]">
-                  {{ checkIn ? formatDate(checkIn) : 'Izaberite datum' }}
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-gray-100">
+            <div>
+              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">Dolazak</label>
+              <div class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]">
+                <i class="fa-regular fa-calendar text-[var(--color-accent)] text-sm sm:text-base"></i>
+                <span class="font-semibold text-[var(--color-primary)] text-sm sm:text-base truncate">
+                  {{ checkIn ? formatDate(checkIn) : 'Izaberite' }}
                 </span>
               </div>
             </div>
-            <div class="flex-1 min-w-[200px]">
-              <label class="text-sm text-gray-500 mb-2 block">Odlazak</label>
-              <div class="flex items-center gap-3 p-4 rounded-xl bg-[var(--color-light)]">
-                <i class="fa-regular fa-calendar text-[var(--color-accent)]"></i>
-                <span class="font-semibold text-[var(--color-primary)]">
-                  {{ checkOut ? formatDate(checkOut) : 'Izaberite datum' }}
+            <div>
+              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">Odlazak</label>
+              <div class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]">
+                <i class="fa-regular fa-calendar text-[var(--color-accent)] text-sm sm:text-base"></i>
+                <span class="font-semibold text-[var(--color-primary)] text-sm sm:text-base truncate">
+                  {{ checkOut ? formatDate(checkOut) : 'Izaberite' }}
                 </span>
               </div>
             </div>
-            <div v-if="numberOfNights > 0" class="flex items-end">
-              <div class="px-6 py-4 rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] font-semibold">
-                {{ numberOfNights }} {{ numberOfNights === 1 ? 'noć' : 'noći' }}
+            <div class="col-span-2 sm:col-span-1">
+              <label class="text-xs sm:text-sm text-gray-500 mb-2 block">Noćenja</label>
+              <div class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-xl bg-[var(--color-accent)]/10">
+                <span class="font-semibold text-[var(--color-accent)] text-sm sm:text-base">
+                  {{ numberOfNights > 0 ? numberOfNights : '-' }}
+                </span>
               </div>
             </div>
           </div>
 
           <!-- Calendar Grid -->
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <!-- Current Month -->
-            <div>
-              <div class="flex items-center justify-between mb-6">
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-between w-full max-w-[280px] mb-4">
                 <button 
-                  v-if="canGoPrevMonth"
                   @click="prevMonthClick"
-                  class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                  :disabled="!canGoPrevMonth"
+                  class="w-9 h-9 rounded-full hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
                 >
                   <i class="fa-solid fa-chevron-left text-gray-400"></i>
                 </button>
-                <div v-else class="w-10"></div>
-                <h3 class="font-semibold text-[var(--color-primary)]">
+                <h3 class="font-semibold text-[var(--color-primary)] text-sm sm:text-base">
                   {{ monthNames[currentMonth] }} {{ currentYear }}
                 </h3>
-                <div class="w-10"></div>
+                <button 
+                  @click="nextMonthClick"
+                  class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors md:invisible"
+                >
+                  <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                </button>
               </div>
               
-              <table class="w-full">
+              <table class="w-full max-w-[280px]">
                 <thead>
                   <tr>
-                    <th v-for="day in weekDays" :key="day" class="text-xs text-gray-400 font-medium pb-4">
+                    <th v-for="day in weekDays" :key="day" class="text-xs text-gray-400 font-medium pb-3 w-10">
                       {{ day }}
                     </th>
                   </tr>
@@ -266,13 +273,13 @@ Telefon: ${phone.value}`
                     <td 
                       v-for="(dateObj, cellIndex) in row" 
                       :key="'curr-' + rowIndex + '-' + cellIndex"
-                      class="text-center p-1"
+                      class="text-center p-0.5"
                     >
                       <button
                         v-if="dateObj.date"
                         @click="selectDate(dateObj)"
                         :disabled="dateObj.disabled"
-                        class="w-10 h-10 rounded-full text-sm font-medium transition-all"
+                        class="w-9 h-9 rounded-full text-sm font-medium transition-all"
                         :class="{
                           'text-gray-300 cursor-not-allowed': dateObj.disabled,
                           'hover:bg-gray-100 text-[var(--color-primary)]': !dateObj.disabled && !isSelected(dateObj) && !isInRange(dateObj),
@@ -289,24 +296,24 @@ Telefon: ${phone.value}`
             </div>
 
             <!-- Next Month -->
-            <div>
-              <div class="flex items-center justify-between mb-6">
-                <div class="w-10"></div>
-                <h3 class="font-semibold text-[var(--color-primary)]">
+            <div class="hidden md:flex flex-col items-center">
+              <div class="flex items-center justify-between w-full max-w-[280px] mb-4">
+                <div class="w-9"></div>
+                <h3 class="font-semibold text-[var(--color-primary)] text-sm sm:text-base">
                   {{ monthNames[nextMonth] }} {{ nextYear }}
                 </h3>
                 <button 
                   @click="nextMonthClick"
-                  class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                  class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                 >
                   <i class="fa-solid fa-chevron-right text-gray-400"></i>
                 </button>
               </div>
               
-              <table class="w-full">
+              <table class="w-full max-w-[280px]">
                 <thead>
                   <tr>
-                    <th v-for="day in weekDays" :key="day" class="text-xs text-gray-400 font-medium pb-4">
+                    <th v-for="day in weekDays" :key="day" class="text-xs text-gray-400 font-medium pb-3 w-10">
                       {{ day }}
                     </th>
                   </tr>
@@ -316,13 +323,13 @@ Telefon: ${phone.value}`
                     <td 
                       v-for="(dateObj, cellIndex) in row" 
                       :key="'next-' + rowIndex + '-' + cellIndex"
-                      class="text-center p-1"
+                      class="text-center p-0.5"
                     >
                       <button
                         v-if="dateObj.date"
                         @click="selectDate(dateObj)"
                         :disabled="dateObj.disabled"
-                        class="w-10 h-10 rounded-full text-sm font-medium transition-all"
+                        class="w-9 h-9 rounded-full text-sm font-medium transition-all"
                         :class="{
                           'text-gray-300 cursor-not-allowed': dateObj.disabled,
                           'hover:bg-gray-100 text-[var(--color-primary)]': !dateObj.disabled && !isSelected(dateObj) && !isInRange(dateObj),
@@ -340,22 +347,22 @@ Telefon: ${phone.value}`
           </div>
         </div>
 
-        <!-- Booking Form -->
-        <div class="bg-white rounded-3xl p-8 shadow-2xl h-fit">
-          <h3 class="text-xl font-semibold text-[var(--color-primary)] mb-6">
+        <!-- Booking Form Card -->
+        <div class="w-full lg:w-[340px] xl:w-[380px] flex-shrink-0 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl h-fit">
+          <h3 class="text-lg sm:text-xl font-semibold text-[var(--color-primary)] mb-5 sm:mb-6">
             Podaci za rezervaciju
           </h3>
           
-          <form @submit.prevent="submitForm" class="space-y-5">
+          <form @submit.prevent="submitForm" class="space-y-4">
             <div>
               <label class="text-sm text-gray-500 mb-2 block">Broj gostiju</label>
-              <div class="flex items-center gap-4 p-3 rounded-xl border border-gray-200">
+              <div class="flex items-center gap-3 p-3 rounded-xl border border-gray-200">
                 <button 
                   type="button"
                   @click="guests = Math.max(1, guests - 1)"
-                  class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
+                  class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center flex-shrink-0"
                 >
-                  <i class="fa-solid fa-minus text-gray-600"></i>
+                  <i class="fa-solid fa-minus text-gray-600 text-sm"></i>
                 </button>
                 <span class="flex-1 text-center font-semibold text-[var(--color-primary)]">
                   {{ guests }} {{ guests === 1 ? 'gost' : 'gostiju' }}
@@ -363,9 +370,9 @@ Telefon: ${phone.value}`
                 <button 
                   type="button"
                   @click="guests = Math.min(6, guests + 1)"
-                  class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
+                  class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center flex-shrink-0"
                 >
-                  <i class="fa-solid fa-plus text-gray-600"></i>
+                  <i class="fa-solid fa-plus text-gray-600 text-sm"></i>
                 </button>
               </div>
             </div>
@@ -376,7 +383,7 @@ Telefon: ${phone.value}`
                 v-model="name"
                 type="text" 
                 placeholder="Vaše ime"
-                class="w-full p-4 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all"
+                class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
                 required
               />
             </div>
@@ -387,7 +394,7 @@ Telefon: ${phone.value}`
                 v-model="email"
                 type="email" 
                 placeholder="vas@email.com"
-                class="w-full p-4 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all"
+                class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
                 required
               />
             </div>
@@ -398,20 +405,20 @@ Telefon: ${phone.value}`
                 v-model="phone"
                 type="tel" 
                 placeholder="+381 64 ..."
-                class="w-full p-4 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all"
+                class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
                 required
               />
             </div>
 
             <button 
               type="submit"
-              class="w-full btn-primary flex items-center justify-center gap-2"
+              class="w-full btn-primary flex items-center justify-center gap-2 mt-6"
             >
               <i class="fa-brands fa-whatsapp text-xl"></i>
               Pošalji upit
             </button>
             
-            <p class="text-xs text-gray-400 text-center">
+            <p class="text-xs text-gray-400 text-center pt-1">
               Klikom na dugme šaljete upit putem WhatsApp-a
             </p>
           </form>

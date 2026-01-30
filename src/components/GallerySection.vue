@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const images = [
-  { src: '/images/1.jpeg', alt: 'Apartman pogled 1', span: 'col-span-2 row-span-2' },
+  { src: '/images/1.jpeg', alt: 'Apartman pogled 1', span: 'md:col-span-2 md:row-span-2' },
   { src: '/images/3.jpg', alt: 'Apartman pogled 2', span: '' },
   { src: '/images/4.jpg', alt: 'Apartman pogled 3', span: '' },
   { src: '/images/5.jpg', alt: 'Apartman pogled 4', span: '' },
@@ -50,10 +50,10 @@ if (typeof window !== 'undefined') {
 </script>
 
 <template>
-  <section id="gallery" class="py-24 bg-[var(--color-light)]">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="gallery" class="py-16 sm:py-20 md:py-24 bg-[var(--color-light)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
         <span class="text-[var(--color-accent)] font-semibold text-sm uppercase tracking-wider">
           Galerija
         </span>
@@ -66,7 +66,7 @@ if (typeof window !== 'undefined') {
       </div>
 
       <!-- Gallery Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 auto-rows-[150px] sm:auto-rows-[200px]">
         <div 
           v-for="(image, index) in images" 
           :key="index"
@@ -111,15 +111,15 @@ if (typeof window !== 'undefined') {
           <!-- Navigation -->
           <button 
             @click="prevImage"
-            class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+            class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
           >
-            <i class="fa-solid fa-chevron-left text-xl"></i>
+            <i class="fa-solid fa-chevron-left text-lg sm:text-xl"></i>
           </button>
           <button 
             @click="nextImage"
-            class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+            class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
           >
-            <i class="fa-solid fa-chevron-right text-xl"></i>
+            <i class="fa-solid fa-chevron-right text-lg sm:text-xl"></i>
           </button>
 
           <!-- Image -->
