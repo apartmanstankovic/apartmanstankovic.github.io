@@ -1,0 +1,114 @@
+<script setup>
+const currentYear = new Date().getFullYear()
+
+const quickLinks = [
+  { href: '#features', label: 'O apartmanu' },
+  { href: '#gallery', label: 'Galerija' },
+  { href: '#location', label: 'Lokacija' },
+  { href: '#booking', label: 'Rezervacija' },
+]
+
+const socialLinks = [
+  { icon: 'fa-brands fa-instagram', href: '#', label: 'Instagram' },
+  { icon: 'fa-brands fa-facebook-f', href: '#', label: 'Facebook' },
+  { icon: 'fa-brands fa-whatsapp', href: 'https://wa.me/381642848080', label: 'WhatsApp' },
+]
+</script>
+
+<template>
+  <footer id="contact" class="bg-[var(--color-dark)] text-white">
+    <!-- Main Footer -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+              <span class="text-white font-bold text-xl">AS</span>
+            </div>
+            <span class="font-[var(--font-display)] text-2xl font-semibold">
+              Apartman Stanković
+            </span>
+          </div>
+          <p class="text-white/60 leading-relaxed mb-6 max-w-md">
+            Luksuzni apartman na Kopaoniku koji pruža savršen spoj udobnosti 
+            i prirodne lepote. Vaše idealno utočište za odmor tokom cele godine.
+          </p>
+          
+          <!-- Social Links -->
+          <div class="flex gap-4">
+            <a 
+              v-for="social in socialLinks" 
+              :key="social.label"
+              :href="social.href"
+              :aria-label="social.label"
+              class="w-11 h-11 rounded-full bg-white/10 hover:bg-[var(--color-accent)] flex items-center justify-center transition-all duration-300"
+            >
+              <i :class="social.icon"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-semibold text-lg mb-6">Brzi linkovi</h4>
+          <ul class="space-y-4">
+            <li v-for="link in quickLinks" :key="link.href">
+              <a 
+                :href="link.href" 
+                class="text-white/60 hover:text-white transition-colors flex items-center gap-2"
+              >
+                <i class="fa-solid fa-chevron-right text-xs text-[var(--color-accent)]"></i>
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="font-semibold text-lg mb-6">Kontakt</h4>
+          <ul class="space-y-4">
+            <li>
+              <a 
+                href="tel:+381642848080" 
+                class="text-white/60 hover:text-white transition-colors flex items-center gap-3"
+              >
+                <i class="fa-solid fa-phone text-[var(--color-accent)]"></i>
+                +381 64 284 8080
+              </a>
+            </li>
+            <li>
+              <a 
+                href="mailto:info@apartmanstankovic.rs" 
+                class="text-white/60 hover:text-white transition-colors flex items-center gap-3"
+              >
+                <i class="fa-solid fa-envelope text-[var(--color-accent)]"></i>
+                info@apartmanstankovic.rs
+              </a>
+            </li>
+            <li class="flex items-start gap-3 text-white/60">
+              <i class="fa-solid fa-location-dot text-[var(--color-accent)] mt-1"></i>
+              <span>
+                Kopaonik Resort<br>
+                36354 Kopaonik, Srbija
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white/40 text-sm">
+          &copy; {{ currentYear }} Apartman Stanković. Sva prava zadržana.
+        </p>
+        <p class="text-white/40 text-sm">
+          Dizajnirano sa <i class="fa-solid fa-heart text-[var(--color-accent)]"></i> u Srbiji
+        </p>
+      </div>
+    </div>
+  </footer>
+</template>
