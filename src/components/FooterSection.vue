@@ -109,8 +109,8 @@ const socialLinks = [
         <p class="text-white/40 text-xs sm:text-sm text-center">
           &copy; {{ currentYear }} Apartman Stanković | {{ t.footer.copyright }} |
           <br class="sm:hidden">
-          {{ t.footer.designedWith }} <i class="fa-solid fa-heart text-[var(--color-accent)] text-[10px] sm:text-xs"></i> 
-          <a href="https://github.com/BaneVredniMrav" target="_blank" rel="noopener" class="hover:underline text-white/60 hover:text-white transition-colors"> BaneVredniMrav</a>
+          {{ t.footer.webDevelopment }} 
+          <a href="https://github.com/BaneVredniMrav" target="_blank" rel="noopener" class="text-white/60 hover:text-white transition-colors"> BaneVredniMrav</a>
         </p>
       </div>
     </div>
