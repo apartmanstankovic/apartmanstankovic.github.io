@@ -112,6 +112,8 @@ export const translations = {
       whatsappNote: 'Klikom na dugme šaljete upit putem WhatsApp-a',
       alertSelectDates: 'Molimo izaberite datume dolaska i odlaska.',
       whatsappMessage: 'Zdravo! Želim da rezervišem apartman.',
+      errorRequired: 'Ovo polje je obavezno',
+      errorInvalidEmail: 'Unesite validnu email adresu',
       monthNames: ['Januar', 'Februar', 'Mart', 'April', 'Maj', 'Jun', 'Jul', 'Avgust', 'Septembar', 'Oktobar', 'Novembar', 'Decembar'],
       weekDays: ['Pon', 'Uto', 'Sre', 'Čet', 'Pet', 'Sub', 'Ned']
     },
@@ -240,6 +242,8 @@ export const translations = {
       whatsappNote: 'By clicking the button you send an inquiry via WhatsApp',
       alertSelectDates: 'Please select check-in and check-out dates.',
       whatsappMessage: 'Hello! I would like to book the apartment.',
+      errorRequired: 'This field is required',
+      errorInvalidEmail: 'Please enter a valid email address',
       monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },

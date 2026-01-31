@@ -119,8 +119,27 @@ const isInRange = (dateObj) => {
   return dateValue > checkInValue && dateValue < checkOutValue
 }
 
+// Error states
+const showDateError = ref(false)
+const errors = ref({
+  name: '',
+  email: '',
+  phone: ''
+})
+
+// Email validation
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
+// Clear error when user types
+const clearError = (field) => {
+  errors.value[field] = ''
+}
+
 const selectDate = (dateObj) => {
   if (dateObj.disabled || !dateObj.date) return
+  
+  // Clear date error when user starts selecting
+  showDateError.value = false
   
   const selectedDate = { ...dateObj }
   
@@ -174,11 +193,43 @@ const guestsLabel = computed(() => {
   return guests.value === 1 ? t.value.booking.guest : t.value.booking.guestsPlural
 })
 
-const submitForm = () => {
+const validateForm = () => {
+  let isValid = true
+  errors.value = { name: '', email: '', phone: '' }
+  showDateError.value = false
+  
+  // Check dates
   if (!checkIn.value || !checkOut.value) {
-    alert(t.value.booking.alertSelectDates)
-    return
+    showDateError.value = true
+    isValid = false
   }
+  
+  // Validate name
+  if (!name.value.trim()) {
+    errors.value.name = t.value.booking.errorRequired
+    isValid = false
+  }
+  
+  // Validate email
+  if (!email.value.trim()) {
+    errors.value.email = t.value.booking.errorRequired
+    isValid = false
+  } else if (!isValidEmail(email.value)) {
+    errors.value.email = t.value.booking.errorInvalidEmail
+    isValid = false
+  }
+  
+  // Validate phone
+  if (!phone.value.trim()) {
+    errors.value.phone = t.value.booking.errorRequired
+    isValid = false
+  }
+  
+  return isValid
+}
+
+const submitForm = () => {
+  if (!validateForm()) return
   
   const message = `${t.value.booking.whatsappMessage}
   
@@ -218,30 +269,54 @@ ${t.value.booking.phone}: ${phone.value}`
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-gray-100">
             <div>
               <label class="text-xs sm:text-sm text-gray-500 mb-2 block">{{ t.booking.checkIn }}</label>
-              <div class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]">
-                <i class="fa-regular fa-calendar text-[var(--color-accent)] text-sm sm:text-base"></i>
-                <span class="font-semibold text-[var(--color-primary)] text-sm sm:text-base truncate">
+              <div 
+                class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300"
+                :class="[
+                  checkIn ? 'bg-green-50 border-2 border-green-200' : 'bg-[var(--color-light)]',
+                  showDateError && !checkIn ? 'ring-2 ring-red-400 bg-red-50' : ''
+                ]"
+              >
+                <i class="fa-regular fa-calendar text-sm sm:text-base" :class="checkIn ? 'text-green-500' : 'text-[var(--color-accent)]'"></i>
+                <span class="font-semibold text-sm sm:text-base truncate" :class="checkIn ? 'text-green-600' : 'text-[var(--color-primary)]'">
                   {{ checkIn ? formatDate(checkIn) : t.booking.select }}
                 </span>
+                <i v-if="checkIn" class="fa-solid fa-check text-green-500 text-xs ml-auto"></i>
               </div>
             </div>
             <div>
               <label class="text-xs sm:text-sm text-gray-500 mb-2 block">{{ t.booking.checkOut }}</label>
-              <div class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl bg-[var(--color-light)]">
-                <i class="fa-regular fa-calendar text-[var(--color-accent)] text-sm sm:text-base"></i>
-                <span class="font-semibold text-[var(--color-primary)] text-sm sm:text-base truncate">
+              <div 
+                class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300"
+                :class="[
+                  checkOut ? 'bg-green-50 border-2 border-green-200' : 'bg-[var(--color-light)]',
+                  showDateError && !checkOut ? 'ring-2 ring-red-400 bg-red-50' : ''
+                ]"
+              >
+                <i class="fa-regular fa-calendar text-sm sm:text-base" :class="checkOut ? 'text-green-500' : 'text-[var(--color-accent)]'"></i>
+                <span class="font-semibold text-sm sm:text-base truncate" :class="checkOut ? 'text-green-600' : 'text-[var(--color-primary)]'">
                   {{ checkOut ? formatDate(checkOut) : t.booking.select }}
                 </span>
+                <i v-if="checkOut" class="fa-solid fa-check text-green-500 text-xs ml-auto"></i>
               </div>
             </div>
             <div class="col-span-2 sm:col-span-1">
               <label class="text-xs sm:text-sm text-gray-500 mb-2 block">{{ t.booking.nights }}</label>
-              <div class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-xl bg-[var(--color-accent)]/10">
-                <span class="font-semibold text-[var(--color-accent)] text-sm sm:text-base">
+              <div 
+                class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-xl transition-all duration-300"
+                :class="numberOfNights > 0 ? 'bg-green-100 border-2 border-green-300' : 'bg-[var(--color-accent)]/10'"
+              >
+                <i v-if="numberOfNights > 0" class="fa-solid fa-moon text-green-500 text-sm"></i>
+                <span class="font-semibold text-sm sm:text-base" :class="numberOfNights > 0 ? 'text-green-600' : 'text-[var(--color-accent)]'">
                   {{ numberOfNights > 0 ? numberOfNights : '-' }}
                 </span>
               </div>
             </div>
+            
+            <!-- Date Error Message -->
+            <p v-if="showDateError" class="col-span-2 sm:col-span-3 text-red-500 text-sm text-center flex items-center justify-center gap-2 -mt-2">
+              <i class="fa-solid fa-exclamation-circle"></i>
+              {{ t.booking.alertSelectDates }}
+            </p>
           </div>
 
           <!-- Calendar Grid -->
@@ -386,35 +461,65 @@ ${t.value.booking.phone}: ${phone.value}`
 
             <div>
               <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.name }}</label>
-              <input 
-                v-model="name"
-                type="text" 
-                :placeholder="t.booking.namePlaceholder"
-                class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
-                required
-              />
+              <div class="relative">
+                <input 
+                  v-model="name"
+                  @input="clearError('name')"
+                  type="text" 
+                  :placeholder="t.booking.namePlaceholder"
+                  class="w-full p-3.5 rounded-xl border outline-none transition-all text-sm pr-10"
+                  :class="errors.name 
+                    ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
+                    : 'border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100'"
+                />
+                <i v-if="errors.name" class="fa-solid fa-circle-exclamation absolute right-3.5 top-1/2 -translate-y-1/2 text-red-500"></i>
+              </div>
+              <p v-if="errors.name" class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+                <i class="fa-solid fa-triangle-exclamation text-[10px]"></i>
+                {{ errors.name }}
+              </p>
             </div>
 
             <div>
               <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.email }}</label>
-              <input 
-                v-model="email"
-                type="email" 
-                placeholder="vas@email.com"
-                class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
-                required
-              />
+              <div class="relative">
+                <input 
+                  v-model="email"
+                  @input="clearError('email')"
+                  type="email" 
+                  placeholder="vas@email.com"
+                  class="w-full p-3.5 rounded-xl border outline-none transition-all text-sm pr-10"
+                  :class="errors.email 
+                    ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
+                    : 'border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100'"
+                />
+                <i v-if="errors.email" class="fa-solid fa-circle-exclamation absolute right-3.5 top-1/2 -translate-y-1/2 text-red-500"></i>
+              </div>
+              <p v-if="errors.email" class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+                <i class="fa-solid fa-triangle-exclamation text-[10px]"></i>
+                {{ errors.email }}
+              </p>
             </div>
 
             <div>
               <label class="text-sm text-gray-500 mb-2 block">{{ t.booking.phone }}</label>
-              <input 
-                v-model="phone"
-                type="tel" 
-                placeholder="+381 64 ..."
-                class="w-full p-3.5 rounded-xl border border-gray-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 outline-none transition-all text-sm"
-                required
-              />
+              <div class="relative">
+                <input 
+                  v-model="phone"
+                  @input="clearError('phone')"
+                  type="tel" 
+                  placeholder="+381 64 ..."
+                  class="w-full p-3.5 rounded-xl border outline-none transition-all text-sm pr-10"
+                  :class="errors.phone 
+                    ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
+                    : 'border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100'"
+                />
+                <i v-if="errors.phone" class="fa-solid fa-circle-exclamation absolute right-3.5 top-1/2 -translate-y-1/2 text-red-500"></i>
+              </div>
+              <p v-if="errors.phone" class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+                <i class="fa-solid fa-triangle-exclamation text-[10px]"></i>
+                {{ errors.phone }}
+              </p>
             </div>
 
             <button 
