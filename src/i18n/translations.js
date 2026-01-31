@@ -125,7 +125,7 @@ export const translations = {
       aboutApartment: 'O apartmanu',
       contactTitle: 'Kontakt',
       copyright: 'Sva prava zadržana',
-      designedWith: 'Dizajnirano sa'
+      webDevelopment: 'Web izrada:'
     }
   },
   
@@ -255,7 +255,7 @@ export const translations = {
       aboutApartment: 'About apartment',
       contactTitle: 'Contact',
       copyright: 'All rights reserved',
-      designedWith: 'Designed with'
+      webDevelopment: 'Web development:'
     }
   }
 }
