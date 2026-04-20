@@ -1,63 +1,121 @@
 <script setup>
-import { RouterLink, useRoute } from 'vue-router'
-import logo from '@/assets/img/apartment-logo.png'
+import { ref, onMounted, onUnmounted } from 'vue'
 
-const isActiveLink = (routePath) => {
-  const route = useRoute()
-  return route.path === routePath
+const isScrolled = ref(false)
+const isMobileMenuOpen = ref(false)
+
+const navItems = [
+  { href: '#features', label: 'Apartman' },
+  { href: '#gallery', label: 'Galerija' },
+  { href: '#location', label: 'Lokacija' },
+  { href: '#booking', label: 'Rezervacija' },
+  { href: '#contact', label: 'Kontakt' }
+]
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  isMobileMenuOpen.value = false
 }
 </script>
+
 <template>
-  <nav class="bg-blue-700 border-b border-blue-500">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="flex h-20 items-center justify-between">
-        <div class="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
-          <!-- Logo -->
-          <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
-            <img class="h-10 w-auto" :src="logo" alt="Vue Jobs" />
-            <span class="hidden md:block text-white text-2xl font-bold ml-2"
-              >Apartment Stanković</span
-            >
-          </RouterLink>
-          <div class="md:ml-auto">
-            <div class="flex space-x-2">
-              <RouterLink
-                to="/"
-                :class="[
-                  isActiveLink('/') ? 'bg-blue-900' : 'hover:bg-gray-900 hover:text-white',
-                  'text-white',
-                  'rounded-md',
-                  'px-3',
-                  'py-2',
-                ]"
-                >Home</RouterLink
-              >
-              <RouterLink
-                to="/apartment"
-                :class="[
-                  isActiveLink('/apartment') ? 'bg-blue-900' : 'hover:bg-gray-900 hover:text-white',
-                  'text-white',
-                  'rounded-md',
-                  'px-3',
-                  'py-2',
-                ]"
-                >Apartment</RouterLink
-              >
-              <RouterLink
-                to="/resort"
-                :class="[
-                  isActiveLink('/resort') ? 'bg-blue-900' : 'hover:bg-gray-900 hover:text-white',
-                  'text-white',
-                  'rounded-md',
-                  'px-3',
-                  'py-2',
-                ]"
-                >Resort</RouterLink
-              >
-            </div>
-          </div>
+  <nav 
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    :class="isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'"
+  >
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <div 
+          class="w-10 h-10 rounded-full flex items-center justify-center"
+          :class="isScrolled ? 'bg-[var(--color-primary)]' : 'bg-white/20 backdrop-blur'"
+        >
+          <span class="text-white font-bold text-lg">AS</span>
+        </div>
+        <span 
+          class="font-[var(--font-display)] text-xl font-semibold hidden sm:block"
+          :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white'"
+        >
+          Apartman Stanković
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <a 
+          v-for="item in navItems" 
+          :key="item.href"
+          :href="item.href"
+          class="nav-link font-medium transition-colors"
+          :class="isScrolled ? 'text-[var(--color-primary)] hover:text-[var(--color-accent)]' : 'text-white/90 hover:text-white'"
+        >
+          {{ item.label }}
+        </a>
+        <a 
+          href="#booking" 
+          class="btn-primary text-sm"
+        >
+          Rezerviši
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        @click="toggleMobileMenu"
+        class="md:hidden p-2 rounded-lg transition-colors"
+        :class="isScrolled ? 'text-[var(--color-primary)]' : 'text-white'"
+      >
+        <i :class="isMobileMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0 -translate-y-4"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-4"
+    >
+      <div 
+        v-if="isMobileMenuOpen"
+        class="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t"
+      >
+        <div class="px-6 py-4 space-y-4">
+          <a 
+            v-for="item in navItems" 
+            :key="item.href"
+            :href="item.href"
+            @click="closeMobileMenu"
+            class="block py-2 text-[var(--color-primary)] font-medium hover:text-[var(--color-accent)] transition-colors"
+          >
+            {{ item.label }}
+          </a>
+          <a 
+            href="#booking" 
+            @click="closeMobileMenu"
+            class="btn-primary text-center block"
+          >
+            Rezerviši
+          </a>
         </div>
       </div>
-    </div>
+    </Transition>
   </nav>
 </template>
