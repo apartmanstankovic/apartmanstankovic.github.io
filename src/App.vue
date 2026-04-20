@@ -1,5 +1,5 @@
 <script setup>
-import NavBar from './components/NavBar.vue'
+import NavBar from './components/Navbar.vue'
 import HeroSection from './components/HeroSection.vue'
 import FeaturesSection from './components/FeaturesSection.vue'
 import GallerySection from './components/GallerySection.vue'
